@@ -1,2 +1,1 @@
-# Sigmaskibidirizzw-aura-69-tungtungtungsahur-skibidi-toilet
-Tung tung tung tung sahur
+# B.O.T.A.K Group @ BIT CS-AI
