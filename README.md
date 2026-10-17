@@ -1,1 +1,2 @@
-# B.O.T.A.K Group @ BIT CS-AI
+# B.O.T.A.K Group
+## Algorithm, Data Structures & Connectionist AI
