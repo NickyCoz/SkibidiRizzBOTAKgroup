@@ -16,10 +16,10 @@
 
 * Coordinates slides and illustrations.
 
-## Video lead: Novan (--)
+## Video lead: Novan (--2205)
 
 * Coordinates recording and editing.
 
-## Quality lead: Glen (--)
+## Quality lead: Glen (--2166)
 
 * Checks accuracy, usability, and consistency.
