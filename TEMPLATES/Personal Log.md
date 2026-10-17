@@ -1,4 +1,4 @@
-### Log [MM-DD]
+### Log [YYYY-MM-DD]
 #### Activity:
 - [What did you study, practice, create, check, or improve? Why?]
 

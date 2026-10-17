@@ -1,4 +1,4 @@
-### Significant AI Use on [MM-DD]
+### Significant AI Use on [YYYY-MM-DD]
 
 #### Information: 
 **Person**: [Name(s)...]

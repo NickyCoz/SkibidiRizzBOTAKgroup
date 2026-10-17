@@ -1,4 +1,4 @@
-### Session [MM-DD]
+### Session [YYYY-MM-DD]
 
 #### Information:
 Member(s): [Names...]
