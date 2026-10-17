@@ -12,7 +12,7 @@
 
 * Checks scope, structure, and explanations.
 
-## Visual design lead: Neil (--)
+## Visual design lead: Neil (--2237)
 
 * Coordinates slides and illustrations.
 
