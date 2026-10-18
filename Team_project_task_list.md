@@ -10,7 +10,7 @@ Manages tasks, deadlines, and meetings.
 2. Repository and submission lead(CIO): Devon (--2221).
 Organizes files and submissions.
 3. Content lead: Darren (--2193)
-Checks scope, structure, and explanations.
+Checks scope, structure, and explanations.  
 4. Visual design lead: Neil (--2237)
 Coordinates slides and illustrations.
 5. Video lead: Novan (--)

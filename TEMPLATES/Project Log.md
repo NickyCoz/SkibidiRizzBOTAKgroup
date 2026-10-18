@@ -1,20 +1,20 @@
-### Session [YYYY-MM-DD]
+### Project Log [YYYY-MM-DD]
 
 #### Information:
-Member(s): [Names...]
-Time: from [HH:mm] to [HH:mm]
+Member(s): [Names...]  
+Time: from [HH:mm] to [HH:mm]  
 
 #### Actions: 
 ##### Task [N]
 **Description:** 
-	[Task description...]
-**Member(s):** [Names...]
-**Status:** [Completed / In progress / Attempted]
+	[Task description...]  
+**Member(s):** [Names...]  
+**Status:** [Completed / In progress / Attempted]  
 **Work performed:** 
 - [Work...]
 **Result:** 
 - [Outcome, decision, correction, or current status...]
-**Evidence label(s):** [E1, E2, etc.]
+**Evidence label(s):** [E1, E2, etc.]  
 
 #### Learned: 
 - [A useful insight, difficulty, mistake, or improvement in the team’s understanding or working methods...]

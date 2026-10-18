@@ -1,9 +1,9 @@
 ### Meeting [YYYY-MM-DD]
-**Start time:** [HH:mm]
-**End time:** [HH:mm]
-**Location / platform:** [Location or platform]
-**Members present:** [Names...]
-**Members absent:** [Names...]
+**Start time:** [HH:mm]  
+**End time:** [HH:mm]  
+**Location / platform:** [Location or platform]  
+**Members present:** [Names...]  
+**Members absent:** [Names...]  
 
 #### Purpose: 
 [What needed discussion?]
