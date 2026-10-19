@@ -4,8 +4,9 @@ Members communicate online via a WeChat group to share updates, discuss ideas, a
 ## How corrections will reach every affected deliverable.
 When we identify errors or potential issues, we will document them through GitHub issues or discussions in our WeChat group. the responsible team members will make the corrections and submit the changes through pull requests for review. We will also identify which deliverables are affected, make the necessary updates, and make sure that all revisions remain consistent throughout the project. Once the changes have been reviewed and approved, they will be merged into the appropriate branch, and all team members will be informed of the updates to make sure everyone remains up to date.
 
+
 ## When you will test activities, rehearse presentations, and collect feedback.
-We will test activities and rehearse presentations during face-to-face meetings. During these sessions, we will ask our peers to observe our work and provide constructive feedback. We will discuss their suggestions as a team, make the improvements, and do further tests or rehearsals when needed. 
+We will test activities and rehearse presentations during face-to-face meetings. During these sessions, we will ask our peers to observe our work and provide constructive feedback. We will discuss their suggestions, improve our work, and do further tests or rehearsals when needed.
 
 # Team Project plan and Task List
 
