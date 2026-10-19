@@ -1,26 +1,29 @@
-### Meeting [YYYY-MM-DD]
-**Start time:** [HH:mm]  
-**End time:** [HH:mm]  
-**Location / platform:** [Location or platform]  
-**Members present:** [Names...]  
-**Members absent:** [Names...]  
+## Meeting [YYYY-MM-DD]
 
-#### Purpose: 
-[What needed discussion?]
+- **Start time:** [HH:mm]
+- **End time:** [HH:mm]
+- **Location or platform:** [Location or platform]
+- **Members present:** [Names]
+- **Members absent:** [Names or None]
+- **Related project log entry:** [Date and task, or None]
 
-#### Key Points:
-- [Important options, questions, or disagreements....]
+### Purpose
+[What needed discussion]
 
-#### Decisions and Outcomes: 
-- [What was agreed, and why where relevant?...]
+### Key points
+#### [Topic]
+[Options, questions, or disagreements]
 
-#### To Do Next: 
-- [Concrete follow-up tasks, responsible members, and intended completion dates.]
-- [Task description...] ([member(s)...] by [completion date...])
+### Decisions and outcomes
+#### [Decision]
+[What was agreed and why]
 
-#### Evidence
+### To do next
+#### [Task]
+- **Owner(s):** [Names]
+- **Due date:** [YYYY-MM-DD]
 
-| ID        | Evidence                                    | Description |
-| --------- | ------------------------------------------- | ----------- |
-| M-MMDD-E1 | Lorem ipsum dolor sit amet                  |             |
-| M-MMDD-E2 | [IMG_202626023523.jpg](https://example.com) |             |
+### Evidence
+| ID | Evidence | What this shows |
+| --- | --- | --- |
+| [M-MMDD-E1] | [Excerpt, image, or task-list update] | [What the evidence demonstrates] |
