@@ -1,32 +1,20 @@
-### Significant AI Use on [YYYY-MM-DD]
+## Significant AI Use [YYYY-MM-DD]
 
-#### Information: 
-**Person**: [Name(s)...]
-**Tool**: [AI tool used...]
-**Purpose**: [Why you used AI on this...]
-**Important Interactions**: [Excerpts and screenshots as evidence labels...]
+- **Person(s):** [Name(s)]
+- **Tool:** [AI tool]
+- **Related project log entry, if shared project use:** [Date, task, and evidence ID, or None]
 
-#### Verification and Decisions: 
-[Explain how you checked the output, what you accepted, revised, or rejected, and why. Include supporting evidence where relevant....]
+### Purpose
+[What you were trying to understand, create, improve, or solve]
 
-##### Verification:
-[I have verified this by doing ...]
+### Important interactions
+| Evidence ID | Prompt or output excerpt | What this shows |
+| --- | --- | --- |
+| [A-XX-MMDD-E1] | [Prompt or output excerpt] | [What it shows] |
+| [A-XX-MMDD-E2] | [Prompt or output excerpt] | [What it shows] |
 
-##### Accepted: 
-[I accepted this output because ...]
+### Verification and decisions
+[How you checked the output, what you accepted, revised, or rejected, and why]
 
-##### Rejected:
-[The tool gave me an output [evidence label] I rejected because ...]
-
-##### Revised:
-[The tool gave me an output I revised because ...]
-
-#### Outcome and Learning:
-[Identify where the result was used, what you contributed, and what you learned....]
-
-#### Evidence
-
-| ID        | Evidence                                    | Description |
-| --------- | ------------------------------------------- | ----------- |
-| A-MMDD-E1 | Lorem ipsum dolor sit amet                  |             |
-| A-MMDD-E2 | [IMG_202626023523.jpg](https://example.com) |             |
+### Outcome and learning
+[Where the result was used, what you contributed, and what you can now explain or do]
