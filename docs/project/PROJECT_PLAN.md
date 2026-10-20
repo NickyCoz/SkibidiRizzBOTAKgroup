@@ -340,7 +340,7 @@ The team will aim to complete major drafts several days before each official dea
 
 ## 4.5 Risks and Contingency Plans
 
-**Unfamiliar tools:** Some members may have limited experience with Markdown or GitHub. The team will share basic instructions, practise essential operations, and help members resolve problems early.
+**Unfamiliar tools:** Some members may have limited experience with Markdown or GitHub. The team will share basic instructions, practice essential operations, and help members resolve problems early.
 
 **Difficult content:** Topics such as Big-O analysis and neural network training may be challenging. Members will consult course materials, use simple examples, and request clarification from the teacher when necessary.
 
