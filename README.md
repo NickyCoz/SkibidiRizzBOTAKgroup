@@ -1,9 +1,13 @@
 # Algorithm for Babies
 
 **Module:** Algorithms, Data Structures, and Connectionist AI
+
 **Team:** B.O.T.A.K Group
+
 **Stage:** Stage 1 [Markdown]
+
 **Last Updated:** 10-20-2026
+
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
 This project aims to develop a structured learning resource for a complete beginner. It is designed to help beginners understand the basics of algorithm, data structures, and connectionist AI through PPT Slides, Video tutorials and live mini lecture as an organized explanations.
