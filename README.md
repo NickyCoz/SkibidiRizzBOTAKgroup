@@ -1,4 +1,4 @@
-# Algorithm for Babies
+# Algorithm for Monkeys
 
 **Module:** Algorithms, Data Structures, and Connectionist AI
 
