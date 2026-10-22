@@ -1,12 +1,12 @@
-# Algorithm for Monkeys
+# B.O.T.A.K - Algorithms, Data Structures & Connectionist AI
 
 **Module:** Algorithms, Data Structures, and Connectionist AI
 
 **Team:** B.O.T.A.K Group
 
-**Stage:** Stage 1 [Markdown]
+**Stage:** Stage 1 [Rough Plan]
 
-**Last Updated:** 10-20-2026
+**Last Updated:** 22-10-2026
 
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
@@ -14,13 +14,26 @@ This project aims to develop a structured learning resource for a complete begin
 
 ## Intended learners
 
-Our intended learners are complete beginnners to the world of algorithm and computer science.
+Our target learners are beginners studying Computer Science, and Artificial Intelligence who have a basic understanding of computers and introductory programming concepts. We assume that learners are familiar with fundamental programming ideas such as variables, conditional statements, loops, and functions but may have limited experience with algorithm analysis, data structures, and neural networks.
+
+The learning materials will introduce these concepts progressively, using clear explanations, practical examples, visual representations, and simple demonstrations. Advanced mathematical knowledge and prior experience with machine learning will not be required.
 
 **Prerequisites:** Basic mathemathical understanding and reading comprehension.
 
-## Learning Objectives
+## Learning Goals
 
-after completing this module, learners will be able to [TBA], [TBA], [TBA].
+After completing our learning materials, learners should be able to:
+
+    Explain algorithms and describe how algorithms provide step-by-step solutions to computational problems.
+    Understand basic algorithm analysis, including the purpose of time complexity and space complexity, and interpret introductory Big-O notation.
+    Identify and compare fundamental data structures, including arrays, linked lists, stacks, queues, hash tables, trees, and graphs, and explain when each may be useful.
+    Describe common algorithms, such as searching and sorting, and explain their basic operations and differences in efficiency.
+    Explain the relationship between algorithms and data structures, including how the choice of data structure can affect an algorithm's performance.
+    Describe connectionist AI, particularly artificial neural networks, and explain how artificial neurons, layers, weights, and activation functions contribute to learning and prediction.
+    Distinguish traditional algorithmic problem-solving from connectionist approaches, recognizing that traditional algorithms generally follow explicitly specified procedures, whereas neural networks learn patterns from data during training.
+    Apply introductory concepts to simple problems, select an appropriate data structure or algorithm for a given situation, and explain the reasoning behind the choice.
+    Interpret simple neural network examples, including how input data passes through a network to produce an output and how training can adjust weights to improve predictions.
+
 
 ## Team
 
@@ -64,15 +77,18 @@ after completing this module, learners will be able to [TBA], [TBA], [TBA].
 
 **Completed:**
 
-TBA
+-
 
 **In progress:**
 
-TBA
+-Rough Plan
+-
 
 **Remaining:**
 
-TBA
+-Study Module
+-PPT Slides
+-Question Bank
 
 ## Workflow and Quality Control
 
