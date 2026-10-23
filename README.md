@@ -18,7 +18,13 @@ Our target learners are beginners studying Computer Science, and Artificial Inte
 
 The learning materials will introduce these concepts progressively, using clear explanations, practical examples, visual representations, and simple demonstrations. Advanced mathematical knowledge and prior experience with machine learning will not be required.
 
-**Prerequisites:** Basic mathemathical understanding and reading comprehension.
+## Prerequisites
+Learners should have the following basic knowledge to start the module:
+* **Basic Computer Literacy:** Familiarity with using a computer, managing files, and interacting with common software.
+* **Basic mathematical understanding:** Ability to work with whole numbers, basic arithmetic operations, comparisons, and simple patterns.
+* **Elementary logical thinking:** Ability to understand simple rules, follow step-by-step instructions, and make decisions based on conditions.
+* **Basic data interpretation:** Ability to read simple lists, tables, and organized information.
+* **Willingness to learn computational concepts:** No prior knowledge of programming, data structures, algorithms, or artificial intelligence is required, as these concepts will be introduced progressively throughout the module.
 
 ## Learning Goals
 
