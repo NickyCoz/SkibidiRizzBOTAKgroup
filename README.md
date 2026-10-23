@@ -57,16 +57,10 @@ Interpret simple neural network examples, including how input data passes throug
 | Location | Contents |
 | --- | --- |
 | `Assignments/` | Assignment instructions used to plan and check the work |
-| `Team Logs/Meetings/` | Dated meeting summaries |
-| `Personal Logs/` | Personal log temporary storage |
-| `Logs/Project/` | Planned location for project work logs. No project-log entries have been added yet. |
+| `Content/` | Planned location for the module outline and shared learning content. |
 | `TEMPLATES/` | Templates for project logs, meeting summaries, personal logs, and contribution records |
-| `Content/` | Planned location for the module outline and shared learning content. Not created yet. |
-| [`PROJECT_PLAN.md`](docs/project/PROJECT_PLAN.md) | Current project plan |
-| [`MASTER_TASK_LIST.md`](docs/project/MASTER_TASK_LIST.md) | Project tasks, owners, deadlines, dependencies, and status |
-| [`TEAM_ROLES.md`](docs/project/TEAM_ROLES.md) | Team roles |
-| [`CONTRIBUTING.md`](docs/repository/CONTRIBUTING.md) | GitHub contribution workflow and naming rules |
-| [`REPO_STRUCTURE.md`](docs/repository/REPO_STRUCTURE.md) | Log directory and evidence naming conventions |
+| `Docs` | Temporary storage for the project. |
+| `README.md` | Readme |
 
 ## Learning Materials
 
