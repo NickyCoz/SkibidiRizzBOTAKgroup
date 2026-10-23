@@ -72,31 +72,27 @@ Interpret simple neural network examples, including how input data passes throug
 
 ## Learning Materials
 
-| Material | Purpose | Current Status |
-| --- | --- | --- |
-| `Shared Markdown` | Main explanations, examples, activities, and answers | TBA |
-| `Study Guide` | Support structured study and revision | TBA |
-| `Test Bank` | Assess understanding and application | TBA |
-| `PPT Slides` | Support visual and live explanations | TBA |
-| `Video Tutorials` | Demonstrate selected concepts | TBA |
-| `Live Mini Lecture` | Provide a short guided learning experience | TBA |
+| Material | Purpose |
+| --- | --- |
+| `Shared Markdown` | Main explanations, examples, activities, and answers |
+| `Study Guide` | Support structured study and revision |
+| `Test Bank` | Assess understanding and application |
+| `PPT Slides` | Support visual and live explanations |
+| `Video Tutorials` | Demonstrate selected concepts |
+| `Live Mini Lecture` | Provide a short guided learning experience |
 
 ## Progress
 
-**Completed:**
-
-* 
-
-**In progress:**
-
-* Project Plan
-* 
-
-**Remaining:**
-
-* Study Module
-* PPT Slides
-* Question Bank
+| Description | Status |
+| --- | --- |
+| `Project Plan` | In Progress |
+| `Module outline` | In Progress |
+| `V1.0 Module Markdown` | In Progress |
+| `Study Guide` | Not Started |
+| `Test Bank` | Not Started |
+| `PPT Slides` | Not Started |
+| `Video Tutorials` | Not Started |
+| `Live Mini Lecture` | Not Started | 
 
 ## Workflow and Quality Control
 
