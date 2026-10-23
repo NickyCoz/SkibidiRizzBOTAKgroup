@@ -12,6 +12,14 @@
 
 This project aims to develop a structured learning resource for a complete beginner. It is designed to help beginners understand the basics of algorithm, data structures, and connectionist AI through PPT Slides, Video tutorials and live mini lecture as an organized explanations.
 
+## Useful URLs
+| Document                | Link                                                                                             |
+|-------------------------|--------------------------------------------------------------------------------------------------|
+| Team Plan               | https://docs.google.com/document/d/1U50U_jeq3KvxRDXLdnDo-3uPPYY5omWWu4-0gd9eDdw/edit?usp=sharing |
+| Project Log             | https://docs.google.com/document/d/1VH_XdAuV1Oy1ouvihMrde1bBLtVQFD4dVXinCWRPKaI/edit?usp=sharing |
+| Meeting Log             | https://docs.google.com/document/d/1aB8WqSrxUUA-k8mu3gx3yitoVY7Ehh_uSgFoI14-QFM/edit?usp=sharing |
+| Personal Log (Template) | https://docs.google.com/document/d/1BKpN4reVUVB9tF3OTTmCGbrkJ0KrT5pEcpaRnVLjY50/edit?usp=sharing |
+
 ## Intended learners
 
 Our target learners are beginners studying Computer Science, and Artificial Intelligence who have a basic understanding of computers and introductory programming concepts. We assume that learners are familiar with fundamental programming ideas such as variables, conditional statements, loops, and functions but may have limited experience with algorithm analysis, data structures, and neural networks.
