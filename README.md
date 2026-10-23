@@ -6,7 +6,7 @@
 
 **Stage:** Stage 1 [Rough Plan]
 
-**Last Updated:** 22-10-2026
+**Last Updated:** 23-10-2026
 
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
@@ -81,7 +81,7 @@ Interpret simple neural network examples, including how input data passes throug
 
 **In progress:**
 
-* Rough Plan
+* Project Plan
 * 
 
 **Remaining:**
