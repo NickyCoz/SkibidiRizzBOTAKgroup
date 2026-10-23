@@ -12,6 +12,8 @@
 
 This project aims to develop a structured learning resource for a complete beginner. It is designed to help beginners understand the basics of algorithm, data structures, and connectionist AI through PPT Slides, Video tutorials and live mini lecture as an organized explanations.
 
+![Repository Banner](Assets/Banner.png)
+
 ## Useful URLs
 | Document                | Link                                                                                             |
 |-------------------------|--------------------------------------------------------------------------------------------------|
