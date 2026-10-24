@@ -61,7 +61,7 @@ After completing these study guidelines, the learner is expected to understand h
 | --- | --- | --- |
 | Nicky | Coordinator | `NickyCoz` |
 | Devon | Repository and submission lead | `devonrzrh/cynomain` |
-| Darren | Quality Lead | `darrentsiswanto-wq` |
+| Darren | Content lead | `darrentsiswanto-wq` |
 | Neil | Visual design lead | `NeilEdric15` |
 | Novan | Video lead | `Novan1108` |
 | Glen | Content lead | `glenrandye` |
@@ -107,7 +107,10 @@ Sources are identified, and important claims, examples, and answers are checked 
 
 ## References
 
-TBA
-
-
-
+### Shared Markdown Content
+| Topic | Link   |
+| --- | --- |
+| Data Structures | IBM, [What is a data structure?](https://www.ibm.com/think/topics/data-structure) |
+| Data Structures | GeeksforGeeks, [Introduction to Linear Data Structures](https://www.geeksforgeeks.org/dsa/introduction-to-linear-data-structures/) | 
+| Data Structures | CompilerSutra, [Non-Linear Data Structures](https://www.compilersutra.com/docs/DSA/non-Linear-DSA/) |
+| Data Structures | GeeksforGeeks, [Difference between Linear and Non-linear Data Structures](https://www.geeksforgeeks.org/dsa/difference-between-linear-and-non-linear-data-structures/) |
