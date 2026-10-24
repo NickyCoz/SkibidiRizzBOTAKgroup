@@ -60,7 +60,7 @@ After completing these study guidelines, the learner is expected to understand h
 | Member | Responsibility | GitHub username |
 | --- | --- | --- |
 | Nicky | Coordinator | `NickyCoz` |
-| Devon | Repository and submission lead | `devonrzrh/cynomain` |
+| Devon | Repository and submission lead | `devonrzrh` |
 | Darren | Quality lead | `darrentsiswanto-wq` |
 | Neil | Visual design lead | `NeilEdric15` |
 | Novan | Video lead | `Novan1108` |
