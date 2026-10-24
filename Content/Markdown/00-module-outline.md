@@ -4,42 +4,49 @@ Our project will cover three interconnected areas: **algorithms, data structures
 
 ### a. Algorithms
 
-* Definition and characteristics of algorithms.
-* Representing algorithms using pseudocode and flowcharts.
-* Searching algorithms, including linear search and binary search.
-* Sorting algorithms, including bubble sort and merge sort, with other sorting methods introduced where appropriate.
-* Introduction to algorithm efficiency, including time complexity, space complexity, and Big-O notation.
-* Comparing algorithms based on correctness, efficiency, and suitability for different problems.
+* Introduction to Algorithms
+* Basic Sorting Algorithms
+* Binary Search, Linear Search, and Big O Notation
+* Recursion and Call Stack
+* Time Complexity Analysis
+* Graph Searching: BFS, DFS & Routing and Coverage 
+* Greedy Algorithm and Optimization
+* Dynamic Programming (DP)
+* Inventory and Uncertainty Management
+* Sequential Decisions Over Time 
+
 
 ### b. Data Structures
 
-* Introduction to data organization and the purpose of data structures.
-* Arrays and linked lists.
-* Stacks and queues.
-* Hash tables and basic hashing concepts.
-* Trees and their basic terminology.
-* Graphs and their representations.
-* Introductory comparisons of data structures based on their operations, advantages, limitations, and common applications.
-* The relationship between data structures and algorithm efficiency.
+* Introduction to Data Structures
+* Arrays
+* Stacks
+* Queues
+* Linked lists
+* Graphs
+* Binary Search Trees
+* Data versioning
 
 ### c. Connectionist Artificial Intelligence
 
-* Introduction to connectionism and its role in artificial intelligence.
-* Biological inspiration for artificial neural networks.
-* Artificial neurons, inputs, weights, biases, and activation functions.
-* Basic neural network architecture, including input, hidden, and output layers.
-* Forward propagation and the process of generating predictions.
-* The basic idea of training a neural network using examples and adjusting weights.
-* Introductory explanations of loss functions, gradient descent, and backpropagation.
-* Practical applications of neural networks, such as image recognition, text processing, and pattern classification.
+* Introduction to Connectionist AI
+* Basic concept, terminology and architectures of Neural Networks
+* Application of Neural Networks
+* Deep learning and Activaction Functions
+* Demand Forecasting & Time-Series Forecasting
+* Probabilistic Forecasting
+* Online & Incremental Learning
+* Recommendation Systems 
+* Reinforcement Learning
+* Model Training & Optimization
 
 ### d. Connections Between the Three Areas
 
-* How algorithms operate on and manipulate data structures.
-* How the choice of data structure influences computational efficiency.
-* How algorithms are used to train and run neural networks.
-* Differences between explicitly programmed procedures and models that learn patterns from data.
-* Practical examples illustrating how these concepts contribute to solving computational problems.
+* How algorithms operate on and manipulate data structures to solve problems efficiently.
+* How algorithms train neural networks, optimize their performance, and help them make predictions.
+* How data structures store and organize training data, neural network weights, and other information needed by AI.
+* How searching, optimization, and dynamic programming help computers find solutions and make better decisions.
+* How organized data supports AI applications such as demand forecasting, recommendation systems, and reinforcement learning.
 
 ## Prerequisite
 

@@ -6,7 +6,7 @@
 
 **Stage:** Stage 1 [Rough Plan]
 
-**Last Updated:** 23-10-2026
+**Last Updated:** 24-10-2026
 
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
@@ -20,7 +20,6 @@ This project aims to develop a structured learning resource for a complete begin
 | Team Plan               | https://docs.google.com/document/d/1U50U_jeq3KvxRDXLdnDo-3uPPYY5omWWu4-0gd9eDdw/edit?usp=sharing |
 | Project Log             | https://docs.google.com/document/d/1VH_XdAuV1Oy1ouvihMrde1bBLtVQFD4dVXinCWRPKaI/edit?usp=sharing |
 | Meeting Log             | https://docs.google.com/document/d/1aB8WqSrxUUA-k8mu3gx3yitoVY7Ehh_uSgFoI14-QFM/edit?usp=sharing |
-| Personal Log (Template) | https://docs.google.com/document/d/1BKpN4reVUVB9tF3OTTmCGbrkJ0KrT5pEcpaRnVLjY50/edit?usp=sharing |
 
 ## Intended learners
 
@@ -38,17 +37,22 @@ Learners should have the following basic knowledge to start the module:
 
 ## Learning Goals
 
-After completing our learning materials, learners should be able to:
+### 1. Algorithms
 
-Explain algorithms and describe how algorithms provide step-by-step solutions to computational problems.
-Understand basic algorithm analysis, including the purpose of time complexity and space complexity, and interpret introductory Big-O notation.
-Identify and compare fundamental data structures, including arrays, linked lists, stacks, queues, hash tables, trees, and graphs, and explain when each may be useful.
-Describe common algorithms, such as searching and sorting, and explain their basic operations and differences in efficiency.
-Explain the relationship between algorithms and data structures, including how the choice of data structure can affect an algorithm's performance.
-Describe connectionist AI, particularly artificial neural networks, and explain how artificial neurons, layers, weights, and activation functions contribute to learning and prediction.
-Distinguish traditional algorithmic problem-solving from connectionist approaches, recognizing that traditional algorithms generally follow explicitly specified procedures, whereas neural networks learn patterns from data during training.
-Apply introductory concepts to simple problems, select an appropriate data structure or algorithm for a given situation, and explain the reasoning behind the choice.
-Interpret simple neural network examples, including how input data passes through a network to produce an output and how training can adjust weights to improve predictions.
+The learner will understand how algorithms provide step-by-step solutions to computational problems, from basic searching and sorting to more advanced techniques such as recursion, graph traversal, greedy algorithms, and dynamic programming. They will also explore how algorithms handle optimization, inventory uncertainty, and sequential decisions over time.
+By the end of this section, the learner will be able to explain how algorithms work, analyze their basic time and space complexity, interpret Big-O notation, and select an appropriate algorithm for a given problem. They will also be able to describe how different algorithmic approaches improve efficiency and support decision-making.
+
+### 2. Data Structures 
+
+The learner will understand how data structures organize, store, and manage information to support efficient computational operations. They will study fundamental structures, including arrays, stacks, queues, linked lists, graphs, and binary search trees, as well as data versioning and the role of different structures in managing information.
+By the end of this section, the learner will be able to identify and compare data structures, explain their basic operations and practical uses, and choose a suitable structure for a given situation. They will also understand how data structure selection affects algorithm performance and how data versioning helps track changes to information over time.
+
+### 3. Connectionist AI
+
+The learner will understand the fundamental principles of Connectionist AI, particularly artificial neural networks, their architectures, and how they learn patterns from data. They will explore applications of neural networks, deep learning, activation functions, model training and optimization, demand and time-series forecasting, probabilistic forecasting, online and incremental learning, recommendation systems, and reinforcement learning.
+By the end of this section, the learner will be able to explain how artificial neurons, layers, weights, and activation functions contribute to prediction and learning. They will also be able to describe how neural networks differ from traditional algorithmic approaches, interpret simple neural network examples, and explain how training improves predictions and how these methods can be applied to practical problems.
+Overall Learning Goal
+After completing these study guidelines, the learner is expected to understand how algorithms, data structures, and Connectionist AI work individually and together. They should be able to explain these concepts in their own words, apply introductory knowledge to simple computational problems, justify their choice of algorithms and data structures, and describe how neural networks learn from data to support prediction and decision-making.
 
 
 ## Team
@@ -66,11 +70,9 @@ Interpret simple neural network examples, including how input data passes throug
 
 | Location | Contents |
 | --- | --- |
-| `Assignments/` | Assignment instructions used to plan and check the work |
+| `Assets/` | Assets for learning materials |
 | `Content/` | Planned location for the module outline and shared learning content. |
-| `TEMPLATES/` | Templates for project logs, meeting summaries, personal logs, and contribution records |
-| `Docs` | Temporary storage for the project. |
-| `README.md` | Readme |
+| `README.md` | Basic information for learners |
 
 ## Learning Materials
 
@@ -87,9 +89,10 @@ Interpret simple neural network examples, including how input data passes throug
 
 | Description | Status |
 | --- | --- |
-| `Project Plan` | In Progress |
-| `Module outline` | In Progress |
-| `V1.0 Module Markdown` | In Progress |
+| `Project Plan` | Finished |
+| `Module outline` | Finished |
+| `Introduction to Algorithm Module` | Finished |
+| `Introduction to Data Structure Module` | Finished |
 | `Study Guide` | Not Started |
 | `Test Bank` | Not Started |
 | `PPT Slides` | Not Started |
