@@ -1,8 +1,0 @@
-# How members will communicate, meet, and review one another’s work.
-Members communicate online via a WeChat group to share updates, discuss ideas, and coordinate tasks. We will also organize face-to-face meetings from time to time. In addition, we can communicate using Github’s version control features like issues for task management and pull requests for making changes without conflicting with each other’s works as well as reviewing. We shall review each other’s works by viewing the pull requests and commits. Because we use Git as a version control system, we can easily undo changes and make corrections without much breakage.
-
-# How corrections will reach every affected deliverable.
-When we identify errors or potential issues, we will document them through GitHub issues or discussions in our WeChat group. the responsible team members will make the corrections and submit the changes through pull requests for review. We will also identify which deliverables are affected, make the necessary updates, and make sure that all revisions remain consistent throughout the project. Once the changes have been reviewed and approved, they will be merged into the appropriate branch, and all team members will be informed of the updates to make sure everyone remains up to date.
-
-# When you will test activities, rehearse presentations, and collect feedback.
-We will test activities and rehearse presentations during face-to-face meetings. During these sessions, we will ask our peers to observe our work and provide constructive feedback. We will discuss their suggestions, improve our work, and do further tests or rehearsals when needed.
