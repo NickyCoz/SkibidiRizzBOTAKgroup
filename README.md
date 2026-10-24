@@ -61,7 +61,7 @@ After completing these study guidelines, the learner is expected to understand h
 | --- | --- | --- |
 | Nicky | Coordinator | `NickyCoz` |
 | Devon | Repository and submission lead | `devonrzrh/cynomain` |
-| Darren | Content lead | `darrentsiswanto-wq` |
+| Darren | Quality lead | `darrentsiswanto-wq` |
 | Neil | Visual design lead | `NeilEdric15` |
 | Novan | Video lead | `Novan1108` |
 | Glen | Content lead | `glenrandye` |
