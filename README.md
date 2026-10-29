@@ -6,7 +6,7 @@
 
 **Stage:** Stage 1 [Rough Plan]
 
-**Last Updated:** 24-10-2026
+**Last Updated:** 29-10-2026
 
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
@@ -73,6 +73,7 @@ After completing these study guidelines, the learner is expected to understand h
 | `Assets/` | Assets for learning materials |
 | `Content/` | Planned location for the module outline and shared learning content. |
 | `README.md` | Basic information for learners |
+| `CONTRIBUTING.md` | Contributing guidelines |
 
 ## Learning Materials
 
