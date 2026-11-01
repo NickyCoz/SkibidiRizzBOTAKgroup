@@ -25,29 +25,29 @@
 
 ### Format:
 #### Branch name
-`<topic>/<issue number>-<task id>-<short description>`
-All lowercase, with hyphens (-) instead of spaces.
-Example: `content/12-s3-01-chapter-1`
+`<topic>/<issue number>-<task id>-<short description>`  
+All lowercase, with hyphens (-) instead of spaces.  
+Example: `content/12-s3-01-chapter-1`  
 
 #### Commit name
-`<topic>: <short description> (#<issue-number>)`
-Topic is lowercase. Short description can be any case. Includ the issue number where applicable.
-Example: `content: Completed the first part of chapter 1 (#12)`
+`<topic>: <short description> (#<issue-number>)`  
+Topic is lowercase. Short description can be any case. Includ the issue number where applicable.  
+Example: `content: Completed the first part of chapter 1 (#12)`  
 
 #### Pull request name
-`<topic>: <short description>`
-Topic is lowercase. Short description must include the task ID and task name
-Example: `content: Completed Task S3-01 Chapter 1`
+`<topic>: <short description>`  
+Topic is lowercase. Short description must include the task ID and task name  
+Example: `content: Completed Task S3-01 Chapter 1`  
 
 #### Pull request description
-Must include `Closes #<issue-number>`!
-Example: 
-``` Closes #12
-- Added the Chapter 1 description in Markdown.
-- Checked grammar, clarity, and formatting.
-- Reviewed the content against the task requirements. 
-```
+Must include `Closes #<issue-number>`!  
+Example:   
+``` Closes #12  
+- Added the Chapter 1 description in Markdown.  
+- Checked grammar, clarity, and formatting.  
+- Reviewed the content against the task requirements.   
+```  
 
 #### Issue title
-`<topic>: <task id> - <short description or task name>
-Example: `content: S3-01 — Write Chapter 1 description`
+`<topic>: <task id> - <short description or task name>  
+Example: `content: S3-01 — Write Chapter 1 description`  
