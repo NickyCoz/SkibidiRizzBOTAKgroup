@@ -49,5 +49,5 @@ Example:
 ```  
 
 #### Issue title
-`<topic>: <task id> - <short description or task name>  
+`<topic>: <task id> - <short description or task name>`   
 Example: `content: S3-01 — Write Chapter 1 description`  
