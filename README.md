@@ -4,7 +4,7 @@
 
 **Team:** B.O.T.A.K Group
 
-**Stage:** Stage 1 [Rough Plan]
+**Stage:** Stage 2 [Ongoing]
 
 **Last Updated:** 29-10-2026
 
