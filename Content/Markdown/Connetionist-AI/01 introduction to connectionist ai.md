@@ -72,7 +72,7 @@ A single neuron computes a **weighted sum of inputs plus a bias**, then applies 
 
 Choose weights `w = [1, 1]` and bias `b = -1.5`. Rule: output 1 if the sum is greater than 0, else 0.
 
-| x1 | x2 | Sum = 1·x1 + 1·x2 − 1.5 | Output |
+| input1 | input2 | Sum = 1·x1 + 1·x2 − 1.5 | Output |
 |---|---|---|---|
 | 0 | 0 | −1.5 | 0 |
 | 1 | 0 | −0.5 | 0 |

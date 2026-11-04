@@ -3,28 +3,58 @@
 
 ## 1. The Artificial Neuron
 
-A neuron performs three steps:
+### How Does an Artificial Neuron Work?
 
-1. **Multiply** each input by its weight
-2. **Add** the results plus a **bias**
-3. **Apply an activation function**
+A neuron performs three simple steps:
 
-```
-z = w1·x1 + w2·x2 + ... + wn·xn + b
+1. **Multiply:** Multiply each input by its weight.
+2. **Add:** Add all the results together, then add the bias.
+3. **Activate:** Apply an activation function to get the final output.
+
+```text
+z = (w1 × x1) + (w2 × x2) + ... + b
 output = activation(z)
 ```
 
-**Why a bias?** Without it, a neuron's decision boundary must pass through the origin. The bias lets the neuron shift its threshold, like the intercept `b` in the line `y = mx + b`.
+- `x`: Input values.
+- `w`: Weights that determine the importance of each input.
+- `b`: Bias, which adjusts the neuron's calculation.
+- `z`: Result before applying the activation function.
 
-**Worked example.** Inputs `x = [1, 2]`, weights `w = [0.5, -0.3]`, bias `b = 0.4`:
+**Why do we need bias?**
 
+Bias allows a neuron to adjust its activation threshold. Without bias, the neuron's decision boundary must pass through zero. Think of it as the `b` in the equation `y = mx + b`.
+
+**Worked Example**
+
+Suppose we have:
+- Inputs: `x = [1, 2]`
+- Weights: `w = [0.5, -0.3]`
+- Bias: `b = 0.4`
+
+First, multiply the inputs by their weights and add the bias:
+
+```text
+z = (0.5 × 1) + (-0.3 × 2) + 0.4
+z = 0.5 - 0.6 + 0.4
+z = 0.3
 ```
-z = (0.5 × 1) + (-0.3 × 2) + 0.4 = 0.5 - 0.6 + 0.4 = 0.3
-```
-- ReLU(Rectified Linear Unit): max(0, 0.3) = **0.3**
-- Sigmoid: 1 / (1 + e^-0.3) ≈ **0.574**
 
-**Intuition.** Positive weights mean "this input pushes the neuron to fire"; negative weights mean "this input suppresses it"; larger magnitude means more influence.
+Now, apply an activation function:
+
+**ReLU (Rectified Linear Unit):** Converts negative values to 0 while keeping positive values unchanged. Formula: `max(0, x)`.
+- **ReLU:** `max(0, 0.3)` = **0.3**
+
+**Sigmoid:** Converts any input into a value between 0 and 1. Often used when the output represents a probability.
+- **Sigmoid:** `1 / (1 + e^-0.3)` ≈ **0.574**
+
+Both functions receive the same value but produce different outputs.
+
+**Understanding Weights:**
+
+- Positive weight: Increases the neuron's result.
+- Negative weight: Decreases the neuron's result.
+- Larger absolute weight: Has a stronger influence on the result.
 
 ## 2. Essential Terminology
 
@@ -58,24 +88,57 @@ z = (0.5 × 1) + (-0.3 × 2) + 0.4 = 0.5 - 0.6 + 0.4 = 0.3
 
 ## 3. Layers and Matrix Form
 
-A **dense (fully connected) layer** connects every input to every neuron. For a whole layer at once:
+A **dense (fully connected) layer** is a group of neurons where every neuron receives input from every neuron in the previous layer. Each connection has its own weight, and each neuron has its own bias.
 
-```
+For an entire layer, we can calculate all neuron outputs at once using:
+
+```python
 h = activation(W · x + b)
 ```
-- `x`: input vector (size n_in)
-- `W`: weight matrix (n_out × n_in)
-- `b`: bias vector (size n_out)
 
-**Parameter count of a dense layer** = `n_in × n_out + n_out`.
-Example: 3 inputs → 4 neurons = 12 + 4 = **16**.
-A network `3 → 4 → 4 → 1` has (3×4+4) + (4×4+4) + (4×1+1) = 16 + 20 + 5 = **41** parameters.
+- `x`: Input vector containing the values passed into the layer (size `n_in`).
+- `W`: Weight matrix containing the weights of all connections (size `n_out × n_in`).
+- `b`: Bias vector, with one bias for each neuron (size `n_out`).
+- `activation`: An activation function such as ReLU or Sigmoid.
+- `h`: The output vector produced by the layer.
 
-## 4. A Complete Worked Example: Forward Pass, Loss and One Update
+**How it works:** The layer multiplies each input by its corresponding weight, adds the biases, and applies an activation function to produce its outputs.
 
-**Network:** 2 inputs → 2 hidden neurons (ReLU) → 1 output (linear).
+**Parameter count of a dense layer** = `(n_in × n_out) + n_out`.
 
-Input: `x = [1, 2]`, target `y = 1`.
+Parameters are the values (weights and biases) that a neural network learns during training.
+
+**Example: 3 inputs → 4 neurons**
+- Weights: 3 × 4 = 12
+- Biases: 4 (one for each neuron)
+- Total: 12 + 4 = **16 parameters**.
+
+A network `3 → 4 → 4 → 1` has three connections between layers:
+
+- Layer 1: (3 × 4 + 4) = 16
+- Layer 2: (4 × 4 + 4) = 20
+- Layer 3: (4 × 1 + 1) = 5
+
+Total: 16 + 20 + 5 = **41 trainable parameters**.
+
+## 4. A Complete Worked Example: Forward Pass, Loss and One Weight Update
+
+A neural network learns by making predictions, checking how far they are from the correct answers, and adjusting its weights to reduce errors.
+
+This process has four main steps:
+
+1. **Forward Pass:** Calculate the network's prediction using the given inputs, weights, and biases.
+2. **Loss Calculation:** Measure how far the prediction is from the correct answer.
+3. **Backward Pass (Backpropagation):** Calculate how much a weight contributes to the error using derivatives and the chain rule.
+4. **Weight Update:** Adjust the weight to reduce the error.
+
+**Network Structure:**
+
+A network with 2 inputs → 2 hidden neurons (ReLU) → 1 output neuron (linear).
+
+Input: `x = [1, 2]`
+
+Correct answer (target): `y = 1`
 
 Hidden layer:
 - Neuron 1: weights `[0.5, -0.3]`, bias `0.4`
@@ -83,46 +146,126 @@ Hidden layer:
 
 Output neuron: weights `[1.0, -0.5]`, bias `0.2`.
 
-**Step 1: forward pass**
-```
-h1 = ReLU(0.5·1 + (-0.3)·2 + 0.4) = ReLU(0.3) = 0.3
-h2 = ReLU(0.2·1 +   0.4 ·2 - 0.1) = ReLU(0.9) = 0.9
-ŷ  = 1.0·0.3 + (-0.5)·0.9 + 0.2   = 0.3 - 0.45 + 0.2 = 0.05
+### Step 1: Forward Pass (Making a Prediction)
+
+First, calculate the outputs of both hidden neurons using their weights, biases, and ReLU activation function.
+
+```text
+h1 = ReLU(0.5 × 1 + (-0.3) × 2 + 0.4)
+h1 = ReLU(0.3) = 0.3
+
+h2 = ReLU(0.2 × 1 + 0.4 × 2 - 0.1)
+h2 = ReLU(0.9) = 0.9
 ```
 
-**Step 2: loss (squared error)**
-```
-L = (ŷ - y)² = (0.05 - 1)² = 0.9025
+Next, use these two outputs as inputs for the output neuron. Since it uses a linear activation, we simply calculate the weighted sum and add the bias.
+
+```text
+ŷ = 1.0 × 0.3 + (-0.5) × 0.9 + 0.2
+ŷ = 0.3 - 0.45 + 0.2
+ŷ = 0.05
 ```
 
-**Step 3: backward pass (just for the output weight w1 = 1.0)**
-Using the chain rule:
-```
-dL/dŷ  = 2(ŷ - y) = 2(0.05 - 1) = -1.9
-dŷ/dw1 = h1 = 0.3
-dL/dw1 = -1.9 × 0.3 = -0.57
+The network's prediction is **0.05**, while the correct answer is **1**.
+
+### Step 2: Loss Calculation (Measuring the Error)
+
+Loss measures how far the network's prediction is from the correct answer. Here, we use **Squared Error**, which squares the difference between the prediction and the target.
+
+Formula:
+
+```text
+L = (Prediction - Target)²
 ```
 
-**Step 4: update with learning rate 0.1**
-```
-w1_new = 1.0 - 0.1 × (-0.57) = 1.057
-```
-The weight increased, pushing the prediction (0.05) toward the target (1). Repeating this for every weight, over many batches and epochs, is training.
+Calculation:
 
+```text
+L = (ŷ - y)²
+L = (0.05 - 1)²
+L = (-0.95)²
+L = 0.9025
+```
+
+The loss is **0.9025**. A smaller loss means the prediction is closer to the correct answer.
+
+### Step 3: Backward Pass (Calculating the Error's Effect)
+
+Backpropagation calculates how much each weight affects the loss. This information helps the network decide how to adjust its weights.
+
+For this example, we will only calculate the gradient for the output weight `w1 = 1.0`.
+
+Using the **chain rule**, we calculate:
+
+```text
+dL/dŷ = 2(ŷ - y)
+      = 2(0.05 - 1)
+      = -1.9
+
+dŷ/dw1 = h1
+       = 0.3
+
+dL/dw1 = (-1.9) × 0.3
+       = -0.57
+```
+
+The result `-0.57` is the gradient. It tells us how changing this weight affects the loss.
+
+Note: This example only calculates the gradient for one weight. A complete training process calculates gradients for all trainable weights and biases.
+
+### Step 4: Weight Update (Learning from the Error)
+
+Now, we adjust the weight using the gradient and a value called the **learning rate**.
+
+The learning rate controls how big each weight adjustment is. Here, we use `0.1`.
+
+Formula:
+
+```text
+New Weight = Old Weight - (Learning Rate × Gradient)
+```
+
+Calculation:
+
+```text
+w1_new = 1.0 - (0.1 × -0.57)
+w1_new = 1.0 + 0.057
+w1_new = 1.057
+```
+
+The new weight is **1.057**, increased from 1.0.
+
+This adjustment moves the prediction closer to the target value of 1.
+
+### What Happens Next?
+
+The network repeats these steps during training:
+
+- Make predictions using a forward pass.
+- Calculate the loss to measure errors.
+- Use backpropagation to calculate gradients.
+- Update weights and biases using the gradients.
+
+Repeating this process across many batches (groups of training examples) and epochs (complete passes through the training dataset) allows the network to gradually improve its predictions.
 ## 5. What Backpropagation Really Is
 
-Backpropagation is **the chain rule of calculus applied efficiently**. The loss depends on the output, which depends on the hidden activations, which depend on earlier weights. We compute gradients **from the output backward**, reusing intermediate results, so one backward pass gives the gradient for every weight at roughly the cost of one forward pass.
+Backpropagation uses the **chain rule of calculus** to calculate how much each weight affects the loss. It works backward from the output, reusing calculations to efficiently find gradients for all weights.
 
-You rarely code it by hand. Frameworks like PyTorch and TensorFlow do **automatic differentiation**:
+Libraries like PyTorch and TensorFlow automate this using **automatic differentiation**:
 
 ```python
 import torch
+
 w = torch.tensor(1.0, requires_grad=True)
 h1 = torch.tensor(0.3)
-loss = (w*h1 + 0.2 - 1.0) ** 2    # simplified
+
+loss = (w * h1 + 0.2 - 1.0) ** 2
 loss.backward()
-print(w.grad)                      # gradient computed automatically
+
+print(w.grad)  # Prints the gradient of w
 ```
+
+`loss.backward()` automatically calculates the gradient of the loss with respect to `w`.
 
 ## 6. The Learning Loop
 
