@@ -82,13 +82,13 @@ Choose weights `w = [1, 1]` and bias `b = -1.5`. Rule: output 1 if the sum is gr
 It works. Here we chose the weights by hand. A *learning* algorithm would find them automatically from examples, which is the whole point of connectionism.
 
 ```python
-def neuron(x1, x2, w=(1, 1), b=-1.5):
-    z = w[0]*x1 + w[1]*x2 + b
-    return 1 if z > 0 else 0
+def neuron(input1, input2, w=(1, 1), bias=-1.5):
+    value = w[0]*input1 + w[1]*input1 + bias
+    return 1 if value > 0 else 0
 
-for x1 in (0, 1):
-    for x2 in (0, 1):
-        print(x1, x2, "->", neuron(x1, x2))
+for input1 in (0, 1):
+    for input2 in (0, 1):
+        print(input1, input2, "->", neuron(input1, input2))
 ```
 
 **The XOR problem.** XOR (output 1 if the inputs *differ*) cannot be solved by any single neuron, because no straight line separates its 1s from its 0s. Adding a **hidden layer** solves it. This is exactly why multi-layer networks matter (Chapter 2).
