@@ -4,6 +4,8 @@
 
 **Connectionism** is an approach to building intelligent systems from **many simple processing units that are linked together**. No single unit is intelligent. The behaviour of the whole system comes from **how the units are connected** and **how strong each connection is**.
 
+![Two tiny networks receive the same inputs. Changing the weights changes how much the active input contributes and changes the score from 0.2 to 0.8.](../../../Assets/Connectionist%20AI/Animated/what-is-connectionism.svg)
+
 The idea is inspired by the brain, where billions of neurons communicate through connections called **synapses**. Learning in the brain is believed to involve strengthening or weakening these synapses. Connectionist AI copies this idea in a simplified, mathematical form:
 
 | Biology | Artificial version |
@@ -17,6 +19,8 @@ The idea is inspired by the brain, where billions of neurons communicate through
 
 The most successful modern form of connectionist AI is the **artificial neural network (ANN)**, and especially **deep learning**, which uses networks with many layers.
 
+![Four pixel inputs feed a group of hidden units. Their outputs are combined to produce two class scores.](../../../Assets/Connectionist%20AI/Static/simple-units-together.svg)
+
 ## 2. The Core Principles of Connectionism
 
 1. **Many simple units.** Each unit does a tiny calculation (weighted sum plus a non-linear function).
@@ -25,6 +29,10 @@ The most successful modern form of connectionist AI is the **artificial neural n
 4. **Learning by adjusting weights.** Knowledge is not programmed in. It is acquired from examples.
 5. **Graceful degradation.** Damaging a few units usually reduces performance slightly rather than breaking everything (unlike deleting one rule from a rule list).
 6. **Generalisation.** A trained network can handle new inputs it has never seen, as long as they resemble its training data.
+
+![A toy network represents cat and dog images with distinct patterns across five units. One unit is active in both patterns.](../../../Assets/Connectionist%20AI/Static/distributed-patterns.svg)
+
+![The trained model predicts the class of a handwritten digit that was held out of training.](../../../Assets/Connectionist%20AI/Static/generalisation-example.svg)
 
 ## 3. Symbolic AI vs Connectionist AI
 
@@ -39,6 +47,8 @@ Early AI (1950s to 1980s) was mostly **symbolic**: experts wrote explicit rules 
 | Needs lots of data | No | Usually yes |
 | Good at | Logic, planning, exact reasoning | Perception, language, pattern recognition |
 | Example | "IF temperature > 38 THEN fever" | A network trained on thousands of X-rays |
+
+![In symbolic AI an expert supplies a rule; in connectionist AI labelled examples are used to fit weights.](../../../Assets/Connectionist%20AI/Static/rules-and-weights.svg)
 
 Neither approach is simply better. Modern research increasingly explores **neuro-symbolic AI**, which combines learning with explicit reasoning.
 
@@ -58,6 +68,8 @@ Neither approach is simply better. Modern research increasingly explores **neuro
 | 2017 | The **Transformer** architecture is introduced | Foundation of modern language models |
 | 2020s | Large-scale models for text, images, audio, code | Connectionist AI becomes mainstream |
 
+![Four selected milestones from the perceptron to the Transformer, in chronological order.](../../../Assets/Connectionist%20AI/Static/selected-milestones.svg)
+
 ## 5. Why Did It Take So Long to Work?
 
 Three ingredients had to arrive together:
@@ -66,11 +78,15 @@ Three ingredients had to arrive together:
 2. **Compute.** GPUs, originally made for video games, turned out to be ideal for the matrix maths neural networks need.
 3. **Better algorithms.** Improved activation functions, optimizers, initialisation, normalisation and architectures made deep networks trainable.
 
+![Data supplies examples, compute speeds the calculations, and training methods make updates more effective.](../../../Assets/Connectionist%20AI/Static/training-ingredients.svg)
+
 ## 6. Your First Neuron: A Hands-On Example
 
 A single neuron computes a **weighted sum of inputs plus a bias**, then applies a decision rule. Let's build a neuron that behaves like the logical **AND** gate (output 1 only if both inputs are 1).
 
 Choose weights `w = [1, 1]` and bias `b = -1.5`. Rule: output 1 if the sum is greater than 0, else 0.
+
+![An AND neuron adds the two weighted inputs and the bias to get 0.5, then outputs 1.](../../../Assets/Connectionist%20AI/Animated/and-neuron.svg)
 
 | input1 | input2 | Sum = 1·x1 + 1·x2 − 1.5 | Output |
 |---|---|---|---|
@@ -91,7 +107,13 @@ for input1 in (0, 1):
         print(input1, input2, "->", neuron(input1, input2))
 ```
 
+![The AND boundary separates the single positive example from the three negative examples.](../../../Assets/Connectionist%20AI/Static/and-input-space.svg)
+
 **The XOR problem.** XOR (output 1 if the inputs *differ*) cannot be solved by any single neuron, because no straight line separates its 1s from its 0s. Adding a **hidden layer** solves it. This is exactly why multi-layer networks matter (Chapter 2).
+
+![The XOR 0s and 1s occupy opposite corners of a square, so a straight line cannot separate the two groups.](../../../Assets/Connectionist%20AI/Static/xor-boundary.svg)
+
+![Two hidden detectors answer whether at least one input is active and whether both are active. Together they distinguish exactly one active input.](../../../Assets/Connectionist%20AI/Static/xor-hidden-layer.svg)
 
 ## 7. Common Misconceptions
 
@@ -99,6 +121,8 @@ for input1 in (0, 1):
 - **"More layers is always better."** Deeper networks need more data and care, and can overfit.
 - **"It's a black box nobody understands."** Much is understood about training and behaviour, but explaining individual decisions is hard, and active research (interpretability) addresses it.
 - **"AI means neural networks."** AI also includes symbolic methods, search, probabilistic models and more.
+
+![During training, targets help update the weights. During prediction, the weights stay fixed.](../../../Assets/Connectionist%20AI/Static/train-vs-use.svg)
 
 ## Key Takeaways
 - Connectionism builds intelligence from many simple connected units whose weights are learned.

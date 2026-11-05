@@ -21,9 +21,13 @@ output = activation(z)
 - `b`: Bias, which adjusts the neuron's calculation.
 - `z`: Result before applying the activation function.
 
+![Two equal inputs contribute different amounts because of their weights. The negative contribution leaves the sum below zero even after adding the bias, so ReLU outputs zero.](../../../Assets/Connectionist%20AI/Static/weighted-neuron.svg)
+
 **Why do we need bias?**
 
 Bias allows a neuron to adjust its activation threshold. Without bias, the neuron's decision boundary must pass through zero. Think of it as the `b` in the equation `y = mx + b`.
+
+![With weight 1, changing the bias from 0 to −2 moves the input threshold from 0 to 2.](../../../Assets/Connectionist%20AI/Static/bias-threshold.svg)
 
 **Worked Example**
 
@@ -86,6 +90,8 @@ Both functions receive the same value but produce different outputs.
 
 **Epochs, batches and iterations.** If you have 1,000 samples and a batch size of 100, one epoch = 10 iterations.
 
+![One thousand training examples form ten batches of one hundred. With one update per batch, a full epoch contains ten updates.](../../../Assets/Connectionist%20AI/Static/batches-and-epochs.svg)
+
 ## 3. Layers and Matrix Form
 
 A **dense (fully connected) layer** is a group of neurons where every neuron receives input from every neuron in the previous layer. Each connection has its own weight, and each neuron has its own bias.
@@ -103,6 +109,8 @@ h = activation(W · x + b)
 - `h`: The output vector produced by the layer.
 
 **How it works:** The layer multiplies each input by its corresponding weight, adds the biases, and applies an activation function to produce its outputs.
+
+![A dense layer with three inputs and two neurons has one row of three weights and one bias for each output.](../../../Assets/Connectionist%20AI/Static/matrix-layer.svg)
 
 **Parameter count of a dense layer** = `(n_in × n_out) + n_out`.
 
@@ -145,6 +153,8 @@ Hidden layer:
 - Neuron 2: weights `[0.2, 0.4]`, bias `-0.1`
 
 Output neuron: weights `[1.0, -0.5]`, bias `0.2`.
+
+![Signals travel from both inputs to both ReLU neurons, then combine at the output to predict 0.05.](../../../Assets/Connectionist%20AI/Animated/worked-network.svg)
 
 ### Step 1: Forward Pass (Making a Prediction)
 
@@ -239,6 +249,8 @@ This adjustment moves the prediction closer to the target value of 1.
 
 ### What Happens Next?
 
+![One training step predicts 0.05, computes a loss of 0.9025 and a gradient of −0.57, then updates the output weight to 1.057.](../../../Assets/Connectionist%20AI/Animated/training-step.svg)
+
 The network repeats these steps during training:
 
 - Make predictions using a forward pass.
@@ -267,6 +279,8 @@ print(w.grad)  # Prints the gradient of w
 
 `loss.backward()` automatically calculates the gradient of the loss with respect to `w`.
 
+![The forward pass moves from weight to prediction to loss. The backward pass follows the same dependencies in reverse and multiplies local derivatives.](../../../Assets/Connectionist%20AI/Animated/chain-rule-path.svg)
+
 ## 6. The Learning Loop
 
 1. **Forward pass:** make a prediction
@@ -274,6 +288,8 @@ print(w.grad)  # Prints the gradient of w
 3. **Backward pass:** compute gradients
 4. **Update:** `w ← w − learning_rate × gradient`
 5. Repeat over batches and epochs, monitoring validation loss
+
+![On a toy squared loss surface, successive gradient descent steps move closer to zero.](../../../Assets/Connectionist%20AI/Animated/descent-steps.svg)
 
 ## 7. Common Loss Functions
 
@@ -284,6 +300,8 @@ print(w.grad)  # Prints the gradient of w
 | Multi-class classification | Softmax | Categorical cross-entropy |
 
 **Cross-entropy example.** If the true class gets predicted probability 0.7, the loss is −ln(0.7) ≈ **0.357**. Probability 0.99 gives 0.010; probability 0.1 gives 2.30. Confident wrong answers are punished heavily.
+
+![As errors grow, absolute error rises in a straight line and squared error rises increasingly quickly.](../../../Assets/Connectionist%20AI/Static/loss-shapes.svg)
 
 ## 8. Architectures
 
@@ -299,6 +317,8 @@ print(w.grad)  # Prints the gradient of w
 - **Pooling** reduces size and adds tolerance to small shifts.
 - Early layers detect edges, later layers detect textures, parts and objects.
 
+![A two-by-two edge filter scans nine patches of an image. Each patch contributes one score at the corresponding location in the feature map.](../../../Assets/Connectionist%20AI/Animated/cnn-filter-scan.svg)
+
 **Useful formulas**
 - Output size = `(n − k + 2p) / s + 1` (input size n, kernel k, padding p, stride s).
   Example: n = 32, k = 3, p = 1, s = 1 → (32 − 3 + 2)/1 + 1 = **32**.
@@ -307,7 +327,12 @@ print(w.grad)  # Prints the gradient of w
 
 **Use for:** images, video, audio spectrograms, also some text and time series (1D convolution).
 
+![Each coloured 2 by 2 block becomes one number, its largest value, in the pooled output.](../../../Assets/Connectionist%20AI/Static/max-pooling.svg)
+
 ### 8.3 Recurrent Networks: RNN, LSTM, GRU
+
+![Three copies of the same recurrent cell show how the hidden state passes from one sequence step to the next.](../../../Assets/Connectionist%20AI/Animated/rnn-state.svg)
+
 A basic RNN keeps a **hidden state** that carries information through a sequence:
 
 ```
@@ -318,8 +343,12 @@ h_t = tanh(Wx · x_t + Wh · h_(t-1) + b)
 - **GRU** is a lighter two-gate version.
 - **Use for:** time series, speech, older text models. Largely replaced by Transformers in language, but still useful for small sequence tasks.
 
+![An LSTM filters the old memory and new candidate before adding them. The output gate controls the exposed state.](../../../Assets/Connectionist%20AI/Static/lstm-gates.svg)
+
 ### 8.4 Transformer
 - Uses **self-attention**: each element of a sequence computes how relevant every other element is, then mixes information accordingly.
+
+![In an example attention head, the updated representation of “it” mixes information from three tokens with different weights.](../../../Assets/Connectionist%20AI/Static/attention-mix.svg)
 
 ```
 Attention(Q, K, V) = softmax(Q·Kᵀ / √d) · V
@@ -334,13 +363,19 @@ Attention(Q, K, V) = softmax(Q·Kᵀ / √d) · V
 - **Use for:** dimensionality reduction, denoising, **anomaly detection** (anomalies reconstruct poorly).
 - **Variational autoencoders (VAEs)** learn a smooth latent space that can generate new samples.
 
+![An encoder compresses the input into a small code. The decoder reconstructs the input, and training compares the reconstruction with the original.](../../../Assets/Connectionist%20AI/Static/autoencoder-bottleneck.svg)
+
 ### 8.6 Generative Adversarial Network (GAN)
 - **Generator** creates fake samples; **discriminator** tries to tell real from fake. They improve by competing.
 - **Use for:** realistic image synthesis. Training can be unstable.
 
+![A discriminator sees both training examples and generated examples. Its feedback trains the generator.](../../../Assets/Connectionist%20AI/Static/gan-feedback.svg)
+
 ### 8.7 Other Types Worth Knowing
 - **Graph neural networks (GNNs):** data shaped as nodes and edges (molecules, social networks).
 - **Diffusion models:** generate images by learning to remove noise step by step.
+
+![Three neighbors send messages to a central graph node, which combines them with its own features.](../../../Assets/Connectionist%20AI/Static/graph-messages.svg)
 
 ### Architecture Comparison
 

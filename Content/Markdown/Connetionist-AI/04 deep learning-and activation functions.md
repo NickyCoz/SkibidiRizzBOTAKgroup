@@ -12,6 +12,8 @@ Audio: waveform → sounds → phonemes → words
 
 This is called **hierarchical feature learning**. Before deep learning, engineers designed features by hand (e.g. edge detectors). Deep networks **learn the features automatically** from raw data.
 
+![An illustrative image network combines pixels into edges, edges into a part, and parts into a wheel-like pattern.](../../../Assets/Connectionist%20AI/Static/feature-hierarchy.svg)
+
 ### Why Depth?
 - **Efficiency:** some functions need exponentially many units in a single wide layer but only a few in a deep one.
 - **Reuse:** early layers learn general features reused by later layers.
@@ -23,6 +25,8 @@ This is called **hierarchical feature learning**. Before deep learning, engineer
 | Learns | Hierarchies of features | More features per level |
 | Risk | Harder to train (vanishing gradients) | Many parameters, can overfit |
 | Fix | Residual connections, normalisation | Regularisation |
+
+![One hidden layer with five units illustrates width, while three hidden layers with three units each illustrate depth.](../../../Assets/Connectionist%20AI/Static/depth-and-width.svg)
 
 ## 2. Why We Need Activation Functions
 
@@ -43,7 +47,11 @@ An **activation function** is a non-linear function applied after each layer's s
 - **Cheap to compute**
 - **Well-behaved gradients** (not too small or too large)
 
+![A composition of affine layers still graphs as a straight line. Adding ReLU can create a bend.](../../../Assets/Connectionist%20AI/Static/affine-composition.svg)
+
 ## 3. The Activation Functions
+
+![Plots of sigmoid, tanh, ReLU, and leaky ReLU. ReLU stays flat for negative inputs, while leaky ReLU keeps a small positive slope.](../../../Assets/Connectionist%20AI/Static/activation-curves.svg)
 
 ### Reference Values
 
@@ -64,6 +72,8 @@ An **activation function** is a non-linear function applied after each layer's s
 - **Cons:** **saturates** (slope near 0 when |z| is large); outputs not zero-centered; exponential is costly.
 - **Use today:** output layer of **binary classification**, and gates in LSTMs. Rarely in hidden layers.
 
+![The sigmoid is steepest near zero and almost flat at either extreme.](../../../Assets/Connectionist%20AI/Static/sigmoid-saturation.svg)
+
 ### 3.2 Tanh
 ```
 tanh(z) = (e^z − e^-z) / (e^z + e^-z)     range (−1, 1)
@@ -72,6 +82,8 @@ tanh'(z) = 1 − tanh²(z)                   max slope = 1
 - **Pros:** zero-centered; stronger gradients than sigmoid.
 - **Cons:** still saturates at the extremes.
 - **Use:** LSTM/GRU internals, some small networks, outputs that must be in (−1, 1).
+
+![Tanh maps zero to zero and maps equal-magnitude inputs to outputs of equal magnitude and opposite signs.](../../../Assets/Connectionist%20AI/Static/tanh-zero-centred.svg)
 
 ### 3.3 ReLU (Rectified Linear Unit)
 ```
@@ -90,9 +102,13 @@ LeakyReLU(z) = z        if z > 0
 - Keeps a small gradient for negative inputs, avoiding dead neurons.
 - **PReLU** makes α a learned parameter.
 
+![A magnified view shows the small negative-input slope of leaky ReLU compared with the flat ReLU.](../../../Assets/Connectionist%20AI/Static/relu-negative-zoom.svg)
+
 ### 3.5 ELU and SELU
 - **ELU:** `z` if z > 0, else `α(e^z − 1)`. Smooth, pushes mean activations toward zero.
 - **SELU:** a scaled ELU that can make networks self-normalise (needs specific initialisation).
+
+![ELU and SELU have different negative limits and different slopes on the positive side.](../../../Assets/Connectionist%20AI/Static/elu-selu.svg)
 
 ### 3.6 GELU and Swish (SiLU)
 ```
@@ -102,11 +118,15 @@ Swish(z) = z · σ(z)
 - Smooth, non-monotonic cousins of ReLU that often train slightly better.
 - **GELU** is standard in **Transformers**; **Swish/SiLU** is common in modern CNNs.
 
+![GELU and SiLU both dip below zero before curving upward.](../../../Assets/Connectionist%20AI/Static/gelu-silu.svg)
+
 ### 3.7 Softplus
 ```
 softplus(z) = ln(1 + e^z)       smooth version of ReLU, always > 0
 ```
 - Useful when an output must be **strictly positive**, e.g. a standard deviation σ in probabilistic forecasting (Chapter 6).
+
+![Softplus rounds the ReLU corner and stays above zero even for negative inputs.](../../../Assets/Connectionist%20AI/Static/softplus-relu.svg)
 
 ### 3.8 Softmax (output layer, multi-class)
 ```
@@ -116,6 +136,10 @@ softmax(z_i) = e^(z_i) / Σ_j e^(z_j)
 - **Example:** scores `[2, 1, 0]` → e² = 7.389, e¹ = 2.718, e⁰ = 1 → sum = 11.107 → probabilities ≈ `[0.665, 0.245, 0.090]`.
 - Adding the same number to all scores doesn't change the result, so implementations subtract the max for stability.
 - **Temperature:** dividing scores by T > 1 flattens the probabilities; T < 1 sharpens them.
+
+![Softmax turns scores 2, 1, and 0 into probabilities of approximately 66.5%, 24.5%, and 9.0%, preserving their ranking.](../../../Assets/Connectionist%20AI/Static/softmax-scores.svg)
+
+![The same logits produce sharper probabilities at low temperature and flatter probabilities at high temperature.](../../../Assets/Connectionist%20AI/Static/temperature-bars.svg)
 
 ### 3.9 Linear (Identity)
 - No activation. Used for **regression outputs** where any real number is allowed.
@@ -142,6 +166,8 @@ During backpropagation, the gradient is multiplied by the activation's **derivat
 ### The Vanishing Gradient Problem
 Sigmoid's derivative is at most 0.25. Through many layers:
 
+![From the output back through three layers, each gradient bar is one quarter the length of the previous bar.](../../../Assets/Connectionist%20AI/Animated/gradient-shrinkage.svg)
+
 ```
 5 layers:   0.25^5  ≈ 0.001
 10 layers:  0.25^10 ≈ 0.000001   (about 1 in a million)
@@ -151,6 +177,8 @@ Early layers receive almost no learning signal, so they barely learn. Sigmoid an
 ### The Exploding Gradient Problem
 If each factor is larger than 1 (e.g. large weights), the product grows exponentially, so updates become huge and the loss becomes NaN. Common in RNNs.
 
+![In a toy backward chain, doubling at each step grows a gradient from 1 to 16 in four steps.](../../../Assets/Connectionist%20AI/Static/exploding-gradient.svg)
+
 ### Remedies
 
 | Problem | Fix |
@@ -159,8 +187,12 @@ If each factor is larger than 1 (e.g. large weights), the product grows exponent
 | Exploding | **Gradient clipping**; smaller learning rate; good initialisation; normalisation |
 | Dead ReLU | Leaky ReLU / ELU; lower learning rate; careful initialisation |
 
+![Norm clipping shortens a gradient vector from magnitude five to magnitude two without changing its direction.](../../../Assets/Connectionist%20AI/Static/gradient-clipping.svg)
+
 ### Residual Connections (Skip Connections)
 `output = layer(x) + x`. The "+ x" gives gradients a direct highway back, which is what made networks with hundreds of layers (ResNet) trainable.
+
+![An animated residual block shows the input passing along two paths, with the original input added to the transformed result.](../../../Assets/Connectionist%20AI/Animated/residual-path.svg)
 
 ## 6. Weight Initialisation
 
@@ -171,6 +203,8 @@ Starting weights should keep activations and gradients at a stable scale:
 - **He:** variance ≈ 2/n_in. Suits **ReLU-family**.
 
 Frameworks apply sensible defaults, but know which to pick when building custom layers.
+
+![When two units start identically and receive identical updates, they stay identical. Different starting weights can break that symmetry.](../../../Assets/Connectionist%20AI/Static/initialisation-symmetry.svg)
 
 ## 7. Code
 
