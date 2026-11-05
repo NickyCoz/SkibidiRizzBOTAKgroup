@@ -2,35 +2,35 @@
 
 A queue is a linear data structure that usually follows the First-In, First-Out (FIFO) rule. The first item added is the first one removed. A line of people waiting for a bus is a familiar example.
 
-![Nicky is first in line to board the bus.](../../../../Assets/Data%20Structures/Animated/bus-queue.svg)
+![Nicky is first in line to board the bus.](../../../Assets/Data%20Structures/Animated/bus-queue.svg)
 
-![Nicky is at the front and leaves first. Darren is at the rear, where new jobs join.](../../../../Assets/Data%20Structures/Static/queue.svg)
+![Nicky is at the front and leaves first. Darren is at the rear, where new jobs join.](../../../Assets/Data%20Structures/Static/queue.svg)
 
 ## Operations
 
 - **Enqueue:** Add an item at the rear.
 
-  ![Enqueue adds Darren at the rear](../../../../Assets/Data%20Structures/Animated/queue-enqueue.svg)
+  ![Enqueue adds Darren at the rear](../../../Assets/Data%20Structures/Animated/queue-enqueue.svg)
 
 - **Dequeue:** Remove and return the item at the front. The queue must not be empty.
 
-  ![Dequeue removes Nicky from the front](../../../../Assets/Data%20Structures/Animated/queue-dequeue.svg)
+  ![Dequeue removes Nicky from the front](../../../Assets/Data%20Structures/Animated/queue-dequeue.svg)
 
 - **Front or peek:** Read the front item without removing it.
 
-  ![Peek reads Nicky at the front while both items stay in place.](../../../../Assets/Data%20Structures/Animated/queue-peek.svg)
+  ![Peek reads Nicky at the front while both items stay in place.](../../../Assets/Data%20Structures/Animated/queue-peek.svg)
 
 - **Rear:** Read the last item without removing it.
 
-  ![Reading the rear returns Darren while both jobs stay in place.](../../../../Assets/Data%20Structures/Animated/queue-rear.svg)
+  ![Reading the rear returns Darren while both jobs stay in place.](../../../Assets/Data%20Structures/Animated/queue-rear.svg)
 
 - **Size:** Return the number of items. In the example below, this is `len(jobs) - front`.
 
-  ![The queue has two waiting jobs.](../../../../Assets/Data%20Structures/Animated/queue-size.svg)
+  ![The queue has two waiting jobs.](../../../Assets/Data%20Structures/Animated/queue-size.svg)
 
 - **Is empty:** Check whether there are no items.
 
-  ![The queue is empty when no jobs are waiting.](../../../../Assets/Data%20Structures/Animated/queue-empty.svg)
+  ![The queue is empty when no jobs are waiting.](../../../Assets/Data%20Structures/Animated/queue-empty.svg)
 
 
 
@@ -38,19 +38,19 @@ A queue is a linear data structure that usually follows the First-In, First-Out 
 
 - **Circular queue:** Treats the ends of an array as connected, so positions freed at the front can be reused.
 
-  ![The next slot after 3 is 0.](../../../../Assets/Data%20Structures/Static/queue-circular.svg)
+  ![The next slot after 3 is 0.](../../../Assets/Data%20Structures/Static/queue-circular.svg)
 - **Double-ended queue (deque):** Items can enter or leave at either end. A **deque** is a kind of queue. **Dequeue** means remove the front item.
 
-  ![Items can enter and leave at either end.](../../../../Assets/Data%20Structures/Static/queue-deque.svg)
+  ![Items can enter and leave at either end.](../../../Assets/Data%20Structures/Static/queue-deque.svg)
 - **Input-restricted deque:** Allows insertion at one end, but deletion at either end.
 
-  ![Items enter at the left and leave at either end.](../../../../Assets/Data%20Structures/Static/queue-input-restricted.svg)
+  ![Items enter at the left and leave at either end.](../../../Assets/Data%20Structures/Static/queue-input-restricted.svg)
 - **Output-restricted deque:** Allows deletion at one end, but insertion at either end.
 
-  ![Items enter at either end and leave at the left.](../../../../Assets/Data%20Structures/Static/queue-output-restricted.svg)
+  ![Items enter at either end and leave at the left.](../../../Assets/Data%20Structures/Static/queue-output-restricted.svg)
 - **Priority queue:** Removes the item with the highest (or lowest) priority first. The implementation determines the order among items with equal priority.
 
-  ![The urgent job is served first even though it arrives second.](../../../../Assets/Data%20Structures/Static/queue-priority.svg)
+  ![The urgent job is served first even though it arrives second.](../../../Assets/Data%20Structures/Static/queue-priority.svg)
 
 Queues are useful for tasks such as handling print jobs, processing requests in arrival order, and keeping track of work waiting to be done.
 
@@ -62,7 +62,7 @@ Queues are useful for tasks such as handling print jobs, processing requests in 
 
 Nicky and Darren share a printer. Nicky sends a job first, and Darren sends one before the printer is free. The printer takes Nicky's job from the front of the queue. Darren's job is next.
 
-![Process print jobs in arrival order.](../../../../Assets/Data%20Structures/Animated/application-print-jobs.svg)
+![Process print jobs in arrival order.](../../../Assets/Data%20Structures/Animated/application-print-jobs.svg)
 
 ## Python example
 

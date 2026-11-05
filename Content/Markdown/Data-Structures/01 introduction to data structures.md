@@ -75,6 +75,6 @@ A program often reads items by their position and rarely inserts items between e
 
 ## Read more
 
-- [Linear Data Structures](Linear/Linear%20Data%20Structures.md)
-- [Nonlinear Data Structures](Nonlinear/Nonlinear%20Data%20Structures.md)
-- [Data Versioning](Data%20Versioning.md)
+- [Linear Data Structures](02%20linear%20data%20structures.md)
+- [Nonlinear Data Structures](07%20nonlinear%20data%20structures.md)
+- Data Versioning (planned; a dedicated lesson is still needed).

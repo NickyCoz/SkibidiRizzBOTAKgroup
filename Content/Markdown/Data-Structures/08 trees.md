@@ -4,13 +4,13 @@ A tree is a hierarchical structure made of **nodes** (items) connected by **edge
 
 Trees can represent a folder system: a folder can contain other folders, and those folders can contain more folders or files. There is one path from the root to each node.
 
-![A folder tree with the path from Course to notes.md highlighted.](../../../../Assets/Data%20Structures/Animated/folder-tree.svg)
+![A folder tree with the path from Course to notes.md highlighted.](../../../Assets/Data%20Structures/Animated/folder-tree.svg)
 
 ## Binary trees
 
 A **binary tree** is a tree in which each node has at most two children, commonly called the left child and right child.
 
-![An unordered binary tree has root 8 with left child 10 and right child 3.](../../../../Assets/Data%20Structures/Static/binary-tree-unordered.svg)
+![An unordered binary tree has root 8 with left child 10 and right child 3.](../../../Assets/Data%20Structures/Static/binary-tree-unordered.svg)
 
 ## Binary search trees
 
@@ -23,38 +23,38 @@ A **subtree** includes a node and everything below it. At every node in a BST, t
 
 Putting `9` to the right of `3` in the diagram would break the rule at `8`. The `9` would still be in `8`'s left subtree.
 
-![Root 8 has children 3 and 10. Node 3 has left child 1.](../../../../Assets/Data%20Structures/Static/bst-shape.svg)
+![Root 8 has children 3 and 10. Node 3 has left child 1.](../../../Assets/Data%20Structures/Static/bst-shape.svg)
 
 **Search and insertion.** Use the tree above and start at the root. If the target matches the current key, you have found it. Otherwise, follow the left link for a smaller target or the right link for a larger target.
 
 1. To search for `1`, compare it with `8` and go left. Compare it with `3` and go left again. The next node holds `1`.
 
-   ![Search the binary search tree for 1.](../../../../Assets/Data%20Structures/Animated/bst-search.svg)
+   ![Search the binary search tree for 1.](../../../Assets/Data%20Structures/Animated/bst-search.svg)
 
 2. To search for `6`, go left from `8` and right from `3`. That link is empty, so `6` is absent.
 3. To insert `6`, follow the same path and place it at the empty link as the right child of `3`. It belongs there because `3 < 6 < 8`.
 
-   ![Before and after inserting 6 as the right child of 3.](../../../../Assets/Data%20Structures/Animated/bst-insert.svg)
+   ![Before and after inserting 6 as the right child of 3.](../../../Assets/Data%20Structures/Animated/bst-insert.svg)
 
 ## Finding the smallest, largest, and next keys
 
 - **Smallest key.** Start at the root and follow left links until there is no left child. In this tree, the path ends at `1`.
 
-  ![Follow left links from 8 to 3 to 1.](../../../../Assets/Data%20Structures/Animated/bst-minimum.svg)
+  ![Follow left links from 8 to 3 to 1.](../../../Assets/Data%20Structures/Animated/bst-minimum.svg)
 
 - **Largest key.** Start at the root and follow right links until there is no right child. In this tree, the path ends at `10`.
 
-  ![Follow the right link from 8 to 10.](../../../../Assets/Data%20Structures/Animated/bst-maximum.svg)
+  ![Follow the right link from 8 to 10.](../../../Assets/Data%20Structures/Animated/bst-maximum.svg)
 
 The **successor** is the next larger key in sorted order.
 
 - **With a right subtree.** Find the smallest key in it.
 
-  ![After inserting 6, the successor of 3 is 6.](../../../../Assets/Data%20Structures/Animated/bst-successor-right.svg)
+  ![After inserting 6, the successor of 3 is 6.](../../../Assets/Data%20Structures/Animated/bst-successor-right.svg)
 
 - **Without a right subtree.** Follow parent links upward. The first parent you reach from its left child holds the successor.
 
-  ![In the original tree, go up from 3 to its successor 8.](../../../../Assets/Data%20Structures/Animated/bst-successor-parent.svg)
+  ![In the original tree, go up from 3 to its successor 8.](../../../Assets/Data%20Structures/Animated/bst-successor-parent.svg)
 
 In the original tree, `3` is the left child of `8` and has no right subtree, so its successor is `8`. The largest key has no successor.
 
@@ -62,7 +62,7 @@ In the original tree, `3` is the left child of `8` and has no right subtree, so 
 
 First find the node. In the examples below, each deletion starts from the same tree, which extends the original diagram by inserting `6` and then `7`.
 
-![Starting BST with root 8, children 3 and 10, and 7 as the right child of 6.](../../../../Assets/Data%20Structures/Static/bst-before-deletion.svg)
+![Starting BST with root 8, children 3 and 10, and 7 as the right child of 6.](../../../Assets/Data%20Structures/Static/bst-before-deletion.svg)
 
 | Node to remove | What changes | Keys in sorted order |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ First find the node. In the examples below, each deletion starts from the same t
 
 For the two-child case, look for the smallest key in `3`'s right subtree. That is `6`. It is larger than everything in `3`'s left subtree and smaller than every other key in its right subtree, so it fits between both sides. The successor has no left child, which lets its right child fill the old position. If a node stores a record alongside its key, move the record with the key.
 
-![Deleting 3 in three steps. Find 3, choose its successor 6, then replace 3 with 6 and reconnect 7.](../../../../Assets/Data%20Structures/Animated/bst-delete.svg)
+![Deleting 3 in three steps. Find 3, choose its successor 6, then replace 3 with 6 and reconnect 7.](../../../Assets/Data%20Structures/Animated/bst-delete.svg)
 
 After deleting `3`, `6` takes its place and `7` fills the old position of `6`.
 
@@ -86,7 +86,7 @@ After deleting `3`, `6` takes its place and `7` fills the old position of `6`.
 
 In the diagram, the left subtree gives `1, 3`, the root gives `8`, and the right subtree gives `10`. The keys come out in increasing order. A full traversal takes `O(n)` time because it visits all `n` nodes.
 
-![The BST is labeled with visit numbers. Inorder visits 1 first, then 3, then root 8, and finally 10.](../../../../Assets/Data%20Structures/Animated/bst-inorder.svg)
+![The BST is labeled with visit numbers. Inorder visits 1 first, then 3, then root 8, and finally 10.](../../../Assets/Data%20Structures/Animated/bst-inorder.svg)
 
 ## How tree shape affects performance
 
@@ -127,7 +127,7 @@ Start with the original tree in the diagram. Insert `9`, then search for `9` in 
 
 Imagine Glen is looking up book `10` in a library catalog. The catalog stores book IDs in a binary search tree. Glen starts at `8` and follows the right branch because `10` is larger. That comparison lets him skip the entire left branch.
 
-![Look up a library book by ID.](../../../../Assets/Data%20Structures/Animated/application-library.svg)
+![Look up a library book by ID.](../../../Assets/Data%20Structures/Animated/application-library.svg)
 
 ## Python example
 

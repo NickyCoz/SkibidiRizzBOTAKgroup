@@ -12,44 +12,44 @@ A linked list is a sequence of nodes. A node is an item that stores a value and 
 
 - **Singly linked list:** Each node links to the next node, so traversal moves forward.
 
-  ![Links go forward from 72 to 85 to 91.](../../../../Assets/Data%20Structures/Static/list-singly.svg)
+  ![Links go forward from 72 to 85 to 91.](../../../Assets/Data%20Structures/Static/list-singly.svg)
 - **Doubly linked list:** Each node links to both the next and previous nodes, so traversal can move in either direction. It uses extra memory for the additional link.
 
-  ![Links connect neighboring nodes in both directions.](../../../../Assets/Data%20Structures/Static/list-doubly.svg)
+  ![Links connect neighboring nodes in both directions.](../../../Assets/Data%20Structures/Static/list-doubly.svg)
 - **Circular linked list:** The last node links back to the first node.
 
-  ![The last node points back to the first.](../../../../Assets/Data%20Structures/Static/list-circular.svg)
+  ![The last node points back to the first.](../../../Assets/Data%20Structures/Static/list-circular.svg)
 
 ## Operations
 
 - **Accessing an element:** Start at the head and follow links until reaching the required position. This takes `O(n)` time in the general case.
 
-  ![Follow links from the head to read the third node.](../../../../Assets/Data%20Structures/Animated/list-access.svg)
+  ![Follow links from the head to read the third node.](../../../Assets/Data%20Structures/Animated/list-access.svg)
 
 - **Searching:** Start at the head and follow links until you find the value. If it is absent, stop at the empty link in a non-circular list or when you return to the head in a circular list. This takes up to `O(n)` time.
 
-  ![Check 72, then stop at 85.](../../../../Assets/Data%20Structures/Animated/list-search.svg)
+  ![Check 72, then stop at 85.](../../../Assets/Data%20Structures/Animated/list-search.svg)
 
 - **Insertion:** A node can be inserted by changing links. Inserting at the head takes `O(1)` time. Inserting after a node also takes `O(1)` once that node is known, finding the position can still take `O(n)`.
 
-  ![Insert 85 after the head.](../../../../Assets/Data%20Structures/Animated/list-insert.svg)
+  ![Insert 85 after the head.](../../../Assets/Data%20Structures/Animated/list-insert.svg)
 
 - **Deletion:** Change links to skip the node being removed. Deleting the head takes `O(1)`. In a singly linked list, unlinking a non-head node takes `O(1)` once you have the previous node. Finding that node may take `O(n)`.
 
-  ![Delete 85 by changing one link.](../../../../Assets/Data%20Structures/Animated/list-delete.svg)
+  ![Delete 85 by changing one link.](../../../Assets/Data%20Structures/Animated/list-delete.svg)
 
 
 Linked lists are useful when items are often added or removed at known positions. They do not provide direct index-based access like arrays, and each node needs memory for its links.
 
 After inserting `85`, follow the links from the head until you reach `None`.
 
-![Head points to 72, then 85, then 91, then None.](../../../../Assets/Data%20Structures/Static/list-traversal.svg)
+![Head points to 72, then 85, then 91, then None.](../../../Assets/Data%20Structures/Static/list-traversal.svg)
 
 ## Application
 
 Imagine a music app where each song stores a link to the next one. If Darren adds a song between Track 1 and Track 2, the app first links the new song to Track 2. Then it updates Track 1 to play the new song next. The rest of the playlist can stay as it is.
 
-![Insert a song into a playlist.](../../../../Assets/Data%20Structures/Animated/application-playlist.svg)
+![Insert a song into a playlist.](../../../Assets/Data%20Structures/Animated/application-playlist.svg)
 
 ## Python example
 
