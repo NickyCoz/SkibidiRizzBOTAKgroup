@@ -1,11 +1,11 @@
-# Chapter 10: Model Training and Optimization
+# Chapter 10: Model Training and Optimisation
 
 **Level:** Beginner to Intermediate | **Reading time:** ~60 minutes
 
 ## What you will learn
 - What training is trying to achieve, and how to split data
 - Loss functions and gradient descent, with worked numbers
-- Optimizers: SGD, Momentum, RMSprop, Adam, AdamW
+- Optimisers: SGD, Momentum, RMSprop, Adam, AdamW
 - Learning rate, schedules and batch size
 - Overfitting and the full regularisation toolbox
 - Normalisation, initialisation and training stability
@@ -78,12 +78,12 @@ Computes the gradient for **every** weight efficiently using the chain rule, wor
 | **Mini-batch GD** | e.g. 32–512 samples | **The standard.** Good speed, noise and hardware use |
 
 ### Challenges in the Loss Landscape
-- **Local minima:** in high dimensions, most problems are **saddle points** and flat regions rather than bad minima.
+- **Local minima:** in high dimensions, most points where the gradient is zero are **saddle points** or flat regions rather than bad minima.
 - **Plateaus:** gradients near zero.
 - **Ravines:** steep in one direction, shallow in another, so SGD zigzags (momentum helps).
 - **Noise from mini-batches** is not entirely bad. It helps escape sharp minima and can improve generalisation.
 
-## 4. Optimizers
+## 4. Optimisers
 
 ### SGD with Momentum
 Accumulates a **velocity** of past gradients, which smooths zigzags and speeds movement along consistent directions.
@@ -117,7 +117,7 @@ Fun fact: on the very first step the update size is about **η** regardless of t
 ### AdamW
 Adam with **decoupled weight decay**, the usual choice for Transformers and many modern models.
 
-| Optimizer | Strengths | Watch out for |
+| Optimiser | Strengths | Watch out for |
 |---|---|---|
 | **SGD + momentum** | Often best final generalisation (vision) | Needs careful learning rate and schedule |
 | **Adam** | Fast, robust default | Sometimes slightly worse generalisation |
@@ -230,7 +230,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
 ## 10. Hyperparameter Tuning
 
-Typical hyperparameters: learning rate, batch size, depth and width, dropout rate, weight decay, optimizer, schedule, augmentation strength.
+Typical hyperparameters: learning rate, batch size, depth and width, dropout rate, weight decay, optimiser, schedule, augmentation strength.
 
 | Method | Notes |
 |---|---|
@@ -374,6 +374,6 @@ You have now covered the connectionist AI journey: what it is (Ch 1), how networ
 1. Train a small MLP on a tabular dataset and compare it with gradient boosting.
 2. Forecast a public time series, beating a seasonal naive baseline and checking interval coverage.
 3. Implement the corridor Q-learning, then try a Gymnasium environment with PPO.
-4. Build a matrix-factorization recommender on a small ratings dataset.
+4. Build a matrix-factorisation recommender on a small ratings dataset.
 
 Practising on real data is the fastest way to make these ideas stick.

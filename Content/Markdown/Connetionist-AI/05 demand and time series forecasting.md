@@ -53,7 +53,7 @@ Multiplicative patterns can be made additive by taking the **logarithm**.
 ## 3. Key Statistical Ideas
 
 ### Stationarity
-A series is **stationary** if its statistical properties (mean, variance, autocorrelation) don't change over time. Classic models like ARIMA need it. Make a series more stationary by:
+A series is **stationary** if its statistical properties (mean, variance, autocorrelation) don't change over time. Classic models like ARIMA rely on it: the "I" (integrated) step differences the series until it is stationary. Make a series more stationary by:
 - **Differencing:** `y_t − y_(t−1)` (removes trend), or `y_t − y_(t−7)` (removes weekly seasonality)
 - **Log transform:** stabilises growing variance
 
@@ -123,7 +123,7 @@ This tells the network that hour 23 and hour 0 are close.
 | **Seasonal naive** | Forecast = value from the same point last season | Baseline #2. Surprisingly hard to beat |
 | **Moving average** | Mean of recent values | Smooths noise |
 | **Exponential smoothing (ETS, Holt-Winters)** | Weighted averages with level, trend, seasonality | Strong for single series |
-| **ARIMA / SARIMA** | Auto-regression plus differencing plus moving average | Classic, needs stationarity |
+| **ARIMA / SARIMA** | Auto-regression plus differencing plus moving average | Classic; differencing makes the series stationary |
 | **Prophet-style additive models** | Trend + seasonality + holidays | Easy, interpretable |
 | **Gradient boosting (LightGBM)** on lag features | Tree model on engineered features | A very strong baseline in competitions |
 | **MLP** | Dense network on windowed inputs and covariates | Simple neural baseline |
@@ -193,7 +193,7 @@ Average the errors. This mimics real deployment. In scikit-learn: `TimeSeriesSpl
 
 ## 9. Evaluation Metrics
 
-Example: actual = `[100, 120, 90]`, forecast = `[110, 115, 100]`, errors = `[10, 5, 10]`.
+Example: actual = `[100, 120, 90]`, forecast = `[110, 115, 100]`, errors (forecast − actual) = `[10, −5, 10]`, absolute errors = `[10, 5, 10]`.
 
 | Metric | Formula | Result | Notes |
 |---|---|---|---|

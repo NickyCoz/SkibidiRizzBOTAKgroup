@@ -83,7 +83,7 @@ This is how running feature normalisation can adapt to drift.
 ### Learning Rate in Online Settings
 - **Constant, moderate rate:** tracks change but stays noisy.
 - **Decaying rate:** stable but eventually stops adapting. Not ideal if the world keeps changing.
-- **Adaptive optimizers** (Adam, AdaGrad) are common; **Hoeffding trees** and **online linear models** are classic non-neural choices.
+- **Adaptive optimisers** (Adam, AdaGrad) are common; **Hoeffding trees** and **online linear models** are classic non-neural choices.
 
 ## 3. Mini-Batch Incremental Updates
 
@@ -161,7 +161,9 @@ for each incoming (x, y):
 Report a **sliding-window or fading-factor average** of the error so you can see performance over time and spot drift:
 
 ```
-fading_error = α · fading_error + current_error     (α near 1 = long memory)
+fading_sum   = α · fading_sum + current_error
+fading_count = α · fading_count + 1
+fading_error = fading_sum / fading_count            (α near 1 = long memory)
 ```
 
 Also useful:
@@ -202,14 +204,21 @@ print(metric)
 import random, torch
 
 buffer, BUF_SIZE = [], 1000
+seen = 0                                  # samples seen so far
 
 def online_step(model, opt, loss_fn, x, y):
-    # store the new sample (reservoir-style simple version)
-    buffer.append((x, y))
-    if len(buffer) > BUF_SIZE:
-        buffer.pop(random.randrange(len(buffer)))
+    global seen
+    seen += 1
+    # reservoir sampling: every sample seen so far has an equal chance of being kept
+    if len(buffer) < BUF_SIZE:
+        buffer.append((x, y))
+    else:
+        j = random.randrange(seen)
+        if j < BUF_SIZE:
+            buffer[j] = (x, y)
 
-    batch = random.sample(buffer, min(32, len(buffer)))   # mix old + new
+    replay = random.sample(buffer, min(31, len(buffer)))  # samples replayed from the buffer
+    batch = replay + [(x, y)]                             # always include the new one
     xb = torch.stack([b[0] for b in batch])
     yb = torch.stack([b[1] for b in batch])
 

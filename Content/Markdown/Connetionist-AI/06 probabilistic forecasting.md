@@ -16,7 +16,7 @@
 
 A **point forecast** says: *"Demand next week will be 100 units."*
 
-A **probabilistic forecast** says: *"Demand will most likely be near 100, with a 90% chance it falls between 70 and 135."*
+A **probabilistic forecast** says: *"Demand will most likely be near 100, with an 80% chance it falls between 70 and 135."*
 
 Why this matters:
 - **Risk-aware decisions.** Stocking 100 units is very different if demand could be 99–101 versus 20–300.
@@ -98,7 +98,7 @@ The network has one output per quantile (e.g. P10, P50, P90) and is trained with
 - **Deep ensembles:** train several networks with different random seeds. Disagreement estimates epistemic uncertainty.
 - **Monte Carlo dropout:** keep dropout on at prediction time and run many forward passes. The spread approximates uncertainty.
 - **Bayesian neural networks:** learn distributions over weights (powerful, costlier).
-- **Conformal prediction:** wrap *any* model so its intervals have a guaranteed coverage level (see below).
+- **Conformal prediction:** wrap *any* model so its intervals have a guaranteed average coverage level, as long as new data resembles the calibration data (see below).
 - **Generative models** (diffusion, normalising flows): sample entire future trajectories.
 
 ## 5. The Pinball (Quantile) Loss
@@ -126,7 +126,7 @@ def pinball_loss(y, q_pred, tau):
 
 # multi-quantile training
 quantiles = [0.1, 0.5, 0.9]
-def multi_quantile_loss(y, preds):         # preds: (batch, len(quantiles))
+def multi_quantile_loss(y, preds):         # y: (batch,), preds: (batch, len(quantiles))
     return sum(pinball_loss(y, preds[:, i], q) for i, q in enumerate(quantiles))
 ```
 
@@ -176,7 +176,7 @@ Among calibrated forecasts, **narrower intervals are better** because they are m
 |---|---|
 | **Pinball / quantile loss** | Accuracy of each quantile |
 | **Weighted quantile loss (wQL)** | Pinball loss normalised by total demand, comparable across series |
-| **CRPS** (Continuous Ranked Probability Score) | Overall quality of the whole distribution; reduces to MAE for a point forecast. Averaging pinball loss over many quantiles approximates it |
+| **CRPS** (Continuous Ranked Probability Score) | Overall quality of the whole distribution; reduces to MAE for a point forecast. Twice the average pinball loss over many quantiles approximates it |
 | **Interval coverage** | Share of actuals inside an interval |
 | **Interval width** | Average sharpness |
 | **NLL / log score** | How probable the real value was under the forecast |
@@ -184,14 +184,14 @@ Among calibrated forecasts, **narrower intervals are better** because they are m
 
 ## 8. Conformal Prediction (Distribution-Free Calibration)
 
-A simple recipe to get intervals with **guaranteed coverage** around any point forecaster:
+A simple recipe to get intervals with **guaranteed average coverage** (at least 90% here) around any point forecaster:
 
 1. Train a point model.
 2. On a **held-out calibration set**, compute the absolute errors |y − ŷ|.
-3. Take the 90th percentile of those errors, call it `e90`.
+3. Sort the n errors and take the ⌈(n + 1) × 0.9⌉-th smallest (round up), call it `e90`. With n = 99 errors, that is the 90th smallest. (The rule needs at least 9 errors; use far more in practice.)
 4. For new forecasts, use the interval **[ŷ − e90, ŷ + e90]**.
 
-It assumes future errors resemble calibration errors (so recalibrate if the data drifts, Chapter 7).
+The guarantee holds on average over many forecasts, and only if future errors behave like the calibration errors (technically, they must be *exchangeable*). Recalibrate if the data drifts (Chapter 7).
 
 ## 9. From Probabilistic Forecast to Decision (The Newsvendor Idea)
 
@@ -217,7 +217,7 @@ Other uses:
 - Assuming a Gaussian when data is skewed or count-based
 - Reporting only average accuracy and never checking coverage
 - Very wide intervals that are "safe" but useless
-- Evaluating intervals on training data (always overconfident)
+- Evaluating intervals on training data (usually overconfident)
 - Quantile crossing
 - Ignoring that calibration can drift when data changes
 

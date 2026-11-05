@@ -2,7 +2,7 @@
 
 ## 1. Why So Many Applications?
 
-Neural networks are **universal function approximators**: given enough data and capacity, they can learn a mapping from almost any input to almost any output. Different architectures (Chapter 2) specialise the idea for images, sequences, graphs and more. This is why the same toolbox spans medicine, finance, entertainment and engineering.
+Neural networks are **universal function approximators**: with suitable activations and enough units, they can approximate any continuous function on a closed, bounded input domain to any desired accuracy. This does not guarantee that training will find the right weights or that the model will generalise well. Different architectures (Chapter 2) specialise the idea for images, sequences, graphs and more. This is why the same toolbox spans medicine, finance, entertainment and engineering.
 
 Most applications fall into a few **task types**:
 
@@ -38,11 +38,11 @@ Most applications fall into a few **task types**:
 - **Metric:** word error rate (WER).
 
 ### 2.4 Forecasting and Time Series
-- **Tasks:** demand, energy load, traffic, weather, finance (Chapters 5 and 6).
+- **Tasks:** demand, energy load, traffic, weather, finance.
 - **Models:** MLPs, LSTMs, temporal convolution, Transformers.
 - **Metrics:** MAE, RMSE, quantile loss.
 
-### 2.5 Recommendation (Chapter 8)
+### 2.5 Recommendation
 - **Tasks:** suggest products, videos, music, news.
 - **Models:** embeddings plus MLPs, two-tower models, sequence models.
 
@@ -54,11 +54,11 @@ Most applications fall into a few **task types**:
 ### 2.7 Finance
 - **Tasks:** fraud detection, credit scoring, risk modelling, algorithmic trading signals.
 - **Models:** MLPs, autoencoders, sequence models.
-- **Watch out for:** rare events (fraud is a tiny fraction of transactions), changing behaviour (concept drift, Chapter 7), fairness and regulation.
+- **Watch out for:** rare events (fraud is a tiny fraction of transactions), changing behaviour (concept drift), fairness and regulation.
 
 ### 2.8 Robotics, Control and Games
 - **Tasks:** walking robots, warehouse picking, game agents, chip design, data-centre cooling.
-- **Models:** deep reinforcement learning (Chapter 9) combined with vision networks.
+- **Models:** deep reinforcement learning combined with vision networks.
 
 ### 2.9 Generative AI
 - **Tasks:** text, image, audio, video and code generation.
@@ -86,10 +86,10 @@ Most applications fall into a few **task types**:
 2. **Collect and label data.** Often the hardest and most expensive step.
 3. **Clean and split data** into train, validation and test sets.
 4. **Build a simple baseline** (a rule, a linear model). Know what you need to beat.
-5. **Train and tune** a neural network (Chapter 10).
+5. **Train and tune** a neural network.
 6. **Evaluate honestly** on unseen data, including edge cases.
 7. **Deploy** (as an API, on a phone, on a device).
-8. **Monitor and update**: performance degrades as the world changes (Chapter 7).
+8. **Monitor and update**: performance degrades as the world changes.
 
 ## 5. When Is a Neural Network a Good Fit?
 

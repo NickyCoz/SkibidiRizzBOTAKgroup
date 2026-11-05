@@ -4,7 +4,7 @@
 
 ## What you will learn
 - What recommender systems do and the data they use
-- Content-based, collaborative, matrix factorization and neural approaches
+- Content-based, collaborative, matrix factorisation and neural approaches
 - How a large-scale pipeline (retrieval, ranking, re-ranking) is organised
 - Main challenges: cold start, bias, feedback loops
 - Evaluation metrics with worked numbers
@@ -65,7 +65,7 @@ cos ≈ 40 / 41.50 ≈ 0.964   (very similar)
 ✅ Discovers surprising, cross-category tastes.
 ❌ Cold start; sparsity; popularity bias.
 
-### 2.3 Matrix Factorization (MF), the connectionist bridge
+### 2.3 Matrix Factorisation (MF), the connectionist bridge
 Learn a small vector (an **embedding**) for every user and every item, so that their **dot product** predicts the rating or interaction.
 
 ```
@@ -81,7 +81,7 @@ u_new = u − lr·error·v = [1 − 0.3, 2 − 0.1] = [0.7, 1.9]
 v_new = v − lr·error·u = [3 − 0.1, 1 − 0.2] = [2.9, 0.8]
 new prediction = 0.7·2.9 + 1.9·0.8 = 2.03 + 1.52 = 3.55
 ```
-The prediction moved from 5 toward the true value 4. Real training repeats this over millions of interactions, with **L2 regularisation** to prevent overfitting, and **user/item bias terms** (some users rate generously, some items are popular).
+The error shrank from +1 to −0.45: the prediction moved from 5 past the true value 4 to 3.55, overshooting because this learning rate is large. Real training repeats this over millions of interactions, with **L2 regularisation** to prevent overfitting, and **user/item bias terms** (some users rate generously, some items are popular).
 
 ```python
 import torch, torch.nn as nn
@@ -99,7 +99,7 @@ class MF(nn.Module):
 - **Neural Collaborative Filtering (NCF):** concatenate user and item embeddings and feed them to an **MLP**, learning non-linear interactions instead of a plain dot product.
 - **Two-tower models:** one network encodes the user (history, features), another encodes the item. Score = dot product of the two output vectors. Item vectors can be **precomputed**, and the best matches found quickly with **approximate nearest-neighbour search** (e.g. FAISS). This is the standard design for large-scale **candidate retrieval**.
 - **Autoencoder-based CF:** reconstruct a user's interaction vector; reconstructed gaps become recommendations.
-- **Sequence models (RNN / Transformer):** use the **order** of a user's recent actions to predict the next item (session-based recommendation, e.g. SASRec, BERT4Rec).
+- **Sequence models (RNN / Transformer):** use the **order** of a user's recent actions to predict the next item (sequential and session-based recommendation, e.g. GRU4Rec, SASRec, BERT4Rec).
 - **Wide & Deep / DeepFM / DLRM:** combine memorisation (feature crosses) with generalisation (deep layers) for click prediction with many categorical features.
 - **Graph neural networks:** treat users and items as a bipartite graph.
 - **Hybrid models:** combine collaborative signals with content features, which also helps cold start.
@@ -167,7 +167,7 @@ Use a **time-based split** (train on the past, test on later interactions), or l
 
 ## Key Takeaways
 - Recommenders rank items per user using explicit and implicit feedback.
-- Content-based uses item features; collaborative uses behaviour; matrix factorization and neural models learn **embeddings** and combine both.
+- Content-based uses item features; collaborative uses behaviour; matrix factorisation and neural models learn **embeddings** and combine both.
 - Large systems split into retrieval, ranking and re-ranking.
 - Cold start, bias and feedback loops are the main practical issues.
 - Judge with ranking metrics offline and A/B tests online.
