@@ -34,6 +34,8 @@ Rules:
 - **Cross-validation** (k-fold) gives more reliable estimates on small datasets.
 - Prevent **data leakage**: fit scalers and encoders on training data only.
 
+![Training fits weights, validation chooses settings, and the test set evaluates the chosen model.](../../../Assets/Connectionist%20AI/Static/dataset-split.svg)
+
 ## 2. Loss Functions
 
 | Task | Loss | Idea |
@@ -53,6 +55,8 @@ Rules:
 
 **Loss vs metric:** you *train* on a differentiable loss but *evaluate* with a metric that matters for the task (accuracy, F1, WAPE, NDCG). They can disagree, so monitor both.
 
+![Cross-entropy for a correct class equals minus log of its assigned probability. The chapter examples are 0.99 to 0.010, 0.7 to 0.357, and 0.1 to 2.303.](../../../Assets/Connectionist%20AI/Static/train-cross-entropy.svg)
+
 ## 3. Gradient Descent
 
 The **gradient** points in the direction of steepest increase of the loss. We step the opposite way:
@@ -66,8 +70,12 @@ If the gradient were −2 with w = 5, η = 0.5 → w = 5 + 1 = **6**.
 
 **Landscape intuition.** Imagine walking downhill in fog. The gradient is the slope under your feet; the learning rate is your step size. Too big a step overshoots the valley; too small takes forever.
 
+![Successive gradient descent steps approach the minimum of a toy squared loss.](../../../Assets/Connectionist%20AI/Animated/descent-steps.svg)
+
 ### Backpropagation
 Computes the gradient for **every** weight efficiently using the chain rule, working backwards from the loss. Frameworks do this automatically (`loss.backward()`).
+
+![Backward gradients follow the forward dependencies in reverse.](../../../Assets/Connectionist%20AI/Animated/chain-rule-path.svg)
 
 ### Variants
 
@@ -99,6 +107,8 @@ w ← w − η·v         (β ≈ 0.9)
 Steps grow while the direction stays consistent.
 **Nesterov momentum** looks ahead before computing the gradient.
 
+![With constant gradient one, beta 0.9 and learning rate 0.1, the three update sizes are 0.1,0.19,0.271. They grow as velocity accumulates.](../../../Assets/Connectionist%20AI/Static/train-momentum.svg)
+
 ### AdaGrad, RMSprop
 Give each parameter its **own step size**, shrinking it where gradients have been large.
 RMSprop keeps a moving average of squared gradients (good for RNNs).
@@ -113,6 +123,8 @@ w ← w − η · m̂ / (√v̂ + ε)
 ```
 Defaults: **η = 1e-3, β1 = 0.9, β2 = 0.999, ε = 1e-8**.
 Fun fact: on the very first step the update size is about **η** regardless of the gradient's scale (since m̂/√v̂ ≈ ±1).
+
+![The same gradient contributes to a first-moment average and a second-moment average of squared gradients. Bias-corrected estimates combine to scale the update.](../../../Assets/Connectionist%20AI/Static/train-adam.svg)
 
 ### AdamW
 Adam with **decoupled weight decay**, the usual choice for Transformers and many modern models.
@@ -139,6 +151,8 @@ The most important hyperparameter.
 
 **Finding it:** the **learning-rate range test** increases the rate exponentially over a short run; pick a value somewhat below where the loss starts to rise sharply. Often tried: 1e-1, 1e-2, 1e-3, 1e-4.
 
+![On this toy quadratic, rate 0.02 converges slowly, 0.2 converges quickly, and 1.005 diverges. All losses are divided by the starting loss.](../../../Assets/Connectionist%20AI/Static/train-learning-rate.svg)
+
 ### Schedules
 
 | Schedule | Idea |
@@ -157,6 +171,8 @@ sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=50)
 # call sched.step() once per epoch
 ```
 
+![Illustrative schedules compare step decay, cosine annealing, and linear warm-up followed by cosine decay. The vertical axis is normalized to each schedule's peak.](../../../Assets/Connectionist%20AI/Static/train-lr-schedules.svg)
+
 ## 6. Batch Size
 
 | Small batch (8–64) | Large batch (512+) |
@@ -167,6 +183,8 @@ sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=50)
 | Often generalises a bit better | May need larger learning rate and warm-up |
 
 A common heuristic is to scale the learning rate with batch size. **Gradient accumulation** simulates a large batch by summing gradients over several small batches before one update.
+
+![Four micro-batches produce four gradient contributions. These are averaged before one optimizer update, giving an effective batch of sixty-four for four micro-batches of sixteen.](../../../Assets/Connectionist%20AI/Static/train-accumulation.svg)
 
 ## 7. Overfitting and Underfitting
 
@@ -179,6 +197,8 @@ A common heuristic is to scale the learning rate with batch size. **Gradient acc
 **Learning curves:** plot training and validation loss against epochs (or data size). A widening gap signals overfitting; both stuck high signals underfitting.
 
 **Bias–variance trade-off:** simple models are stable but may miss patterns (bias); complex models fit anything but are sensitive to the training sample (variance). Modern deep networks with enough data and regularisation often sit well in the "very large but regularised" regime.
+
+![Illustrative training loss continues falling while validation loss reaches its lowest point and then rises. The lowest-validation checkpoint is marked.](../../../Assets/Connectionist%20AI/Static/train-overfitting.svg)
 
 ## 8. Regularisation Toolbox
 
@@ -199,6 +219,8 @@ A common heuristic is to scale the learning rate with batch size. **Gradient acc
 **L2 regularised loss:** `L_total = L_data + λ · Σ w²`.
 **Dropout detail:** with rate p, surviving activations are scaled by 1/(1−p) during training ("inverted dropout") so inference needs no change.
 
+![The training mask alternates between two example subsets of zeroed units. The evaluation layer uses all units. Surviving units are scaled appropriately during inverted dropout training.](../../../Assets/Connectionist%20AI/Animated/train-dropout.svg)
+
 ## 9. Normalisation, Initialisation and Stability
 
 ### Input Scaling
@@ -214,10 +236,14 @@ Standardise features (mean 0, std 1), or scale to [0, 1]. It speeds training and
 Benefits: faster, more stable training; allows higher learning rates; mild regularisation.
 Remember: Batch Norm behaves differently in `train()` and `eval()` mode.
 
+![In the left sample-by-feature matrix, batch normalization uses values down one feature column. In the right matrix, layer normalization uses the features across one sample row.](../../../Assets/Connectionist%20AI/Static/train-normalisation-axes.svg)
+
 ### Weight Initialisation
 - **Never all zeros** (symmetry: every neuron learns the same thing).
 - **Xavier/Glorot** for tanh/sigmoid; **He** for ReLU-family.
 - Frameworks default to sensible choices, but custom layers need care.
+
+![Identical incoming weights can preserve identical behavior when updates are the same.](../../../Assets/Connectionist%20AI/Static/initialisation-symmetry.svg)
 
 ### Gradient Clipping
 Cap the gradient norm (e.g. 1.0) to stop exploding gradients:
@@ -225,8 +251,12 @@ Cap the gradient norm (e.g. 1.0) to stop exploding gradients:
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 ```
 
+![Norm clipping scales a gradient vector while keeping its direction.](../../../Assets/Connectionist%20AI/Static/gradient-clipping.svg)
+
 ### Residual Connections
 `output = layer(x) + x` lets gradients flow through very deep networks (Chapter 4).
+
+![The input passes through a transformation and also reaches the output by an identity path.](../../../Assets/Connectionist%20AI/Animated/residual-path.svg)
 
 ## 10. Hyperparameter Tuning
 
@@ -240,6 +270,8 @@ Typical hyperparameters: learning rate, batch size, depth and width, dropout rat
 | **Bayesian optimisation** (Optuna, Ray Tune) | Uses past trials to choose promising settings |
 | **Successive halving / Hyperband** | Stop poor runs early |
 | **Population-based training** | Evolve hyperparameters during training |
+
+![Grid search tests a regular set of combinations. Random search spreads a similar number of trials over distinct settings, with learning rate and decay represented on log scales.](../../../Assets/Connectionist%20AI/Static/train-hyperparameter-search.svg)
 
 **Tips**
 - Tune on a **log scale** for learning rate and weight decay (e.g. 1e-5 to 1e-1).
@@ -287,6 +319,8 @@ for epoch in range(200):
 model.load_state_dict(torch.load("best.pt"))
 ```
 
+![Each batch clears old gradients, runs a forward pass, computes gradients, and updates parameters. After each epoch, validation decides whether to save a checkpoint or stop.](../../../Assets/Connectionist%20AI/Animated/train-loop.svg)
+
 ## 12. Debugging Checklist
 
 1. **Overfit one tiny batch** (e.g. 10 samples). A healthy model reaches near-zero loss. If not, there is a bug.
@@ -301,6 +335,8 @@ model.load_state_dict(torch.load("best.pt"))
 10. **Change one thing at a time** and log every run.
 11. **Compare to a simple baseline** (Chapter 5) to know if the model is adding value.
 
+![If a model cannot overfit a tiny training batch, inspect the implementation and data. If it can, compare full training and validation behavior to investigate underfitting, overfitting, or data mismatch.](../../../Assets/Connectionist%20AI/Static/train-debug-flow.svg)
+
 ## 13. Efficiency and Practical Tricks
 
 - **GPU / TPU** training; keep data loading from becoming the bottleneck (`num_workers`, prefetching).
@@ -313,6 +349,8 @@ model.load_state_dict(torch.load("best.pt"))
 - **Reproducibility:** set seeds, record library versions, config and data version.
 - **Experiment tracking:** TensorBoard, Weights & Biases, MLflow.
 - **Model compression for deployment:** pruning, quantisation, distillation.
+
+![A pretrained feature extractor can be frozen while a new task head is trained. A later fine-tuning phase may unfreeze selected layers at a smaller learning rate.](../../../Assets/Connectionist%20AI/Static/train-transfer-freeze.svg)
 
 ## 14. Common Mistakes
 - Tuning on the test set

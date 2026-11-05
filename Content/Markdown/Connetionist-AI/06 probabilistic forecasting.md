@@ -24,6 +24,8 @@ Why this matters:
 - **Trust.** A forecast that says "I'm not sure" lets planners plan buffers.
 - **Rare events.** Capacity planning cares about peaks (the 95th percentile), not the average.
 
+![A point forecast at one hundred is shown inside a normal predictive distribution with mean one hundred and standard deviation ten. Different widths represent different uncertainty, even for the same point forecast.](../../../Assets/Connectionist%20AI/Static/pf-point-distribution.svg)
+
 ## 2. Where Does Uncertainty Come From?
 
 | Type | Meaning | Reducible? | Example |
@@ -32,6 +34,8 @@ Why this matters:
 | **Epistemic** | The model's lack of knowledge | Yes (more data or a better model) | A new product with little history |
 
 Further sources: measurement error, unknown future covariates (e.g. tomorrow's weather), model mis-specification, and changing patterns (Chapter 7).
+
+![The left panel shows random variation around a shared pattern. The right shows several model predictions disagreeing increasingly over the forecast range. Curves are illustrative.](../../../Assets/Connectionist%20AI/Static/pf-uncertainty-sources.svg)
 
 ## 3. Core Concepts
 
@@ -43,6 +47,8 @@ Further sources: measurement error, unknown future covariates (e.g. tomorrow's w
   - 80% interval = [P10, P90]
   - 90% interval = [P05, P95]
 - **Fan chart:** a plot showing widening bands of intervals around the central forecast.
+
+![For a normal distribution with mean one hundred and standard deviation ten, P10 is about 87.2 and P90 about 112.8. The interval between them contains eighty percent of probability.](../../../Assets/Connectionist%20AI/Static/pf-quantiles.svg)
 
 ### Intervals for a Gaussian Forecast
 If the forecast is Normal with mean μ and standard deviation σ:
@@ -57,6 +63,10 @@ If the forecast is Normal with mean μ and standard deviation σ:
 Example: μ = 100, σ = 10 → 90% interval ≈ [83.6, 116.5].
 
 > **Warning:** intervals from a statistical model are not guaranteed to be right. They must be **checked** (see calibration).
+
+![All intervals are centered on one hundred with standard deviation ten. The sixty-eight, eighty, ninety and ninety-five percent intervals use progressively wider bounds.](../../../Assets/Connectionist%20AI/Static/pf-gaussian-intervals.svg)
+
+![Nested illustrative forecast bands widen with horizon. The inner band represents an eighty percent interval and the outer band a ninety-five percent interval.](../../../Assets/Connectionist%20AI/Static/pf-fan-chart.svg)
 
 ## 4. Three Ways Neural Networks Forecast Probabilistically
 
@@ -79,6 +89,8 @@ Two forces: the second term punishes errors (more strongly when σ is small); th
 
 The best σ is the one matching the actual error size (10 here). Both overconfidence and vagueness are penalised. That is the essence of honest probabilistic training.
 
+![Three normal forecasts share a mean of ninety and have standard deviations five, ten and twenty. A vertical marker locates the observed value at one hundred.](../../../Assets/Connectionist%20AI/Static/pf-nll-width.svg)
+
 **Choosing the distribution matters:**
 | Data | Suitable distribution |
 |---|---|
@@ -94,12 +106,16 @@ Make σ positive with **softplus** on the network's output (Chapter 4).
 ### 4.2 Predict Quantiles Directly
 The network has one output per quantile (e.g. P10, P50, P90) and is trained with the **quantile (pinball) loss**. No distribution assumption is required. Examples: Temporal Fusion Transformer, N-HiTS and many MLP/LSTM forecasters.
 
+![Shared neural features can branch into a mean and a positive standard deviation for a Gaussian forecast, or into separate quantile predictions.](../../../Assets/Connectionist%20AI/Static/pf-output-heads.svg)
+
 ### 4.3 Sampling and Ensemble Approaches
 - **Deep ensembles:** train several networks with different random seeds. Disagreement estimates epistemic uncertainty.
 - **Monte Carlo dropout:** keep dropout on at prediction time and run many forward passes. The spread approximates uncertainty.
 - **Bayesian neural networks:** learn distributions over weights (powerful, costlier).
 - **Conformal prediction:** wrap *any* model so its intervals have a guaranteed average coverage level, as long as new data resembles the calibration data (see below).
 - **Generative models** (diffusion, normalising flows): sample entire future trajectories.
+
+![Six illustrative future trajectories start from the same history and diverge over time. Their spread can be summarized as forecast quantiles.](../../../Assets/Connectionist%20AI/Animated/pf-sampled-paths.svg)
 
 ## 5. The Pinball (Quantile) Loss
 
@@ -132,6 +148,8 @@ def multi_quantile_loss(y, preds):         # y: (batch,), preds: (batch, len(qua
 
 **Quantile crossing:** sometimes the model outputs P90 < P50. Fix by sorting the outputs, or by predicting P50 plus non-negative increments.
 
+![For a fixed true value of one hundred, predicting ninety costs nine while predicting one hundred ten costs one. The underprediction branch is nine times as steep as the overprediction branch.](../../../Assets/Connectionist%20AI/Static/pf-pinball.svg)
+
 ## 6. A Gaussian Forecasting Head in PyTorch
 
 ```python
@@ -157,6 +175,8 @@ class GaussianForecaster(nn.Module):
 # loss = torch.nn.GaussianNLLLoss()(mu, y, sigma**2)
 ```
 
+![Softplus keeps a distribution-scale output strictly positive.](../../../Assets/Connectionist%20AI/Static/softplus-relu.svg)
+
 ## 7. Evaluating Probabilistic Forecasts
 
 A good probabilistic forecast should be **calibrated** and **sharp**.
@@ -168,8 +188,14 @@ Do stated probabilities match reality?
 - Coverage above target → **too cautious** (intervals too wide).
 - A **reliability diagram** plots nominal vs observed coverage for many quantile levels. A perfectly calibrated model lies on the diagonal.
 
+![Eight of ten illustrative observed values lie inside their issued prediction intervals. Two observations lie outside, producing empirical coverage of eighty percent.](../../../Assets/Connectionist%20AI/Static/pf-coverage.svg)
+
+![The diagonal represents agreement between nominal and observed interval coverage. An illustrative overconfident model has observed coverage below the diagonal.](../../../Assets/Connectionist%20AI/Static/pf-reliability.svg)
+
 ### Sharpness
 Among calibrated forecasts, **narrower intervals are better** because they are more informative. (A forecast of "between 0 and infinity" is perfectly calibrated and useless.)
+
+![Each panel shows ten illustrative prediction intervals and observed values. Both have eight hits and two misses. The narrower intervals therefore achieve the same empirical coverage with greater sharpness in this toy comparison.](../../../Assets/Connectionist%20AI/Static/pf-sharpness.svg)
 
 ### Metrics
 | Metric | What it measures |
@@ -193,6 +219,8 @@ A simple recipe to get intervals with **guaranteed average coverage** (at least 
 
 The guarantee holds on average over many forecasts, and only if future errors behave like the calibration errors (technically, they must be *exchangeable*). Recalibrate if the data drifts (Chapter 7).
 
+![Nineteen illustrative sorted absolute errors are one through nineteen. For ninety percent nominal coverage, the rank ceiling of twenty times 0.9 is eighteen, so the radius is eighteen around a new point forecast.](../../../Assets/Connectionist%20AI/Static/pf-conformal.svg)
+
 ## 9. From Probabilistic Forecast to Decision (The Newsvendor Idea)
 
 Suppose:
@@ -212,6 +240,8 @@ Other uses:
 - **Safety stock:** set it from the gap between P90 (or P95) and P50.
 - **Capacity planning:** plan for the P95 peak load.
 - **Risk reporting:** communicate ranges, not false precision.
+
+![The chapter assigns cost nine per unit short and cost one per unit left over. The optimal quantile for these costs is 0.9.](../../../Assets/Connectionist%20AI/Static/pf-newsvendor.svg)
 
 ## 10. Common Pitfalls
 - Assuming a Gaussian when data is skewed or count-based

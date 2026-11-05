@@ -29,6 +29,8 @@ The cost of errors is usually **asymmetric**:
 
 (Chapter 6 shows how probabilistic forecasts handle this asymmetry.)
 
+![Past observations end at a forecast cutoff, followed by future predictions and an uncertainty band.](../../../Assets/Connectionist%20AI/Static/forecast-window.svg)
+
 ## 2. Anatomy of a Time Series
 
 | Component | Meaning | Example |
@@ -50,6 +52,8 @@ Multiplicative patterns can be made additive by taking the **logarithm**.
 
 **External drivers (covariates / exogenous variables):** price, promotions, weather, holidays, competitor actions, marketing spend, stock availability.
 
+![Toy signals isolate level, increasing trend, and a fixed-period seasonal cycle. The final signal combines trend and seasonality.](../../../Assets/Connectionist%20AI/Static/ts-components.svg)
+
 ## 3. Key Statistical Ideas
 
 ### Stationarity
@@ -59,8 +63,12 @@ A series is **stationary** if its statistical properties (mean, variance, autoco
 
 Neural networks don't strictly require stationarity but still **train better on scaled, detrended or normalised inputs**.
 
+![The increasing series 10,12,14,16,18 becomes four constant increments of two when adjacent values are subtracted.](../../../Assets/Connectionist%20AI/Static/ts-differencing.svg)
+
 ### Autocorrelation
 How strongly a series correlates with its own **lagged** values. A strong correlation at lag 7 in daily data signals weekly seasonality. Plotting the **autocorrelation function (ACF)** helps you choose which lags to feed a model.
+
+![This autocorrelation is calculated from six periods of a seven-day sinusoidal series. Peaks at lags seven and fourteen reflect weekly repetition. Finite-sample autocorrelation peaks decrease with lag.](../../../Assets/Connectionist%20AI/Static/ts-seasonal-acf.svg)
 
 ## 4. Framing Forecasting as Supervised Learning
 
@@ -89,6 +97,8 @@ def make_windows(series, window, horizon=1):
 X, y = make_windows(np.array([10, 12, 13, 15, 14, 16, 18]), window=3)
 ```
 
+![The three-step input window moves over the exact sequence from the chapter. Each next value, in green, is the one-step target.](../../../Assets/Connectionist%20AI/Animated/ts-sliding-window.svg)
+
 ### Useful Features
 - **Lag features:** value 1 day ago, 7 days ago, 365 days ago
 - **Rolling statistics:** 7-day mean, 28-day standard deviation
@@ -103,6 +113,8 @@ hour_cos = np.cos(2*np.pi*hour/24)
 ```
 This tells the network that hour 23 and hour 0 are close.
 
+![The twenty-four hours are placed on a circle. Hours twenty-three and zero are neighbors on the circle, illustrating sine and cosine encoding.](../../../Assets/Connectionist%20AI/Static/ts-cyclic-clock.svg)
+
 ## 5. Forecast Horizon and Multi-Step Strategies
 
 - **One-step:** predict the next value.
@@ -114,6 +126,8 @@ This tells the network that hour 23 and hour 0 are close.
 | **Direct** | Separate model (or output) per step | No error feedback, but more models |
 | **Multi-output (seq2vec)** | One network outputs the whole horizon | Efficient, shares structure |
 | **Seq2seq / encoder-decoder** | Encode history, decode future step by step | Flexible, handles future covariates |
+
+![Recursive forecasting feeds a predicted value back into the model to predict the next value. Multi-output forecasting emits the whole horizon from one input window.](../../../Assets/Connectionist%20AI/Animated/ts-multistep.svg)
 
 ## 6. Models
 
@@ -139,6 +153,8 @@ This tells the network that hour 23 and hour 0 are close.
 - **Local:** one model per series. Flexible but data-hungry per series, and impractical for thousands of series.
 - **Global:** one model for all series, with series identity as an input (often an embedding). Shares strength across series.
 
+![Local forecasting gives each series its own model. A global model learns from several related series and receives series identity as an input.](../../../Assets/Connectionist%20AI/Static/ts-global-local.svg)
+
 ## 7. An LSTM Forecaster in PyTorch
 
 ```python
@@ -161,6 +177,8 @@ loss_fn = nn.L1Loss()                      # MAE
 opt = torch.optim.Adam(model.parameters(), lr=1e-3)
 ```
 
+![Each recurrent step combines the current input with the previous hidden state.](../../../Assets/Connectionist%20AI/Animated/rnn-state.svg)
+
 **Scaling.** Compute the mean and standard deviation on the **training period only**, then apply them to validation and test data:
 ```python
 mu, sd = train.mean(), train.std()
@@ -181,6 +199,10 @@ train_s, val_s = (train - mu)/sd, (val - mu)/sd
 5. **Handle outliers and special events:** flag them (promotions, outages) rather than silently deleting.
 6. **Cold-start products:** use category, price and similar items.
 
+![Earlier observations are used for training, followed by a validation period and a final test period. Fitting preprocessing uses the training portion only.](../../../Assets/Connectionist%20AI/Static/ts-time-split.svg)
+
+![On an illustrative stock-out day, observed sales stop at eight available units. Additional desired purchases are unobserved, so sales alone cannot reveal total demand.](../../../Assets/Connectionist%20AI/Static/ts-stockout.svg)
+
 ### Rolling-Origin (Walk-Forward) Validation
 A single split can be misleading. Instead, repeatedly train on a growing past and test on the next block:
 
@@ -190,6 +212,8 @@ Fold 2: train [1..114]   test [115..128]
 Fold 3: train [1..128]   test [129..142]
 ```
 Average the errors. This mimics real deployment. In scikit-learn: `TimeSeriesSplit`.
+
+![Three folds have expanding training histories and immediately following held-out blocks. Test blocks never precede their training history.](../../../Assets/Connectionist%20AI/Static/ts-rolling-origin.svg)
 
 ## 9. Evaluation Metrics
 
@@ -212,13 +236,19 @@ Example: actual = `[100, 120, 90]`, forecast = `[110, 115, 100]`, errors (foreca
 - Always report **bias** too. A forecast with low error but persistent bias still causes systematic over- or under-stocking.
 - Always compare against the **seasonal naive baseline**.
 
+![For actual values 100,120,90 and forecasts 110,115,100, the vertical gaps are plus ten, minus five, and plus ten units.](../../../Assets/Connectionist%20AI/Static/ts-residuals.svg)
+
 ## 10. Special Situations
 
 ### Intermittent (Lumpy) Demand
 Spare parts or slow sellers have many zero-sales days. Standard models and MAPE fail. Use **Croston's method** (models demand size and interval separately), count distributions (Poisson, negative binomial), or probabilistic neural models (Chapter 6).
 
+![Twelve illustrative days contain nine zero-demand days and three nonzero days. Separate gaps and nonzero sizes help explain intermittent demand.](../../../Assets/Connectionist%20AI/Static/ts-intermittent.svg)
+
 ### Hierarchies
 Sales roll up: SKU → category → store → region → total. Forecasts at different levels should **add up consistently**. Use **hierarchical reconciliation** (e.g. top-down, bottom-up, MinT).
+
+![SKU forecasts of ten and twenty sum to category thirty. A second category of forty makes a total of seventy.](../../../Assets/Connectionist%20AI/Static/ts-hierarchy.svg)
 
 ### New Products (Cold Start)
 No history. Use attributes (category, price, brand) and "similar product" histories, or global models with embeddings.
@@ -236,6 +266,8 @@ A forecast only matters through the decision it drives. Example, a simple **safe
 order quantity = forecast demand over lead time + safety stock
 ```
 The safety stock depends on the forecast's **uncertainty** and the target service level, which motivates probabilistic forecasting (Chapter 6).
+
+![A simplified order quantity consists of forecast demand over lead time plus safety stock. The illustration assigns forecast demand one hundred and safety stock twenty.](../../../Assets/Connectionist%20AI/Static/ts-inventory-decision.svg)
 
 ## 12. Common Pitfalls
 - Random train/test split (the model "sees the future")

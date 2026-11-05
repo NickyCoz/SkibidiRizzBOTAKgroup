@@ -22,6 +22,8 @@ Three main kinds of machine learning:
 | **Unsupervised** | Structure in unlabelled data | Customer clustering |
 | **Reinforcement** | **Rewards** from interacting with an environment | A robot learning to walk |
 
+![Supervised learning uses example targets, unsupervised learning uses structure in inputs, and reinforcement learning obtains rewards after actions.](../../../Assets/Connectionist%20AI/Static/rl-learning-signals.svg)
+
 In RL an **agent** learns by **trial and error**. It acts, sees what happens, gets a reward, and gradually learns which behaviour earns more reward over time. No one tells it the correct action. It must discover it.
 
 ```
@@ -36,6 +38,8 @@ Special difficulties compared with supervised learning:
 - **The agent's actions affect the data it sees.**
 - **Exploration** is required.
 - **Non-stationary** training data as the policy changes.
+
+![An agent acts on an environment and receives a new observation and reward.](../../../Assets/Connectionist%20AI/Animated/rl-feedback.svg)
 
 ## 2. Core Vocabulary
 
@@ -63,6 +67,8 @@ RL problems are usually formalised as an MDP: a set of states, actions, transiti
 
 **The Markov property:** the future depends only on the **current state and action**, not on the earlier history. (If the state captures everything relevant, this holds. Otherwise the problem is a *partially observable* MDP.)
 
+![An illustrative state-action choice has two possible next states. The transition probabilities 0.7 and 0.3 sum to one. Rewards are attached to transitions.](../../../Assets/Connectionist%20AI/Static/rl-mdp-transition.svg)
+
 ### Return and Discounting
 ```
 G_t = r_(t+1) + γ·r_(t+2) + γ²·r_(t+3) + ...
@@ -75,6 +81,8 @@ G = 1 + 0.9 + 0.81 = 2.71
 - γ near **1**: far-sighted.
 - Discounting also keeps the infinite sum finite.
 
+![For rewards one,one,one and discount factor 0.9, the contributions are one,0.9,0.81. Their sum is 2.71.](../../../Assets/Connectionist%20AI/Static/rl-discounted-return.svg)
+
 ## 4. Value Functions and the Bellman Equation
 
 The core idea: the value of a state equals **the reward you get now plus the discounted value of where you end up**.
@@ -85,6 +93,8 @@ Q(s,a) = E[ r + γ · max_a' Q(s', a') ]       (optimal Q, the "Bellman optimali
 ```
 
 If we know the optimal `Q*`, the optimal policy is simply: **in each state pick the action with the highest Q**.
+
+![The worked example combines immediate reward one with the best next-state value two discounted by 0.9, giving target 2.8.](../../../Assets/Connectionist%20AI/Static/rl-bellman-target.svg)
 
 ## 5. Exploration vs Exploitation
 
@@ -101,6 +111,8 @@ Only exploiting traps the agent in a mediocre routine; only exploring never cash
 | **UCB (upper confidence bound)** | Favour actions with high value **or** high uncertainty |
 | **Thompson sampling** | Sample from a belief about each action's value |
 | **Curiosity / intrinsic rewards** | Reward the agent for visiting novel states |
+
+![With epsilon 0.2, eighty percent of decisions use a current best action and twenty percent choose randomly from all actions. The random branch may also select a best action.](../../../Assets/Connectionist%20AI/Static/rl-epsilon-greedy.svg)
 
 ### The Multi-Armed Bandit (simplest case)
 One state, several actions (slot-machine arms), unknown payouts. It isolates the explore/exploit trade-off and underlies A/B testing and online recommendation.
@@ -122,6 +134,8 @@ target   = 1 + 0.9 × 2 = 2.8
 TD error = 2.8 − 0 = 2.8
 new Q    = 0 + 0.5 × 2.8 = 1.4
 ```
+
+![With old Q zero, target 2.8 and learning rate 0.5, one Q-learning update moves halfway to the target, to 1.4.](../../../Assets/Connectionist%20AI/Static/rl-q-update.svg)
 
 ### Runnable Example: A 5-Cell Corridor
 States 0 to 4 in a line. The agent starts at 0, moves left or right, and gets **+1** on reaching cell 4.
@@ -160,9 +174,13 @@ After training, "right" values approach the discounted distance to the goal:
 
 Reading this, the policy "always go right" emerges. Notice how value spreads **backwards** from the rewarding state, which is the Bellman equation at work.
 
+![An agent moves right through states zero to four. Reaching state four gives reward one. The learned right-action values are 0.729,0.81,0.9,1.0 before the goal.](../../../Assets/Connectionist%20AI/Animated/rl-corridor.svg)
+
 ### On-Policy vs Off-Policy
 - **Q-learning is off-policy:** it learns the value of the *greedy* policy while behaving with an exploratory one.
 - **SARSA is on-policy:** it updates using the action actually taken next, `Q(s',a')`, so it learns the value of the policy it follows (more cautious near dangers).
+
+![For a next-state estimate with left value two and right value five, Q-learning bootstraps from five. SARSA uses the value of the actual next action, which is two if exploration selects left.](../../../Assets/Connectionist%20AI/Static/rl-on-off-policy.svg)
 
 ## 7. Deep Reinforcement Learning
 
@@ -170,6 +188,8 @@ A Q-table is impossible when states are huge or continuous (game pixels, robot s
 
 ### 7.1 Deep Q-Network (DQN)
 - A network takes the **state** and outputs **Q-values for every action**.
+![A neural network maps an illustrative state vector to one value per discrete action. The action with the larger estimated Q-value is the greedy choice.](../../../Assets/Connectionist%20AI/Static/rl-dqn-values.svg)
+
 - Loss: squared TD error `(r + γ · max Q_target(s',a') − Q(s,a))²`.
 - Two key stabilising tricks:
   1. **Experience replay:** store transitions `(s, a, r, s', done)` in a buffer and train on random mini-batches. This breaks the correlation between consecutive steps and reuses data.
@@ -191,6 +211,8 @@ q_sa = q_net(s).gather(1, a.unsqueeze(1)).squeeze(1)
 loss = nn.functional.mse_loss(q_sa, target)
 ```
 
+![Transitions are stored in replay memory, then sampled into training batches. A separate slowly updated target network supplies bootstrap values, while the online network is trained against those targets.](../../../Assets/Connectionist%20AI/Static/rl-replay-target.svg)
+
 ### 7.2 Policy Gradient Methods
 Learn the **policy network** `π_θ(a|s)` directly, which outputs action probabilities (or a Gaussian over continuous actions). Nudge it to make good actions more likely:
 
@@ -201,14 +223,20 @@ Intuition: if an episode earned high return, increase the probability of the act
 - ✅ Handles **continuous actions** and stochastic policies.
 - ❌ High variance, sample-inefficient. Reduce variance with a **baseline** (subtract an average value) giving the **advantage** `A = G − V(s)`.
 
+![An illustrative policy maps state features to probabilities of left 0.25 and right 0.75. Actions are sampled from the distribution during stochastic behavior.](../../../Assets/Connectionist%20AI/Static/rl-policy-probabilities.svg)
+
 ### 7.3 Actor-Critic
 - **Actor:** the policy network (chooses actions).
 - **Critic:** a value network (estimates how good states/actions are, supplying the advantage).
 - The critic gives lower-variance feedback to the actor.
 - Examples: **A2C/A3C, DDPG, TD3, SAC** (continuous control), **PPO**.
 
+![An actor chooses an action from the state. A critic evaluates the state or action and produces an advantage estimate that helps train the actor.](../../../Assets/Connectionist%20AI/Static/rl-actor-critic.svg)
+
 ### 7.4 PPO (Proximal Policy Optimization)
 Updates the policy but **clips** how far it can change per step, which keeps training stable. It is simple, robust and a very common default, including in fine-tuning language models from human feedback (**RLHF**).
+
+![For positive advantage equal to one and clipping epsilon 0.2, the clipped surrogate equals the probability ratio up to 1.2 and then stays at 1.2.](../../../Assets/Connectionist%20AI/Static/rl-ppo-clip.svg)
 
 ### Method Overview
 
@@ -228,6 +256,8 @@ The reward defines what the agent optimises, so it must reflect your **true goal
 - **Reward hacking:** agents exploit loopholes. Classic example: a boat-racing agent circles to collect bonus points instead of finishing the race.
 - Prefer rewards aligned with real outcomes, and test for unintended behaviour.
 - **Imitation learning** and **inverse RL** learn from demonstrations when a reward is hard to write.
+
+![A schematic route offers repeated bonus points on a loop while the finish is elsewhere. Optimizing bonus reward alone can favor circling over finishing.](../../../Assets/Connectionist%20AI/Static/rl-reward-loophole.svg)
 
 ## 9. Applications
 - **Games:** Atari, Go, chess, StarCraft, poker

@@ -22,6 +22,8 @@
 
 The terms overlap. "Online learning" and "incremental learning" are often used loosely, and "continual (lifelong) learning" emphasises learning many tasks over time without forgetting.
 
+![Offline training fits a full dataset then freezes a model. Incremental training updates with chunks. Online training updates with individual incoming examples.](../../../Assets/Connectionist%20AI/Static/ol-learning-modes.svg)
+
 ### Why Learn Online?
 - **Streaming data:** sensors, clicks, transactions arrive continuously.
 - **Too big for memory:** you process and discard.
@@ -49,6 +51,8 @@ for each new example (x, y):
     3. update:    weights ← weights − learning_rate · gradient
 ```
 
+![An incoming example is first scored by the existing model. After its target is available, its error is measured and the model is updated for the next example.](../../../Assets/Connectionist%20AI/Animated/ol-update-sequence.svg)
+
 ### Worked Example: Online Linear Regression
 Model: `ŷ = w·x`, loss `(ŷ − y)²`, gradient `2(ŷ − y)·x`, learning rate 0.1, start `w = 0`.
 
@@ -66,6 +70,8 @@ w = 1.6 − 0.1·(−0.8) = 1.68
 ```
 The weight moves toward the true value (2) as more data arrives. The model never stored the earlier samples.
 
+![The chapter starts the linear model weight at zero. Sample one moves it to 1.6. Sample two moves it to 1.68, toward the illustrative underlying slope of two.](../../../Assets/Connectionist%20AI/Static/ol-weight-updates.svg)
+
 ### Streaming Statistics
 You can't compute a mean over data you don't keep, so update **incrementally**:
 
@@ -74,11 +80,15 @@ new_mean = old_mean + (x − old_mean) / n
 ```
 Example: old mean 10 over 3 values; new value 18 → n = 4 → new mean = 10 + 8/4 = **12**.
 
+![The mean of three values is ten, giving total thirty. Adding a value of eighteen gives total forty-eight across four values, so the mean becomes twelve.](../../../Assets/Connectionist%20AI/Static/ol-running-mean.svg)
+
 **Exponential moving average (EMA)** gives recent data more weight:
 ```
 avg_new = α·x + (1 − α)·avg_old       (α = 0.1 means a long memory; 0.5 a short one)
 ```
 This is how running feature normalisation can adapt to drift.
+
+![After an observed level jumps from zero to ten, an exponential moving average with alpha 0.5 adapts faster than one with alpha 0.1.](../../../Assets/Connectionist%20AI/Static/ol-ema.svg)
 
 ### Learning Rate in Online Settings
 - **Constant, moderate rate:** tracks change but stays noisy.
@@ -88,6 +98,8 @@ This is how running feature normalisation can adapt to drift.
 ## 3. Mini-Batch Incremental Updates
 
 Often you collect a small buffer (e.g. 32 or 256 samples) before each update. This reduces noise while remaining incremental, and works well with GPUs.
+
+![A stream of examples fills a small buffer. One update uses the filled chunk, then the buffer is reused for later incoming data.](../../../Assets/Connectionist%20AI/Static/ol-chunk-updates.svg)
 
 ## 4. Concept Drift
 
@@ -106,6 +118,8 @@ Related terms:
 - **Label (prior) drift:** the class proportions change (e.g. fraud rate rises).
 - **Real concept drift:** `P(y|x)` itself changes. This is the most damaging.
 
+![Four schematic panels show an abrupt change, a gradual mixture transition, continuous incremental drift, and recurring behavior. Heights represent an illustrative concept statistic.](../../../Assets/Connectionist%20AI/Static/ol-drift-types.svg)
+
 ### Detecting Drift
 1. **Monitor performance** (when true labels arrive): rising error rate.
 2. **Statistical tests on error streams:** **ADWIN** (adaptive windowing), **DDM/EDDM**, **Page-Hinkley**, CUSUM.
@@ -113,6 +127,8 @@ Related terms:
 4. **Model-based signals:** the model's confidence or prediction distribution shifts.
 
 > **Delayed labels:** in demand forecasting you only learn actual demand after the period ends, so drift in *inputs* and *forecast errors* are monitored as soon as they become available.
+
+![The input is available and a prediction is recorded before the true label arrives. Evaluation and supervised updating wait until the matching label is available.](../../../Assets/Connectionist%20AI/Static/ol-delayed-labels.svg)
 
 ### Adapting to Drift
 | Strategy | Idea |
@@ -126,11 +142,15 @@ Related terms:
 
 **Window-size trade-off:** a short window adapts quickly but is noisy; a long window is stable but slow to adapt.
 
+![The window keeps four recent examples. As later examples arrive, the active window shifts right and older examples leave it.](../../../Assets/Connectionist%20AI/Animated/ol-recent-window.svg)
+
 ## 5. Catastrophic Forgetting
 
 When a neural network is trained only on new data, it can **overwrite** weights that encoded earlier knowledge, so performance on the old data collapses. This is **catastrophic forgetting**. It is a major challenge in **continual learning** (learning a sequence of tasks or distributions).
 
 **The stability–plasticity dilemma:** the model must be **plastic** enough to learn new things and **stable** enough to keep old ones.
+
+![An illustrative model first learns task A, then trains only on task B. Its task B accuracy increases while task A performance falls.](../../../Assets/Connectionist%20AI/Static/ol-forgetting.svg)
 
 ### Main Techniques
 
@@ -146,6 +166,8 @@ When a neural network is trained only on new data, it can **overwrite** weights 
 **EWC idea:** new loss = `new-task loss + (λ/2) · Σ F_i · (θ_i − θ*_i)²` where `F_i` measures how important weight `i` was to the old task and `θ*` are the old weights. Important weights are "anchored".
 
 **Reservoir sampling** keeps a fair random sample of a stream in a fixed-size replay buffer.
+
+![New examples are combined with a sample of earlier examples retained in a bounded memory. The mixed batch updates the model.](../../../Assets/Connectionist%20AI/Static/ol-replay-buffer.svg)
 
 ## 6. Evaluating Online Models
 
@@ -165,6 +187,8 @@ fading_sum   = α · fading_sum + current_error
 fading_count = α · fading_count + 1
 fading_error = fading_sum / fading_count            (α near 1 = long memory)
 ```
+
+![For each arriving example, the model predicts before that example is used for training. The metric is updated with that prediction, then learning takes place.](../../../Assets/Connectionist%20AI/Static/ol-prequential.svg)
 
 Also useful:
 - **Compare against a frozen batch model** to see whether adaptation helps.
@@ -245,6 +269,8 @@ def online_step(model, opt, loss_fn, x, y):
 - **Watch for feedback loops:** the model's predictions influence what data you see next (e.g. only recommended items get clicked).
 - **Test with simulated drift** before going live.
 - **Log everything**: predictions, errors, drift alarms.
+
+![Shown items generate observed interactions. Those interactions train the next model, influencing which items are shown again. Unshown items have less observed feedback.](../../../Assets/Connectionist%20AI/Animated/ol-feedback-loop.svg)
 
 ## 10. Common Pitfalls
 - Assuming more adaptation is always better (it can chase noise)
