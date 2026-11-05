@@ -25,7 +25,7 @@ output = activation(z)
 
 **Why do we need bias?**
 
-Bias allows a neuron to adjust its activation threshold. Without bias, the neuron's decision boundary must pass through zero. Think of it as the `b` in the equation `y = mx + b`.
+Bias allows a neuron to adjust its activation threshold. Without bias, the neuron's decision boundary must pass through the origin. Think of it as the `b` in the equation `y = mx + b`.
 
 ![With weight 1, changing the bias from 0 to −2 moves the input threshold from 0 to 2.](../../../Assets/Connectionist%20AI/Static/bias-threshold.svg)
 
@@ -46,7 +46,7 @@ z = 0.3
 
 Now, apply an activation function:
 
-**ReLU (Rectified Linear Unit):** Converts negative values to 0 while keeping positive values unchanged. Formula: `max(0, x)`.
+**ReLU (Rectified Linear Unit):** Converts negative values to 0 while keeping positive values unchanged. Formula: `max(0, z)`.
 - **ReLU:** `max(0, 0.3)` = **0.3**
 
 **Sigmoid:** Converts any input into a value between 0 and 1. Often used when the output represents a probability.
@@ -98,7 +98,7 @@ A **dense (fully connected) layer** is a group of neurons where every neuron rec
 
 For an entire layer, we can calculate all neuron outputs at once using:
 
-```python
+```text
 h = activation(W · x + b)
 ```
 
@@ -121,7 +121,7 @@ Parameters are the values (weights and biases) that a neural network learns duri
 - Biases: 4 (one for each neuron)
 - Total: 12 + 4 = **16 parameters**.
 
-A network `3 → 4 → 4 → 1` has three connections between layers:
+A network `3 → 4 → 4 → 1` has three sets of connections (one between each pair of neighbouring layers):
 
 - Layer 1: (3 × 4 + 4) = 16
 - Layer 2: (4 × 4 + 4) = 20
@@ -203,7 +203,7 @@ The loss is **0.9025**. A smaller loss means the prediction is closer to the cor
 
 Backpropagation calculates how much each weight affects the loss. This information helps the network decide how to adjust its weights.
 
-For this example, we will only calculate the gradient for the output weight `w1 = 1.0`.
+For this example, we will only calculate the gradient for the output weight `v1 = 1.0` (from hidden neuron 1 to the output).
 
 Using the **chain rule**, we calculate:
 
@@ -212,10 +212,10 @@ dL/dŷ = 2(ŷ - y)
       = 2(0.05 - 1)
       = -1.9
 
-dŷ/dw1 = h1
+dŷ/dv1 = h1
        = 0.3
 
-dL/dw1 = (-1.9) × 0.3
+dL/dv1 = (-1.9) × 0.3
        = -0.57
 ```
 
@@ -238,9 +238,9 @@ New Weight = Old Weight - (Learning Rate × Gradient)
 Calculation:
 
 ```text
-w1_new = 1.0 - (0.1 × -0.57)
-w1_new = 1.0 + 0.057
-w1_new = 1.057
+v1_new = 1.0 - (0.1 × -0.57)
+v1_new = 1.0 + 0.057
+v1_new = 1.057
 ```
 
 The new weight is **1.057**, increased from 1.0.
@@ -261,23 +261,24 @@ The network repeats these steps during training:
 Repeating this process across many batches (groups of training examples) and epochs (complete passes through the training dataset) allows the network to gradually improve its predictions.
 ## 5. What Backpropagation Really Is
 
-Backpropagation uses the **chain rule of calculus** to calculate how much each weight affects the loss. It works backward from the output, reusing calculations to efficiently find gradients for all weights.
+Backpropagation uses the **chain rule of calculus** to calculate how much each weight affects the loss. It works backward from the output, reusing calculations to efficiently find gradients for all weights. Its computational cost is typically a small multiple of a forward pass.
 
 Libraries like PyTorch and TensorFlow automate this using **automatic differentiation**:
 
 ```python
 import torch
 
-w = torch.tensor(1.0, requires_grad=True)
+v1 = torch.tensor(1.0, requires_grad=True)
 h1 = torch.tensor(0.3)
+h2 = torch.tensor(0.9)
 
-loss = (w * h1 + 0.2 - 1.0) ** 2
+loss = (v1 * h1 + (-0.5) * h2 + 0.2 - 1.0) ** 2
 loss.backward()
 
-print(w.grad)  # Prints the gradient of w
+print(v1.grad)  # tensor(-0.5700)
 ```
 
-`loss.backward()` automatically calculates the gradient of the loss with respect to `w`.
+`loss.backward()` automatically calculates the gradient of the loss with respect to `v1`.
 
 ![The forward pass moves from weight to prediction to loss. The backward pass follows the same dependencies in reverse and multiplies local derivatives.](../../../Assets/Connectionist%20AI/Animated/chain-rule-path.svg)
 
@@ -320,7 +321,7 @@ print(w.grad)  # Prints the gradient of w
 ![A two-by-two edge filter scans nine patches of an image. Each patch contributes one score at the corresponding location in the feature map.](../../../Assets/Connectionist%20AI/Animated/cnn-filter-scan.svg)
 
 **Useful formulas**
-- Output size = `(n − k + 2p) / s + 1` (input size n, kernel k, padding p, stride s).
+- Output size = `floor((n − k + 2p) / s) + 1` (input size n, kernel k, padding p, stride s; dilation 1). `floor` means round down.
   Example: n = 32, k = 3, p = 1, s = 1 → (32 − 3 + 2)/1 + 1 = **32**.
 - Parameters of a conv layer = `(k × k × c_in + 1) × c_out`.
   Example: 3×3 kernel, 3 input channels, 16 filters → (27 + 1) × 16 = **448**.
@@ -391,7 +392,7 @@ Attention(Q, K, V) = softmax(Q·Kᵀ / √d) · V
 ## 9. How to Choose an Architecture
 
 1. Look at your **data type** (table, image, sequence, graph).
-2. Start with the **simplest sensible model** (often an MLP, or a pre-trained model).
+2. Start with the **simplest sensible model** (try gradient boosting or a linear model for plain tabular data; an MLP is a neural option, and pre-trained models suit many image and text tasks).
 3. Build a **baseline** first, then add complexity only if needed.
 4. Prefer **transfer learning** (reuse a pre-trained network) when data is limited.
 
@@ -442,7 +443,7 @@ print(model(x).item())   # close to 1.0
 2. Parameters in a dense layer with 5 inputs and 3 neurons?
 3. 2,000 samples, batch size 250: how many iterations per epoch?
 4. Order these: update weights, forward pass, compute loss, backward pass.
-5. Which architecture first for (a) photos, (b) spreadsheet, (c) translation?
+5. Which neural network architecture suits (a) photos, (b) spreadsheet, (c) translation?
 6. What problem do LSTM gates help solve?
 7. What does validation loss rising while training loss falls indicate?
 8. Why is a bias term useful?
@@ -455,7 +456,7 @@ print(model(x).item())   # close to 1.0
 2. 5×3 + 3 = **18**.
 3. 2000 / 250 = **8**.
 4. Forward pass → loss → backward pass → update.
-5. (a) CNN, (b) MLP, (c) Transformer.
+5. (a) CNN, (b) MLP, (c) Transformer. For plain spreadsheet data, try gradient boosting or a linear model as a baseline first.
 6. Vanishing gradients and forgetting over long sequences.
 7. Overfitting.
 8. It shifts the activation threshold so the neuron isn't forced through the origin.

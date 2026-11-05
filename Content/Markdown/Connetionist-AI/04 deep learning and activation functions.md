@@ -15,9 +15,9 @@ This is called **hierarchical feature learning**. Before deep learning, engineer
 ![An illustrative image network combines pixels into edges, edges into a part, and parts into a wheel-like pattern.](../../../Assets/Connectionist%20AI/Static/feature-hierarchy.svg)
 
 ### Why Depth?
-- **Efficiency:** some functions need exponentially many units in a single wide layer but only a few in a deep one.
+- **Efficiency:** some functions need exponentially many units in a single wide layer but far fewer in a deep one.
 - **Reuse:** early layers learn general features reused by later layers.
-- **Universal approximation:** even a single hidden layer can approximate any reasonable function given enough neurons, but deep networks usually do it with far fewer parameters and generalise better in practice.
+- **Universal approximation:** with suitable activations and enough neurons, even a single hidden layer can approximate any continuous function on a closed, bounded input domain to any desired accuracy. Deep networks can represent some functions with far fewer parameters, but better generalisation is not guaranteed.
 
 ### Depth vs Width
 | | Deeper | Wider |
@@ -69,7 +69,7 @@ An **activation function** is a non-linear function applied after each layer's s
 σ'(z) = σ(z) · (1 − σ(z))      max slope = 0.25 (at z = 0)
 ```
 - **Pros:** smooth; output interpretable as a probability.
-- **Cons:** **saturates** (slope near 0 when |z| is large); outputs not zero-centered; exponential is costly.
+- **Cons:** **saturates** (slope near 0 when |z| is large); outputs not zero-centred; exponential is costly.
 - **Use today:** output layer of **binary classification**, and gates in LSTMs. Rarely in hidden layers.
 
 ![The sigmoid is steepest near zero and almost flat at either extreme.](../../../Assets/Connectionist%20AI/Static/sigmoid-saturation.svg)
@@ -79,7 +79,7 @@ An **activation function** is a non-linear function applied after each layer's s
 tanh(z) = (e^z − e^-z) / (e^z + e^-z)     range (−1, 1)
 tanh'(z) = 1 − tanh²(z)                   max slope = 1
 ```
-- **Pros:** zero-centered; stronger gradients than sigmoid.
+- **Pros:** zero-centred; stronger gradients than sigmoid.
 - **Cons:** still saturates at the extremes.
 - **Use:** LSTM/GRU internals, some small networks, outputs that must be in (−1, 1).
 
@@ -91,7 +91,7 @@ ReLU(z) = max(0, z)
 ReLU'(z) = 1 if z > 0, else 0
 ```
 - **Pros:** very cheap; no saturation for positive z, so gradients flow well; produces **sparse** activations (many zeros); trains fast.
-- **Cons:** **dying ReLU.** If a neuron's input is always negative, its output and gradient are both 0 forever, so it never recovers. Not zero-centered.
+- **Cons:** **dying ReLU.** If a neuron's input is always negative, its output and gradient are both 0 forever, so it never recovers. Not zero-centred.
 - **Use:** the **default hidden-layer activation** for MLPs and CNNs.
 
 ### 3.4 Leaky ReLU and PReLU
@@ -112,7 +112,7 @@ LeakyReLU(z) = z        if z > 0
 
 ### 3.6 GELU and Swish (SiLU)
 ```
-GELU(z) ≈ z · Φ(z)        (Φ = standard normal CDF)
+GELU(z) = z · Φ(z)        (Φ = standard normal CDF)
 Swish(z) = z · σ(z)
 ```
 - Smooth, non-monotonic cousins of ReLU that often train slightly better.
@@ -124,7 +124,7 @@ Swish(z) = z · σ(z)
 ```
 softplus(z) = ln(1 + e^z)       smooth version of ReLU, always > 0
 ```
-- Useful when an output must be **strictly positive**, e.g. a standard deviation σ in probabilistic forecasting (Chapter 6).
+- Useful when an output must be **strictly positive**, e.g. a standard deviation σ in probabilistic forecasting.
 
 ![Softplus rounds the ReLU corner and stays above zero even for negative inputs.](../../../Assets/Connectionist%20AI/Static/softplus-relu.svg)
 
@@ -156,7 +156,7 @@ softmax(z_i) = e^(z_i) / Σ_j e^(z_j)
 | Output | Multi-class (one label) | **Softmax** |
 | Output | Multi-label (several labels at once) | Sigmoid per label |
 | Output | Regression (any value) | **Linear** |
-| Output | Regression, must be positive (demand, σ) | ReLU or **Softplus** |
+| Output | Regression, must be strictly positive (e.g. σ) | **Softplus** |
 | Output | Bounded value in (0, 1) | Sigmoid |
 
 ## 5. Gradients Through Activations
@@ -164,7 +164,7 @@ softmax(z_i) = e^(z_i) / Σ_j e^(z_j)
 During backpropagation, the gradient is multiplied by the activation's **derivative** at each layer. So the derivative shapes how well learning signals travel back.
 
 ### The Vanishing Gradient Problem
-Sigmoid's derivative is at most 0.25. Through many layers:
+Sigmoid's derivative is at most 0.25. In a simplified calculation along one path, assuming weights of about 1 in magnitude, the activation derivatives multiply through many layers:
 
 ![From the output back through three layers, each gradient bar is one quarter the length of the previous bar.](../../../Assets/Connectionist%20AI/Animated/gradient-shrinkage.svg)
 
@@ -172,7 +172,7 @@ Sigmoid's derivative is at most 0.25. Through many layers:
 5 layers:   0.25^5  ≈ 0.001
 10 layers:  0.25^10 ≈ 0.000001   (about 1 in a million)
 ```
-Early layers receive almost no learning signal, so they barely learn. Sigmoid and tanh networks historically struggled beyond a few layers for this reason.
+In this example, early layers receive almost no learning signal, so they barely learn. Actual gradients also depend on the weights and the combined contributions of different paths. Sigmoid and tanh networks historically struggled beyond a few layers for this reason.
 
 ### The Exploding Gradient Problem
 If each factor is larger than 1 (e.g. large weights), the product grows exponentially, so updates become huge and the loss becomes NaN. Common in RNNs.
@@ -249,7 +249,7 @@ model = nn.Sequential(
 - Depth lets networks build features in stages; activations make that useful.
 - Without non-linear activations, any network collapses to a linear model.
 - **ReLU** for hidden layers, **sigmoid/softmax/linear** for outputs, depending on the task.
-- Vanishing gradients come from repeated multiplication by small derivatives; ReLU, good initialisation, normalisation and skip connections fix it.
+- Vanishing gradients come from repeated multiplication by small derivatives; ReLU, good initialisation, normalisation and skip connections can reduce it.
 
 ---
 
@@ -276,5 +276,5 @@ model = nn.Sequential(
 5. 0.25.
 6. A neuron stuck outputting 0 has zero gradient and stops learning. Fix: Leaky ReLU.
 7. E.g. ReLU activations, residual connections, batch/layer normalisation, He initialisation.
-8. Softplus (or ReLU).
+8. Softplus. ReLU can output zero, so it does not guarantee a strictly positive output.
 9. He initialisation.

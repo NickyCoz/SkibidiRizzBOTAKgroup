@@ -57,10 +57,10 @@ Neither approach is simply better. Modern research increasingly explores **neuro
 | Year | Milestone | Why it mattered |
 |---|---|---|
 | 1943 | McCulloch and Pitts publish a mathematical model of a neuron | First formal "artificial neuron" |
-| 1949 | Donald Hebb proposes that connections strengthen with use | Early learning principle ("cells that fire together wire together") |
-| 1958 | Frank Rosenblatt builds the **Perceptron** | First trainable neural model |
-| 1969 | Minsky and Papert show a single perceptron cannot learn XOR | Funding and interest collapse: the first **AI winter** |
-| 1986 | Rumelhart, Hinton and Williams popularise **backpropagation** | Multi-layer networks become trainable |
+| 1949 | Donald Hebb proposes that connections strengthen with use | Early learning principle (later paraphrased as "cells that fire together wire together") |
+| 1958 | Frank Rosenblatt publishes the **Perceptron** model | Early trainable neural model |
+| 1969 | Minsky and Papert show a single perceptron cannot learn XOR | Contributes to reduced interest in perceptrons; the broader **AI winter** of the 1970s had several causes |
+| 1986 | Rumelhart, Hinton and Williams popularise **backpropagation** | Efficient training of multi-layer networks becomes more widely used |
 | 1989 to 1998 | LeCun's convolutional networks read handwritten digits | Practical success, mostly in niche uses |
 | 1997 | LSTM networks introduced | Better memory for sequences |
 | 2012 | AlexNet wins the ImageNet competition by a large margin | Starts the **deep learning** boom |
@@ -76,7 +76,7 @@ Three ingredients had to arrive together:
 
 1. **Data.** The internet created huge datasets (photos, text, clicks, sensor data).
 2. **Compute.** GPUs, originally made for video games, turned out to be ideal for the matrix maths neural networks need.
-3. **Better algorithms.** Improved activation functions, optimizers, initialisation, normalisation and architectures made deep networks trainable.
+3. **Better algorithms.** Improved activation functions, optimisers, initialisation, normalisation and architectures made deep networks trainable.
 
 ![Data supplies examples, compute speeds the calculations, and training methods make updates more effective.](../../../Assets/Connectionist%20AI/Static/training-ingredients.svg)
 
@@ -88,7 +88,7 @@ Choose weights `w = [1, 1]` and bias `b = -1.5`. Rule: output 1 if the sum is gr
 
 ![An AND neuron adds the two weighted inputs and the bias to get 0.5, then outputs 1.](../../../Assets/Connectionist%20AI/Animated/and-neuron.svg)
 
-| input1 | input2 | Sum = 1·x1 + 1·x2 − 1.5 | Output |
+| input1 | input2 | Sum = 1·input1 + 1·input2 − 1.5 | Output |
 |---|---|---|---|
 | 0 | 0 | −1.5 | 0 |
 | 1 | 0 | −0.5 | 0 |
@@ -99,7 +99,7 @@ It works. Here we chose the weights by hand. A *learning* algorithm would find t
 
 ```python
 def neuron(input1, input2, w=(1, 1), bias=-1.5):
-    value = w[0]*input1 + w[1]*input1 + bias
+    value = w[0]*input1 + w[1]*input2 + bias
     return 1 if value > 0 else 0
 
 for input1 in (0, 1):
@@ -138,7 +138,7 @@ for input1 in (0, 1):
 2. What in an artificial network plays the role of a synapse?
 3. Give one strength and one weakness of connectionist AI versus symbolic AI.
 4. What is "distributed representation"?
-5. Which 1986 development made multi-layer networks trainable?
+5. Which training method was popularised for multi-layer networks in 1986?
 6. Which logic function can a single neuron *not* learn?
 7. Name the three ingredients behind the deep learning boom.
 8. True or False: Artificial neural networks are accurate simulations of the brain.
