@@ -2,7 +2,7 @@
 
 An array stores elements in an ordered sequence. The arrays described here hold values of one data type.
 
-![Three scores, 72, 85, and 91, at indexes 0, 1, and 2.](../../../../Assets/Data%20Structures/Static/array.svg)
+![Three scores, 72, 85, and 91, at indexes 0, 1, and 2.](../../../Assets/Data%20Structures/Static/array.svg)
 
 ## Characteristics
 
@@ -19,9 +19,9 @@ A one-dimensional array is a single sequence of elements.
 
 Example: daily temperatures for one week.
 
-![Seven daily temperatures stored in a one-dimensional array.](../../../../Assets/Data%20Structures/Animated/temperature-array.svg)
+![Seven daily temperatures stored in a one-dimensional array.](../../../Assets/Data%20Structures/Animated/temperature-array.svg)
 
-![A single row with three numbered positions.](../../../../Assets/Data%20Structures/Static/array-1d.svg)
+![A single row with three numbered positions.](../../../Assets/Data%20Structures/Static/array-1d.svg)
 
 ### Two-dimensional arrays (2D)
 
@@ -29,41 +29,41 @@ A two-dimensional array arranges elements in rows and columns. In some languages
 
 Example: a grid of pixels in an image.
 
-![Pixels arranged in rows and columns.](../../../../Assets/Data%20Structures/Animated/pixel-grid.svg)
+![Pixels arranged in rows and columns.](../../../Assets/Data%20Structures/Animated/pixel-grid.svg)
 
-![A grid with two labeled rows and three labeled columns.](../../../../Assets/Data%20Structures/Static/array-2d.svg)
+![A grid with two labeled rows and three labeled columns.](../../../Assets/Data%20Structures/Static/array-2d.svg)
 
 ### Multidimensional arrays
 
 An array can have more than two dimensions. A three-dimensional array, for example, can represent a set of 2D grids.
 
-![Two layers, each containing a two-by-two grid.](../../../../Assets/Data%20Structures/Static/array-3d.svg)
+![Two layers, each containing a two-by-two grid.](../../../Assets/Data%20Structures/Static/array-3d.svg)
 
 ## Operations
 
 - **Access:** Use an index to get an element. For example, in an array containing 72, 85, and 91, the item at index 1 is 85 when indexing starts at zero.
 
-  ![Access reads 85 directly from index 1.](../../../../Assets/Data%20Structures/Animated/array-access.svg)
+  ![Access reads 85 directly from index 1.](../../../Assets/Data%20Structures/Animated/array-access.svg)
 
 - **Update:** Replace the value at an index, such as changing the second score to 88.
 
-  ![Update replaces 85 with 88 at index 1.](../../../../Assets/Data%20Structures/Animated/array-update.svg)
+  ![Update replaces 85 with 88 at index 1.](../../../Assets/Data%20Structures/Animated/array-update.svg)
 
 - **Linear search:** Check items one at a time. You may need to check all `n` items, which takes `O(n)` time.
 
-  ![Linear search checks 72, then 85, then 91.](../../../../Assets/Data%20Structures/Animated/array-search.svg)
+  ![Linear search checks 72, then 85, then 91.](../../../Assets/Data%20Structures/Animated/array-search.svg)
 
 - **Binary search:** Check the middle item of a sorted range. If it does not match, keep the half that could contain the target and repeat. Halving the range at each step takes `O(log n)` time.
 
-  ![Binary search compares 91 with the middle value 85, then finds 91 in the right half.](../../../../Assets/Data%20Structures/Animated/array-binary-search.svg)
+  ![Binary search compares 91 with the middle value 85, then finds 91 in the right half.](../../../Assets/Data%20Structures/Animated/array-binary-search.svg)
 
 - **Insertion:** Add an element at a position. Elements after that position may need to shift right.
 
-  ![Insertion shifts items right to make room at index 1.](../../../../Assets/Data%20Structures/Animated/array-insert.svg)
+  ![Insertion shifts items right to make room at index 1.](../../../Assets/Data%20Structures/Animated/array-insert.svg)
 
 - **Deletion:** Remove an element. Later elements may need to shift left to fill the gap.
 
-  ![Deletion removes 85 and shifts 91 left to fill the gap.](../../../../Assets/Data%20Structures/Animated/array-delete.svg)
+  ![Deletion removes 85 and shifts 91 left to fill the gap.](../../../Assets/Data%20Structures/Animated/array-delete.svg)
 
 Arrays are useful when the number of items is known or when items need frequent index-based access. They are less convenient when many insertions and deletions happen in the middle.
 
@@ -85,7 +85,7 @@ A list stores the numbers 4, 7, and 9 in that order. Use a linear search to find
 
 Nicky keeps three quiz scores in the order he took the quizzes. To find his second score, he reads index `1` because indexing starts at zero. The app can jump straight to `85` without checking the first score.
 
-![Look up a score by position.](../../../../Assets/Data%20Structures/Animated/application-scores.svg)
+![Look up a score by position.](../../../Assets/Data%20Structures/Animated/application-scores.svg)
 
 ## Python example
 

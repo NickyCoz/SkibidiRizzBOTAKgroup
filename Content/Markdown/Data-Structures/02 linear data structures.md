@@ -6,7 +6,7 @@ A linear data structure stores items in a sequence. **Traversal** means visiting
 
 A simple example is a queue of people waiting to buy tickets. Each person has someone in front and behind, except for the people at the two ends.
 
-![Nicky is at the front of the ticket line, Darren is in the middle, and Neil is at the rear.](../../../../Assets/Data%20Structures/Animated/ticket-queue.svg)
+![Nicky is at the front of the ticket line, Darren is in the middle, and Neil is at the rear.](../../../Assets/Data%20Structures/Animated/ticket-queue.svg)
 
 ## Characteristics
 
@@ -17,25 +17,25 @@ Elements are arranged sequentially.
 - Some structures have a fixed capacity, others can grow or shrink as elements are added or removed.
 - The time needed to access, search, insert, or delete an element depends on the structure and the operation.
 
-![Items in a linear sequence.](../../../../Assets/Data%20Structures/Static/linear-order.svg)
+![Items in a linear sequence.](../../../Assets/Data%20Structures/Static/linear-order.svg)
 
 ## Examples of Linear Data Structures
 
-- [Arrays](Arrays.md)
+- [Arrays](03%20arrays.md)
 
-  ![Array scores at numbered positions.](../../../../Assets/Data%20Structures/Static/array.svg)
+  ![Array scores at numbered positions.](../../../Assets/Data%20Structures/Static/array.svg)
 
-- [Linked Lists](Linked%20Lists.md)
+- [Linked Lists](04%20linked%20lists.md)
 
-  ![Nodes connected by links.](../../../../Assets/Data%20Structures/Static/list-singly.svg)
+  ![Nodes connected by links.](../../../Assets/Data%20Structures/Static/list-singly.svg)
 
-- [Stacks](Stacks.md)
+- [Stacks](05%20stacks.md)
 
-  ![A stack with B on top of A.](../../../../Assets/Data%20Structures/Static/stack.svg)
+  ![A stack with B on top of A.](../../../Assets/Data%20Structures/Static/stack.svg)
 
-- [Queues](Queues.md)
+- [Queues](06%20queues.md)
 
-  ![A queue with Nicky at the front and Darren at the rear.](../../../../Assets/Data%20Structures/Static/queue.svg)
+  ![A queue with Nicky at the front and Darren at the rear.](../../../Assets/Data%20Structures/Static/queue.svg)
 
 ## References
 

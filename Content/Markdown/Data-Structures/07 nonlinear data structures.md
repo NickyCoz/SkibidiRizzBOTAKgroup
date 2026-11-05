@@ -14,12 +14,12 @@ A nonlinear data structure does not arrange its elements in one sequence. Its el
 
 ## Examples of Nonlinear Data Structures
 
-- [Trees](Trees.md)
+- [Trees](08%20trees.md)
 
-  ![A tree with root 8.](../../../../Assets/Data%20Structures/Static/bst-shape.svg)
-- [Graphs](Graphs.md)
+  ![A tree with root 8.](../../../Assets/Data%20Structures/Static/bst-shape.svg)
+- [Graphs](09%20graphs.md)
 
-  ![The friendship graph.](../../../../Assets/Data%20Structures/Static/friendship-graph.svg)
+  ![The friendship graph.](../../../Assets/Data%20Structures/Static/friendship-graph.svg)
 
 ## Linear and nonlinear structures
 
@@ -32,7 +32,7 @@ A nonlinear data structure does not arrange its elements in one sequence. Its el
 
 ## Try it
 
-![Friendship graph with Nicky, Darren, Neil, and Glen.](../../../../Assets/Data%20Structures/Static/friendship-graph.svg)
+![Friendship graph with Nicky, Darren, Neil, and Glen.](../../../Assets/Data%20Structures/Static/friendship-graph.svg)
 
 Which people can be reached directly from Nicky? Which person can be reached by following two edges from Nicky?
 

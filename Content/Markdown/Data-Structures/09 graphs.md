@@ -4,17 +4,17 @@ A graph has a set of **vertices** and a set of **edges** that connect pairs of v
 
 - An **undirected graph** has connections that can be followed in either direction.
 
-  ![A line without an arrow connects Nicky and Darren.](../../../../Assets/Data%20Structures/Static/graph-undirected.svg)
+  ![A line without an arrow connects Nicky and Darren.](../../../Assets/Data%20Structures/Static/graph-undirected.svg)
 
 - A **directed graph** has connections with a direction.
 
-  ![An arrow points from Nicky to Darren.](../../../../Assets/Data%20Structures/Static/graph-directed.svg)
+  ![An arrow points from Nicky to Darren.](../../../Assets/Data%20Structures/Static/graph-directed.svg)
 
 ## Example: a small friendship network
 
 Each person below is a vertex, and each line is an undirected edge. This example is made for these notes.
 
-![Nicky is friends with Darren and Neil. Darren and Neil are both friends with Glen.](../../../../Assets/Data%20Structures/Static/friendship-graph.svg)
+![Nicky is friends with Darren and Neil. Darren and Neil are both friends with Glen.](../../../Assets/Data%20Structures/Static/friendship-graph.svg)
 
 Nicky can reach Glen in two steps by following the edges Nicky → Neil → Glen.
 
@@ -22,7 +22,7 @@ Nicky can reach Glen in two steps by following the edges Nicky → Neil → Glen
 
 Two vertices are **adjacent** if one edge connects them. An **adjacency list** records each vertex's direct neighbors. Each friendship appears in both people's lists because the graph is undirected.
 
-![Adjacency lists showing the two direct neighbors of each person.](../../../../Assets/Data%20Structures/Static/friendship-adjacency-list.svg)
+![Adjacency lists showing the two direct neighbors of each person.](../../../Assets/Data%20Structures/Static/friendship-adjacency-list.svg)
 
 An **adjacency matrix** has one row and one column for each vertex. In this unweighted graph, a `1` marks an edge from the row vertex to the column vertex and a `0` means there is no edge. The table is symmetric because each friendship goes both ways.
 
@@ -46,11 +46,11 @@ Start at Nicky and choose Darren first.
 
 - **DFS** visits Nicky → Darren → Glen → Neil. It reaches Neil from Glen while exploring Darren's branch. By the time it returns to Nicky, Neil has already been visited.
 
-  ![Depth-first search visit order.](../../../../Assets/Data%20Structures/Animated/graph-dfs.svg)
+  ![Depth-first search visit order.](../../../Assets/Data%20Structures/Animated/graph-dfs.svg)
 
 - **BFS** visits Nicky → Darren → Neil → Glen. It visits both people one edge away before reaching Glen, who is two edges away.
 
-  ![Breadth-first search visit order.](../../../../Assets/Data%20Structures/Animated/graph-bfs.svg)
+  ![Breadth-first search visit order.](../../../Assets/Data%20Structures/Animated/graph-bfs.svg)
 
 
 **Quick check.** If DFS starts from Nicky and chooses Neil first, what order does it visit the four people?
@@ -63,7 +63,7 @@ Nicky hears that the club meeting has moved to Friday. In each round, anyone who
 
 In round 1, Nicky tells Darren and Neil. In round 2, Glen hears from Darren or Neil. Count Glen once even if both friends tell him. This is how BFS explores a graph, one group of neighbors at a time.
 
-![Nicky starts with the news. Darren and Neil hear in round 1, then Glen hears in round 2.](../../../../Assets/Data%20Structures/Animated/application-club-announcement.svg)
+![Nicky starts with the news. Darren and Neil hear in round 1, then Glen hears in round 2.](../../../Assets/Data%20Structures/Animated/application-club-announcement.svg)
 
 ## Python example
 
