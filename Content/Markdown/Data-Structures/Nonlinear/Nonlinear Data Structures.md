@@ -15,29 +15,31 @@ A nonlinear data structure does not arrange its elements in one sequence. Its el
 ## Examples of Nonlinear Data Structures
 
 - [Trees](Trees.md)
+
+  ![A tree with root 8.](../../../../Assets/Data%20Structures/Static/bst-shape.svg)
 - [Graphs](Graphs.md)
+
+  ![The friendship graph.](../../../../Assets/Data%20Structures/Static/friendship-graph.svg)
 
 ## Linear and nonlinear structures
 
 | Linear structure | Nonlinear structure |
 | --- | --- |
 | Elements are arranged sequentially. | Elements connect hierarchically or as a network. |
-| Usually has one level. | Can have multiple levels. |
+| Positions in the sequence determine the order. | Trees can branch into levels. Graphs can connect vertices in a network. |
 | Examples: arrays, linked lists, stacks, queues. | Examples: trees and graphs. |
 | Traversal follows the sequence. | Traversal follows connections and depends on the structure. |
 
 ## Try it
 
-```text
-Nicky --- Darren
-  |          |
- Neil ---  Glen
-```
-In the friendship network above, which people can be reached directly from Nicky? Which person can be reached by following two edges from Nicky?
+![Friendship graph with Nicky, Darren, Neil, and Glen.](../../../../Assets/Data%20Structures/Static/friendship-graph.svg)
 
-**Expected answer:** Darren and Neil can be reached directly from Nicky. Glen can be reached by following the edges from Nicky to Neil and then from Neil to Glen.
+Which people can be reached directly from Nicky? Which person can be reached by following two edges from Nicky?
+
+**Expected answer.** Darren and Neil can be reached directly. Glen can be reached in two steps through either Darren or Neil.
 
 ## References
 
 - CompilerSutra, [Non-Linear Data Structures](https://www.compilersutra.com/docs/DSA/non-Linear-DSA/)
 - GeeksforGeeks, [Difference between Linear and Non-linear Data Structures](https://www.geeksforgeeks.org/dsa/difference-between-linear-and-non-linear-data-structures/)
+- Jessica Su, Stanford CS 161, [Lecture 8: Binary Search Trees](https://web.stanford.edu/class/archive/cs/cs161/cs161.1168/lecture8.pdf), sections 1 and 2 (ordered keys and balanced search trees).
