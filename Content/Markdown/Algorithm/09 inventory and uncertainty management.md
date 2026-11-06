@@ -16,7 +16,7 @@ Imagine you manage a small campus shop selling notebooks:
 
 The decision depends on the type of problem:
 
-1. **A simple greedy rule:** "Order what sold yesterday." This is easy, but yesterday's demand may not represent tomorrow's demand.
+1. **A simple heuristic:** "Order what sold yesterday." This is easy, but yesterday's sales may not represent tomorrow's demand, and the rule ignores current inventory. It is not necessarily a greedy optimization algorithm, because it does not explicitly optimize a defined immediate objective.
 2. **Single-day optimization:** Compare possible order quantities and choose the one with the lowest estimated cost (or highest expected profit).
 3. **Dynamic programming (DP):** If inventory carries over across many days, the amount you order today changes what is available tomorrow. DP can compare decisions across a sequence of days by storing results for smaller states such as **(day, stock remaining)**.
 
@@ -45,6 +45,8 @@ Let's also assume:
 - Each unsold notebook costs us **2 units** in extra costs.
 - Each customer we cannot serve costs us **5 units** in missed opportunity.
 - We may choose to stock **2, 4, or 6** notebooks.
+
+For this one-day example, assume we begin with **zero stock**, receive the order before sales start, and cannot replenish during the day. The two costs are total per-unit penalties for excess stock and unmet demand; other costs and profits are excluded. Thus the order quantity equals the stock available for sale here. If stock already exists, ordering four more notebooks is different from stocking four in total.
 
 For any one possible demand:
 
@@ -141,6 +143,8 @@ Now imagine the shop needs to plan for **seven days**, and leftover notebooks re
 
 DP can calculate the best future expected cost for each state, so it does not have to solve the same situation repeatedly. When future demand is random, this is an example of **stochastic dynamic programming** (DP with uncertainty).
 
+For example, if deliveries arrive immediately and unmet demand is lost rather than carried forward, the next stock is `max(current_stock + order - demand, 0)`. The demand distribution for each day must be supplied or estimated. Delivery delays or backorders require extra state information, such as outstanding orders or unmet demand; `(day, current_stock)` alone would then be insufficient. End-of-horizon leftover value or disposal cost must also be specified.
+
 Here is the distinction:
 
 | Concept | Main question |
@@ -169,5 +173,13 @@ Here is the distinction:
 3. When we calculate **expected cost**, why do we multiply each possible cost by its probability?
 4. In the Python example, which stock quantity has the smallest expected cost?
 5. Why might planning inventory for seven days require a different approach from choosing tomorrow's quantity?
+
+### Answers
+
+1. Overstocking leaves excess items; understocking leaves some demand unmet.
+2. Demand can change, yesterday's sales can be limited by stock-outs, and existing stock also matters.
+3. Expected cost is a probability-weighted average: more likely outcomes contribute more to the estimate.
+4. Stocking four notebooks has the lowest expected cost, `3.2`, among the three permitted choices.
+5. Leftovers and future orders link the days, so today's lowest immediate cost may not give the lowest total cost.
 
 **Summary:** Inventory management is the practical problem of balancing available stock against demand and costs. A simple rule may be enough in some situations; comparing expected costs helps when demand is uncertain; and dynamic programming can help when inventory decisions affect many future days.

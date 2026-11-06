@@ -1,5 +1,5 @@
 # Dynamic Programming (DP)
-Dynamic programming is a major algorithm designing technique.
+Dynamic programming is an algorithm design technique.
 
 ## What Is Dynamic Programming?
 
@@ -8,6 +8,8 @@ Dynamic programming is a major algorithm designing technique.
 Intuitively: *"If I already figured out the answer to this smaller problem, why calculate it all over again?"*
 
 This connects directly to [Recursion and Call Stack](04%20recursion%20and%20call%20stack.md).
+
+DP is especially useful when **subproblems overlap**, so their answers would otherwise be recomputed. For optimization problems it also needs **optimal substructure**: an optimal overall solution can be assembled from optimal solutions to the relevant smaller states. Merely writing a recursive function does not make it dynamic programming.
 
 ## Example: Fibonacci Numbers
 
@@ -47,11 +49,15 @@ Dynamic programming avoids that repetition by **remembering previously computed 
 
 ```python
 def fibonacci_memo(n, memo=None):
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
     if n < 0:
         raise ValueError("n must be non-negative")
+    if n <= 1:
+        return n
 
     if memo is None:
-        memo = {0: 0, 1: 1}  # Base cases.
+        memo = {}
 
     # Only compute a result if we have not saved it yet.
     if n not in memo:
@@ -72,6 +78,8 @@ print(fibonacci_memo(6))  # 8
 
 ```python
 def fibonacci_table(n):
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
     if n < 0:
         raise ValueError("n must be non-negative")
     if n <= 1:
@@ -88,9 +96,21 @@ def fibonacci_table(n):
 print(fibonacci_table(6))  # 8
 ```
 
-Both versions compute `fib(n)` in **`O(n)` time**, whereas the straightforward recursive approach repeats many calculations and takes **exponential time**. Both versions here save up to **`O(n)`** values. The memoized version also uses the recursion call stack.
+Both versions print `8` for `n = 6`. They also handle `0` and `1`, and reject negative or non-integer inputs. The memoized function accepts an optional dictionary for reusing correctly computed Fibonacci values; even an initially empty dictionary works because the base cases are checked separately.
+
+Both versions perform **`O(n)` arithmetic steps**, whereas straightforward recursive Fibonacci takes exponential time by repeating calculations. Both versions here store up to **`O(n)` values**; the memoized version also uses `O(n)` call-stack space. These bounds treat integer arithmetic as constant time; Python's Fibonacci integers grow with `n`, so their storage and arithmetic bit costs also grow. For large `n`, prefer iteration to avoid Python's recursion-depth limit. If only the final Fibonacci number is needed, tabulation can keep just the previous two values rather than the entire table.
 
 - **Dijkstra is generally classified as a greedy algorithm:** It repeatedly selects the unprocessed node with the smallest tentative distance.
 - **Dynamic programming is a different design technique:** It solves and reuses answers to subproblems rather than repeatedly solving them from scratch.
 
 They can both work with intermediate costs, but **they do not work in exactly the same way**.
+
+## Check Your Understanding
+
+Why does memoization help with `fib(5)`? What do the two implementations return for `n = 0` and `n = 1`?
+
+**Answer:** Calls such as `fib(3)` and `fib(2)` repeat; saving their results avoids computing them again. Both implementations return `0` and `1`, respectively.
+
+## References
+
+- MIT OpenCourseWare, 6.006 Introduction to Algorithms, Fall 2011, Lecture 19: Fibonacci, memoization, and bottom-up dynamic programming.

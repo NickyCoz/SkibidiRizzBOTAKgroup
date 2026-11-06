@@ -15,6 +15,19 @@ By the end of this module, you should be able to:
 
 ---
 
+## Before You Start: Running the Examples
+
+Use Python 3. These algorithm lessons use only Python's standard library; no extra packages are required. The optional C example in the recursion lesson needs a separate C compiler.
+
+1. Open a Python editor, such as IDLE, or a browser-based Python 3 editor.
+2. Copy a complete `python` code block into a new file, preserving its indentation. Do not copy the Markdown fences (` ``` `).
+3. Run the file using the editor's Run command. With a local installation, you can also save it as `example.py` and run `python example.py` in a terminal from that folder. On Windows, `py example.py` may be available instead.
+4. Compare the displayed result with the supplied output or comments. Run separate examples separately unless the text says otherwise.
+
+Blocks labelled `text` contain output, diagrams, or pseudocode; they are not Python programs.
+
+---
+
 ## 1. Variables and Basic Data Types
 
 A **variable** is a name that refers to a value. You can think of it as a label attached to information your program uses.
@@ -242,7 +255,7 @@ Functions are especially important for understanding **recursion**: a recursive 
 
 ```python
 def countdown(n):
-    if n == 0:       # Base case: stop
+    if n <= 0:       # Base case: stop at zero or below
         return
     print(n)
     countdown(n - 1) # Recursive call
@@ -250,6 +263,8 @@ def countdown(n):
 countdown(3)
 # Prints 3, 2, 1
 ```
+
+Here, `n` is an integer. Each recursive call reduces it toward the stopping condition. Python limits recursion depth, so use a loop for a long countdown.
 
 ---
 
@@ -420,6 +435,15 @@ This is the foundation for understanding more advanced searching algorithms.
 4. What is the difference between `return` and `print()`?
 5. Why might a graph-search algorithm use a `visited` set?
 6. If a program runs but prints the wrong numbers, what category of error is that?
+
+### Answers
+
+1. `=` assigns a value; `==` compares two values.
+2. The stop value in `range` is excluded, so `range(5)` gives `0, 1, 2, 3, 4`.
+3. Use `while` when repetition depends on a condition rather than visiting each item in a collection.
+4. `return` sends a value to the caller and ends that function call; `print()` displays a value.
+5. It records discovered nodes so cycles and multiple routes do not cause repeated exploration.
+6. A logical error.
 
 ## Suggested Further Reading
 

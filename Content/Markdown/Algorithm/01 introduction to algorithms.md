@@ -1,23 +1,22 @@
 # Introduction to Algorithms
 ## What Are Algorithms?
 ### Definition of an Algorithm
-an **algorithm** is a sequence of precise, dfined instructions designed to solve a particular problem or complete a task (ie.automation,etc)
+An **algorithm** is a finite sequence of precise, well-defined instructions designed to solve a problem or complete a task.
 
-At its core, algorithms takes an input (data provided whether it be sorted or unsorted), processes it through a series of instructions, and produces an output.
+An algorithm takes zero or more inputs, processes them through its instructions, and produces a result.
 
-Though, its important to note that a **program** != an **algorithm**
+An **algorithm** describes a method. A **program** implements methods in a programming language and can contain several algorithms.
 
 ---
 
 ## Examples
-lets consider the <u>process</u>  of sorting student's grades in ascening order.
+Consider sorting students' grades in ascending order, from smallest to largest.
 
-given  an array of integers (scores) **[72,85,40,29,100,91]**, we can sort these 'scores' in ascending order by constructing an algorithm that compares the first position,**n**, with the next position,**n+1**, and check whether n>n+1. naturally, the largest number will "bubble" itself up to the end of the array.
+Given the scores **[72, 85, 40, 29, 100, 91]**, **bubble sort** repeatedly compares the *values* at neighboring positions `j` and `j + 1`. If the left value is larger, it swaps them. Each complete pass places the largest remaining value at the end of the unsorted portion. Several passes may be needed to sort the whole list.
 
 ## Implementation
-### in python
-### example:
-```
+### Python example
+```python
 grades = [72,85,40,29,100,91]
 length = len(grades)
 for i in range(length):
@@ -26,8 +25,14 @@ for i in range(length):
             grades[j], grades[j+1] = grades[j+1], grades[j]
 print("Sorted array: \n" + str(grades))
 ```
-the result: [29,40,72,85,91,100]
-notice how < and > are interchangable, simply changing the rational operator can sort the array in descending OR ascending order.
+Expected output:
+
+```text
+Sorted array:
+[29, 40, 72, 85, 91, 100]
+```
+
+In this code, `>` sorts in ascending order. Changing the comparison to `<` sorts in descending order. These are **relational (comparison) operators**; changing the operator changes the result.
 This is an example of an algorithm, it uses a sequence of precise commands to complete a task (sorting numbers).
 
 
@@ -43,33 +48,35 @@ They help:
 ---
 Different algorithms can solve the same problem using different approaches.
 
-Lets take a pathfinding/navigation application for example. an algorithm can evaluate several possible routes between two locations. one algorithm might explore all/many possible routes, while another prioritizes routes that are closer or **appear** closer. (BFS or Djikstra's) algorithm.
+For example, a navigation program can evaluate routes between two locations. **BFS** explores by number of edges, **Dijkstra's algorithm** prioritizes the lowest accumulated cost, and **A*** also uses an estimate of the remaining cost. They have different requirements and guarantees, explained in the later graph lessons.
 
 ## Characteristics of an Algorithm
 **Input:** Accepts >= 0 values or pieces of information
 
 **Output:** Produces a definite result.
 
-**Definition:** Instructions are clear,precise, unambigious.
+**Definiteness:** Instructions are clear, precise, and unambiguous.
 
-**Finite:** Algorithms terminates after a finite number of steps/time it does not run indefinetely.
+**Finiteness:** The algorithm terminates after a finite number of steps for each valid input.
+
+**Effectiveness:** Each instruction is concrete enough to carry out.
 
 Simply telling a computer to "sort these numbers" or "find the best route" is not a complete algorithm, because it does not explain how the numbers should be sorted, or how routes should be evaluated.
 
 ## Describing an Algorithm
-Consider the python code example in 1.2. 
+Consider the Python bubble sort example above.
 
 We can sort them in ascending order by describing them in detailed steps:
 
-**1. Look at the very first number**
+1. Start a pass at the beginning of the unsorted portion.
 
-**2. Examine the next number adjacent to it.**
+2. Compare each adjacent pair from left to right.
 
-**3. IF number is greater/larger then we swap**
+3. If the left value is greater than the right value, swap them.
 
-**4. Repeat until every number has been examined**
+4. After the pass, exclude its last position: that value is now in its final place.
 
-**5. Return the sorted array**
+5. Repeat passes until fewer than two unsorted items remain, then return the sorted list. A single pass is not enough in general.
 
 ## Visualization
 Consider the following list:
@@ -79,37 +86,38 @@ Consider the following list:
 
 
 
-```initial list:
+```text
+Initial list:
 [72] [85] [91] [68]
 
 Pass 1:
 [72] [85] [91] [68]
   ^    ^
-72 > 85 == False. No swap.
+(72 > 85) is False. No swap.
 
 [72] [85] [91] [68]
        ^    ^
-85 > 91 == False. No swap.
+(85 > 91) is False. No swap.
 
 [72] [85] [91] [68]
            ^    ^
-91 > 68 == True. Swap!
+(91 > 68) is True. Swap!
 Result of Pass 1: [72] [85] [68] [91] (91 bubbles to the end)
 
 Pass 2:
 [72] [85] [68] [91]
   ^    ^
-72 > 85 == False. No swap.
+(72 > 85) is False. No swap.
 
 [72] [85] [68] [91]
        ^    ^
-85 > 68 == True. Swap!
+(85 > 68) is True. Swap!
 Result of Pass 2: [72] [68] [85] [91] (85 bubbles to its place)
 
 Pass 3:
 [72] [68] [85] [91]
   ^    ^
-72 > 68 == True. Swap!
+(72 > 68) is True. Swap!
 Result of Pass 3: [68] [72] [85] [91]
 
 Final output:
@@ -127,10 +135,13 @@ Algorithms can be represented in several ways, including natural language,pseudo
 Informal,programming-like way of describing an algorithm without following the exact syntax of a particular programming language.
 
 pseudocode does not have a universal syntax. Recall the [sorting example](#implementation), we can represent sorting numbers in a nonempty list in pseudocode:
-```python
-Set grades to [72,85,40,29,100,91]
-for i from 0 to length - 1
-    for j from 0 to length - 1 - i
+The bounds below are inclusive. `length - 2 - i` keeps `j + 1` inside the unsorted portion. If an upper bound is below zero, that loop has no iterations.
+
+```text
+Set grades to [72, 85, 40, 29, 100, 91]
+Set length to the number of grades
+for i from 0 to length - 2
+    for j from 0 to length - 2 - i
         if grades[j] > grades[j+1] then
             swap grades[j] with grades[j+1]
         END if
@@ -140,7 +151,7 @@ print "Sorted array: " and grades
 ```
 
 ### Flowcharts
-A flowchart represents an algorithm using connected shapes and arros.
+A flowchart represents an algorithm using connected shapes and arrows.
 
 ### Flowchart symbols:
 * oval: start/end
@@ -160,3 +171,16 @@ A flowchart represents an algorithm using connected shapes and arros.
   ![Flowchart arrow](../../../Assets/Algorithms/Static/flowchart-arrow.svg)
 
 ![A decision checks whether neighboring values should be swapped.](../../../Assets/Algorithms/Static/compare-flowchart.svg)
+
+This diagram shows one comparison, not the complete sorting loop.
+
+## Check Your Understanding
+
+After one left-to-right bubble sort pass on `[3, 2, 1]`, is the list sorted?
+
+**Answer:** No. It becomes `[2, 1, 3]`. Another pass is needed to order `2` and `1`.
+
+## References
+
+- Python Software Foundation, Python Tutorial, “More Control Flow Tools”: loops, comparisons, and functions.
+- MIT OpenCourseWare, 6.006 Introduction to Algorithms, Fall 2011, Lecture 1: algorithmic thinking.

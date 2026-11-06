@@ -14,21 +14,28 @@ finding 68 itself requires **4** checks, finding 91 requires **3**, finding 85 r
 1. start at first index (0)
 2. Compare the current element with the target.
 3. If the value matches, stop searching.
-4. If values doesnt match, move to the index, compare next element with target.
-5. Repeat until target found
+4. If the value does not match, move to the next index.
+5. Stop at the first match or after checking every item. If there is no match, report that the target is absent.
 
 ![Linear search checks the four values in order to find 68.](../../../Assets/Algorithms/Animated/linear-search.svg)
 
 #### Implementation (python):
-```
-array_one = [72,85,91,68]
-length_arr = len(array_one)
-for i in range(length_arr):
-    if array_one [i] == 68:
-        print("found 68 at index" + str(i))
+```python
+def linear_search(values, target):
+    for index in range(len(values)):
+        if values[index] == target:
+            return index
+    return -1
+
+array_one = [72, 85, 91, 68]
+index = linear_search(array_one, 68)
+if index == -1:
+    print("Target not found")
+else:
+    print(f"found 68 at index {index}")
 ```
 #### output: found 68 at index 3
-**Important distinction:** searching is not the same as sorting, were just trying to find where the target is located.
+**Important distinction:** searching finds a target's location; sorting rearranges items into an order.
 
 Something else to note is the fact that linear search works whether the array is sorted or unsorted.
 
@@ -39,16 +46,16 @@ Now ask yourself:
 
 2. What happens if our target is at the end of said array?
 
-Linear search would prove to be massively inefficient at that scale.
+A linear search may need to inspect all those items. If the data is already sorted and supports direct index access, binary search can reduce the number of inspected items substantially. Sorting first also costs work, so linear search may still be sensible for a single query on unsorted data.
 
 If Linear search checks one by one, binary search repeatedly eliminates half of remaining possibilities with one requirement:
-**The dataset must be sorted**
+**The values must be sorted using the same comparison order.** The example below assumes ascending order. Its `O(log n)` time bound also assumes constant-time index access, as with an array or Python list.
 #### given an array of integers: [1,3,5,7,9, 11, 13] we want to find the target: 11
 
 1. Find, and examine the middle of the array.
 2. Compare the value of the element with our target
-3. if value is bigger than target, we can eliminate the entire right half including the value.
-4. if value is smaller, eliminate entire left half, including the value.
+3. If the middle value matches, return its index.
+4. If the middle value is greater than the target, keep only the items to its left. If it is smaller, keep only the items to its right.
 5. Repeat until target is found or there are no elements left to search.
 
 ![Binary search compares the target 11 with 7, then finds it at index 5.](../../../Assets/Algorithms/Animated/binary-search.svg)
@@ -60,20 +67,15 @@ __________________
         2
 ```
 
-in our given array, the 0'th index + the 6'th index / 2 evaluates to 3, so our middle elemnt is at index 3.
+In our example, `(0 + 6) // 2 = 3`, so the middle element is at index `3`. Parentheses add the bounds before division, and `//` rounds down to an integer index.
 
-so were finding the midpoint between indices, which can be represented as:
+We are finding the midpoint between index bounds:
 
 ```
-mid = [left+ right / 2]
+mid = (left + right) // 2
 ```
 
-Left = index of first 
-element in search range.
-
-Right = End of search range
-
-Mid = Indx of middle element
+`left` is the first index in the current search range, `right` is the last index (included), and `mid` is the middle index rounded down.
 
 ![The midpoint of index bounds 0 and 6 is index 3.](../../../Assets/Algorithms/Static/midpoint.svg)
 
@@ -103,9 +105,13 @@ print(f"Target {target_value} found at index: {index}")
 ```
 Output: Target 68 found at index: 5
 
+An empty list or an absent target returns `-1`. If values repeat, this binary search returns a matching index, which may not be the first match. Do not use a returned `-1` to index the list: in Python, index `-1` refers to its last item.
+
 ## Big O Notation
 
 Here, `n` is the number of input items. For operation counts and growth examples, see [Time Complexity Analysis](05%20time%20complexity%20analysis.md).
+
+**Big O** describes an asymptotic upper bound on growth, rather than an exact running time. State the case being analyzed: for example, linear search has `O(1)` best-case time and `O(n)` worst-case time. The table gives common bounds; it does not mean every run takes that much work.
 
 ---
 
@@ -119,3 +125,14 @@ Here, `n` is the number of input items. For operation counts and growth examples
 
 
 ![Compare constant, logarithmic, linear, and quadratic growth on the same axes.](../../../Assets/Algorithms/Static/complexity-growth.svg)
+
+## Check Your Understanding
+
+What do both functions return for an empty list? How many middle items does binary search inspect when finding `11` in `[1, 3, 5, 7, 9, 11, 13]`?
+
+**Answer:** Both return `-1` for an empty list. The binary search inspects `7`, then `11`: two middle items.
+
+## References
+
+- Python Software Foundation, Python Tutorial, “More Control Flow Tools”: `range`, loops, and early returns.
+- OpenDSA Data Structures and Algorithms Modules Collection, “Searching in an Array”: sequential search, binary search, and logarithmic search depth.

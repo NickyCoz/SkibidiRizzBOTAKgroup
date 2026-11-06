@@ -163,7 +163,7 @@ This is a version of the **Bellman principle of optimality**: to make the best d
 
 ## 5. Python Implementation: Planning Several Decisions
 
-The following implementation uses **recursion with memoization**, so repeated states are computed only once.
+The following implementation uses **recursion with memoization**, so repeated states are computed only once. It assumes at most one activity per day, known finite numerical rewards, and a non-negative integer number of passes. Skipping is allowed, so a negative-reward activity need not be chosen.
 
 ```python
 from functools import lru_cache
@@ -172,10 +172,13 @@ from functools import lru_cache
 points = [5, 6, 10]
 starting_passes = 2
 
+if not isinstance(starting_passes, int) or starting_passes < 0:
+    raise ValueError("starting_passes must be a non-negative integer")
+
 @lru_cache(maxsize=None)
 def best(day, passes_left):
-    # No days remain.
-    if day == len(points):
+    # No days or usable passes remain.
+    if day >= len(points) or passes_left == 0:
         return 0
 
     # Choice 1: Do not use a pass today.
@@ -187,6 +190,8 @@ def best(day, passes_left):
         use_today = points[day] + best(day + 1, passes_left - 1)
 
     return max(skip_today, use_today)
+
+maximum_points = best(0, starting_passes)
 
 # Find an optimal decision sequence using the computed DP values.
 passes_left = starting_passes
@@ -203,7 +208,7 @@ for day in range(len(points)):
         chosen_days.append(day + 1)  # Convert 0-based index to day number
         passes_left -= 1
 
-print('Maximum points:', best(0, starting_passes))
+print('Maximum points:', maximum_points)
 print('Use passes on days:', chosen_days)
 ```
 
@@ -219,11 +224,13 @@ Use passes on days: [2, 3]
 - `best(0, 2)` asks: *What is the highest score from Day 1 onward if we have two passes?*
 - For each day, the function compares **skipping** with **using** a pass.
 - `@lru_cache` remembers the result for each `(day, passes_left)` pair, avoiding repeated calculations.
+- In a tie, the reconstruction skips today; another optimal sequence may also exist. If no passes or days remain, the best future score is zero.
+- Run the whole block again when changing `points`, or call `best.cache_clear()` before recalculating. The cache keys contain only the function arguments, not the global `points` list, so changing that list alone can leave stale answers.
 
 ![Two different decision paths meet at best(2, 1), whose cached future score of 10 can be reused.](../../../Assets/Algorithms/Static/sequential-memoization.svg)
 - After calculating the optimal score, the second loop reconstructs one optimal sequence of decisions.
 
-With `D` days and `P` starting passes, this implementation has at most **O(D × (P + 1))** distinct states, with constant work per state. The time and memoization space costs are therefore **O(DP)**; recursion also uses up to **O(D)** call-stack space. The actual state count may be smaller.
+With `D` days and `P` starting passes, there are at most `O((D + 1)(P + 1))` distinct states, with constant work per state in the fixed-size-number model. Including the `O(D)` reconstruction, this is `O(D(P + 1))` time for `D >= 1`; using `P + 1` keeps the bound meaningful when there are zero passes. Memoization uses at most `O((D + 1)(P + 1))` space, recursion up to `O(D)` call-stack space, and the chosen-day list up to `O(min(D, P))` space. The actual state count can be smaller. A long horizon can exceed Python's recursion limit; bottom-up tabulation avoids it.
 
 ---
 
@@ -286,11 +293,14 @@ Best value now =
 
 In mathematical notation, for rewards measured at each step:
 
-\[
-V_t(s) = \max_{a} \left[R_t(s,a) + \sum_{s'} P(s'\mid s,a) V_{t+1}(s')\right]
-\]
+```text
+V_t(s) = max over available actions a of
+         [R_t(s, a) + sum over next states s' of P(s' | s, a) * V_(t+1)(s')]
+```
 
 where `V_t(s)` is the best expected future reward at time `t` in state `s`; `a` is an available action; `R_t` is its immediate expected reward; and `P` describes possible next states. This basic form assumes a finite time horizon with no discount factor.
+
+At the terminal time `T`, specify `V_T(s)`: it is zero if nothing more is gained or lost, or a terminal value such as the salvage value of remaining inventory. The transition probabilities for each state-action pair must sum to one. If dynamics change by day, write them as `P_t(s' | s, a)` or include the day in the state.
 
 **You do not need to memorize the equation yet.** The central idea is simply that a good decision weighs **what happens now and what may happen later**.
 
@@ -322,6 +332,16 @@ where `V_t(s)` is the best expected future reward at time `t` in state `s`; `a` 
 6. How does **uncertainty** change the way we plan future decisions?
 7. Is an MDP itself the same thing as Dijkstra's algorithm? Why or why not?
 
+### Answers
+
+1. Earlier choices change the state and available choices at later steps.
+2. The state is `(day, passes_left)`. The actions are skip, or use one pass if available.
+3. Days 1 and 2 give `5 + 6 = 11`; Days 2 and 3 give `6 + 10 = 16`.
+4. The maximum total points obtainable from that day onward with the stated passes remaining.
+5. It saves answers for repeated states so they are not recomputed.
+6. We consider possible outcomes and their probabilities, rather than assuming one certain next state.
+7. No. An MDP models states, actions, probabilistic transitions, and rewards. Dijkstra is a particular algorithm for shortest paths with non-negative weights.
+
 ---
 
 ## Summary
@@ -329,3 +349,8 @@ where `V_t(s)` is the best expected future reward at time `t` in state `s`; `a` 
 **Sequential decision-making** is about making a series of connected choices where each action can affect later opportunities. Greedy rules consider a local choice; dynamic programming can compare complete future outcomes when the problem has the right structure. When future outcomes are uncertain, probability-based models such as MDPs help us compare the **expected consequences** of different actions.
 
 **Main takeaway:** Do not ask only, *"What looks best now?"* Also ask, *"How will this choice change what I can do next?"*
+
+## References
+
+- MIT OpenCourseWare, 6.006 Introduction to Algorithms, Fall 2011, Lectures 19–22: states, recurrences, and dynamic programming.
+- Python Software Foundation, `functools.lru_cache` documentation: caching function results and clearing cached values.
