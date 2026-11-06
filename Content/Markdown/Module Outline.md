@@ -4,16 +4,18 @@ Our project will cover three interconnected areas: **algorithms, data structures
 
 ### a. Algorithms
 
-* [Introduction to Algorithms](Algorithm/1.1%20Introduction%20To%20Algorithms.md)
-* [Basic Sorting Algorithms](Algorithm/2.1%20Algorithm_s.MD)
-* [Binary Search, Linear Search, and Big O Notation](Algorithm/2.1%20Algorithm_s.MD)
-* [Recursion and Call Stack](Algorithm/2.1%20Algorithm_s.MD)
-* [Time Complexity Analysis](Algorithm/2.1%20Algorithm_s.MD)
-* [Graph Searching: BFS, DFS & Routing and Coverage](Algorithm/3.1%20Intro_to_pathfinding.MD) 
-* [Greedy Algorithm and Optimization](Algorithm/3.1%20Intro_to_pathfinding.MD)
-* Dynamic Programming (DP)
-* Inventory and Uncertainty Management
-* Sequential Decisions Over Time 
+**Prerequisite:** [Introduction to Python Programming](Algorithm/00%20introduction%20to%20python%20programming.md)
+
+* [Introduction to Algorithms](Algorithm/01%20introduction%20to%20algorithms.md)
+* [Basic Sorting Algorithms](Algorithm/02%20basic%20sorting%20algorithms.md)
+* [Binary Search, Linear Search, and Big O Notation](Algorithm/03%20binary%20search%20linear%20search%20and%20big%20o%20notation.md)
+* [Recursion and Call Stack](Algorithm/04%20recursion%20and%20call%20stack.md)
+* [Time Complexity Analysis](Algorithm/05%20time%20complexity%20analysis.md)
+* [Graph Searching: BFS, DFS & Routing and Coverage](Algorithm/06%20graph%20searching%20routing%20and%20coverage.md)
+* [Greedy Algorithm and Optimization](Algorithm/07%20greedy%20algorithm%20and%20optimization.md)
+* [Dynamic Programming (DP)](Algorithm/08%20dynamic%20programming.md)
+* [Inventory and Uncertainty Management](Algorithm/09%20inventory%20and%20uncertainty%20management.md)
+* [Sequential Decisions Over Time](Algorithm/10%20sequential%20decisions%20over%20time.md)
 
 
 ### b. Data Structures

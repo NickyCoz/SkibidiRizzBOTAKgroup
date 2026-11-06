@@ -1,4 +1,4 @@
-# Module 0.1 — Introduction to Python Programming
+# Introduction to Python Programming
 
 > **Purpose:** Learn enough Python syntax to read and understand the code examples in the algorithms modules. This module assumes no prior Python experience.
 
@@ -49,6 +49,8 @@ print(score)  # 15
 
 **Note:** The `=` symbol means *assignment* (store a value), not mathematical equality.
 
+![The name score refers to 10 before reassignment and 15 after adding 5.](../../../Assets/Algorithms/Static/python-assignment.svg)
+
 ### Basic arithmetic
 
 | Operator | Meaning | Example | Result |
@@ -96,6 +98,8 @@ Python tests the branches from top to bottom, executes the first matching branch
 
 **Indentation matters:** The four spaces before `print()` tell Python that the statement belongs to that branch. Unlike some languages, Python uses indentation to group code.
 
+![The comparison 30 > 30 is false; 30 == 30 is true, so only the warm branch runs.](../../../Assets/Algorithms/Static/python-conditional.svg)
+
 ---
 
 ## 3. Relational (Comparison) Operators
@@ -139,6 +143,8 @@ else:
 
 In this example, the program permits entry only if **both** conditions are true.
 
+![A 20-year-old with a ticket satisfies both entry conditions; True and True permits entry.](../../../Assets/Algorithms/Static/python-logical-entry.svg)
+
 ---
 
 ## 5. Loops
@@ -166,6 +172,10 @@ Output:
 
 `range(5)` produces the integers from `0` through `4` (the end is excluded).
 
+![The iteration pointer moves through 0, 1, 2, 3, and 4; each value joins the output.](../../../Assets/Algorithms/Animated/python-for-range.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/python-for-range.svg)
+
 You can also loop directly over a list:
 
 ```python
@@ -190,6 +200,8 @@ while count < 5:
 ```
 
 `count += 1` is shorthand for `count = count + 1`. Without a change that eventually makes the condition false, a loop may run indefinitely.
+
+![The loop prints counts 0 through 4; when count reaches 5, count < 5 is false and it stops.](../../../Assets/Algorithms/Static/python-while-trace.svg)
 
 ### 5.3 `break` and `continue`
 
@@ -221,6 +233,10 @@ print(result)  # 8
 ```
 
 Here, `a` and `b` are parameters; `3` and `5` are arguments. `return` sends `8` back to the place where the function was called. It is different from `print()`, which only displays something.
+
+![Values 3 and 5 enter parameters a and b; the returned value 8 moves to result in the caller.](../../../Assets/Algorithms/Animated/python-function-return.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/python-function-return.svg)
 
 Functions are especially important for understanding **recursion**: a recursive function calls itself on a smaller version of the problem.
 
@@ -257,6 +273,10 @@ print(len(numbers)) # 5
 
 Lists are commonly used for **sorting**, **searching**, and storing dynamic programming results.
 
+![The value at index 1 becomes 10, then 7 moves into new index 4; the list becomes [8, 10, 5, 1, 7].](../../../Assets/Algorithms/Animated/python-list-update.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/python-list-update.svg)
+
 ### 7.2 Dictionaries
 
 A **dictionary** stores **key–value pairs**.
@@ -283,6 +303,8 @@ print("A" in visited)  # True
 ```
 
 A `visited` set is commonly used in **BFS** and **DFS** to avoid repeatedly exploring the same node.
+
+![The dictionary key B retrieves 4; an unordered set containing A and B answers that A is present.](../../../Assets/Algorithms/Static/python-dictionary-set.svg)
 
 ---
 
@@ -349,6 +371,8 @@ Greater than 5: 7
 Greater than 5: 9
 ```
 
+![The wrong condition selects 3 and 2; the corrected condition selects 7 and 9 as intended.](../../../Assets/Algorithms/Static/python-debug-comparison.svg)
+
 ### Practical debugging habits
 
 1. **Read the error message:** It often identifies the line and the type of error.
@@ -384,6 +408,10 @@ print(linear_search(values, 10))  # -1
 
 This is the foundation for understanding more advanced searching algorithms.
 
+![A comparison pointer checks 8, 3, then 5 and stops at index 2; a search for 10 would return -1.](../../../Assets/Algorithms/Animated/python-linear-search.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/python-linear-search.svg)
+
 ## Quick Self-Check
 
 1. What is the difference between `=` and `==`?
@@ -401,4 +429,4 @@ This is the foundation for understanding more advanced searching algorithms.
 - [Python Documentation: `collections.deque`](https://docs.python.org/3/library/collections.html#collections.deque)
 - [Python Documentation: `heapq`](https://docs.python.org/3/library/heapq.html)
 
-**Next module:** Introduction to Algorithms — now that you can read the Python code, focus on *what each algorithm is doing* and *why it works*.
+**Next module:** [Introduction to Algorithms](01%20introduction%20to%20algorithms.md) — now that you can read the Python code, focus on *what each algorithm is doing* and *why it works*.
