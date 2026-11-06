@@ -1,18 +1,18 @@
 # B.O.T.A.K - Algorithms, Data Structures & Connectionist AI
 
+![Algorithms, Data Structures, and Connectionist AI animated banner](Assets/README/banner.svg)
+
 **Module:** Algorithms, Data Structures, and Connectionist AI
 
 **Team:** B.O.T.A.K Group
 
 **Stage:** Stage 2 [Ongoing]
 
-**Last Updated:** 4-11-2026
+**Last Updated:** 6-11-2026
 
 **Repository:** [SkibidiRizzBOTAKgroup](https://github.com/NickyCoz/SkibidiRizzBOTAKgroup)
 
 This project aims to develop a structured learning resource for a complete beginner. It is designed to help beginners understand the basics of algorithm, data structures, and connectionist AI through PPT Slides, Video tutorials and live mini lecture as an organized explanations.
-
-![Repository Banner](Assets/Banner.png)
 
 ## Useful URLs
 | Document                | Link                                                                                             |
@@ -37,23 +37,23 @@ Learners should have the following basic knowledge to start the module:
 
 ## Learning Goals
 
-### 1. Algorithms
+### <img src="Assets/README/algorithms.svg" alt="" width="20" height="20"> 1. Algorithms
 
 The learner will understand how algorithms provide step-by-step solutions to computational problems, from basic searching and sorting to more advanced techniques such as recursion, graph traversal, greedy algorithms, and dynamic programming. They will also explore how algorithms handle optimization, inventory uncertainty, and sequential decisions over time.
 By the end of this section, the learner will be able to explain how algorithms work, analyze their basic time and space complexity, interpret Big-O notation, and select an appropriate algorithm for a given problem. They will also be able to describe how different algorithmic approaches improve efficiency and support decision-making.
 
-### 2. Data Structures 
+### <img src="Assets/README/data.svg" alt="" width="20" height="20"> 2. Data Structures
 
 The learner will understand how data structures organize, store, and manage information to support efficient computational operations. They will study fundamental structures, including arrays, stacks, queues, linked lists, graphs, and binary search trees, as well as data versioning and the role of different structures in managing information.
 By the end of this section, the learner will be able to identify and compare data structures, explain their basic operations and practical uses, and choose a suitable structure for a given situation. They will also understand how data structure selection affects algorithm performance and how data versioning helps track changes to information over time.
 
-### 3. Connectionist AI
+### <img src="Assets/README/ai.svg" alt="" width="20" height="20"> 3. Connectionist AI
 
 The learner will understand the fundamental principles of Connectionist AI, particularly artificial neural networks, their architectures, and how they learn patterns from data. They will explore applications of neural networks, deep learning, activation functions, model training and optimization, demand and time-series forecasting, probabilistic forecasting, online and incremental learning, recommendation systems, and reinforcement learning.
 By the end of this section, the learner will be able to explain how artificial neurons, layers, weights, and activation functions contribute to prediction and learning. They will also be able to describe how neural networks differ from traditional algorithmic approaches, interpret simple neural network examples, and explain how training improves predictions and how these methods can be applied to practical problems.
-Overall Learning Goal
-After completing these study guidelines, the learner is expected to understand how algorithms, data structures, and Connectionist AI work individually and together. They should be able to explain these concepts in their own words, apply introductory knowledge to simple computational problems, justify their choice of algorithms and data structures, and describe how neural networks learn from data to support prediction and decision-making.
 
+### Overall learning goal
+After completing these study guidelines, the learner is expected to understand how algorithms, data structures, and Connectionist AI work individually and together. They should be able to explain these concepts in their own words, apply introductory knowledge to simple computational problems, justify their choice of algorithms and data structures, and describe how neural networks learn from data to support prediction and decision-making.
 
 ## Team
 
@@ -79,26 +79,26 @@ After completing these study guidelines, the learner is expected to understand h
 
 | Material | Purpose |
 | --- | --- |
-| `Shared Markdown` | Main explanations, examples, activities, and answers |
-| `Study Guide` | Support structured study and revision |
-| `Test Bank` | Assess understanding and application |
-| `PPT Slides` | Support visual and live explanations |
-| `Video Tutorials` | Demonstrate selected concepts |
-| `Live Mini Lecture` | Provide a short guided learning experience |
+| 📄 `Shared Markdown` | Main explanations, examples, activities, and answers |
+| 📘 `Study Guide` | Support structured study and revision |
+| 📝 `Test Bank` | Assess understanding and application |
+| 📊 `PPT Slides` | Support visual and live explanations |
+| 🎬 `Video Tutorials` | Demonstrate selected concepts |
+| 🎙️ `Live Mini Lecture` | Provide a short guided learning experience |
 
-## Progress
+## <img src="Assets/README/progress.svg" alt="" width="20" height="20"> Progress
 
 | Description | Status |
 | --- | --- |
-| `Project Plan` | Finished |
-| `Module outline` | Finished |
-| `Introduction to Algorithm Module` | Finished |
-| `Introduction to Data Structure Module` | Finished |
-| `Study Guide` | Not Started |
-| `Test Bank` | Not Started |
-| `PPT Slides` | Not Started |
-| `Video Tutorials` | Not Started |
-| `Live Mini Lecture` | Not Started | 
+| 📋 `Project Plan` | Finished |
+| 🗺️ `Module outline` | Finished |
+| ⚙️ `Introduction to Algorithm Module` | Finished |
+| 🗃️ `Introduction to Data Structure Module` | Finished |
+| 📘 `Study Guide` | Not Started |
+| 📝 `Test Bank` | Not Started |
+| 📊 `PPT Slides` | Not Started |
+| 🎬 `Video Tutorials` | Not Started |
+| 🎙️ `Live Mini Lecture` | Not Started |
 
 ## Workflow and Quality Control
 
@@ -112,6 +112,6 @@ Sources are identified, and important claims, examples, and answers are checked 
 | Topic | Link   |
 | --- | --- |
 | Data Structures | IBM, [What is a data structure?](https://www.ibm.com/think/topics/data-structure) |
-| Data Structures | GeeksforGeeks, [Introduction to Linear Data Structures](https://www.geeksforgeeks.org/dsa/introduction-to-linear-data-structures/) | 
+| Data Structures | GeeksforGeeks, [Introduction to Linear Data Structures](https://www.geeksforgeeks.org/dsa/introduction-to-linear-data-structures/) |
 | Data Structures | CompilerSutra, [Non-Linear Data Structures](https://www.compilersutra.com/docs/DSA/non-Linear-DSA/) |
 | Data Structures | GeeksforGeeks, [Difference between Linear and Non-linear Data Structures](https://www.geeksforgeeks.org/dsa/difference-between-linear-and-non-linear-data-structures/) |
