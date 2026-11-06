@@ -61,6 +61,8 @@ We can also talk about a **policy**: a rule that tells us which action to take i
 
 The point isn't to memorize terminology immediately. It is to notice that we are no longer evaluating just one action—we are evaluating **a sequence of actions and their combined consequences**.
 
+![A shop starts Day 3 with 7 notebooks; a delivery of 5 raises stock to 12 before customers buy.](../../../Assets/Algorithms/Static/sequential-inventory-state.svg)
+
 ---
 
 ## 3. Why Isn't a Greedy Choice Always Enough?
@@ -100,6 +102,10 @@ Day 3: use a pass  -> +10 points (0 passes left)
 ```
 
 **16 > 11.** Waiting was better in this case.
+
+![Two tickets move to Days 1 and 2 for 11 points, versus Days 2 and 3 for 16 points.](../../../Assets/Algorithms/Animated/sequential-pass-plans.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/sequential-pass-plans.svg)
 
 **Important distinction:** This example shows why one *particular shortsighted rule* fails. It does **not** mean that every greedy algorithm fails on this problem; if all future values are known, we could simply select the two largest values.
 
@@ -148,6 +154,10 @@ best(day, passes_left) = max(Skip, Use)
 **Base case:** Once there are no days left, no more points can be earned; return `0`.
 
 This is a version of the **Bellman principle of optimality**: to make the best decision now, compare the immediate result **plus the best possible result afterward**.
+
+![A computation outline moves backward through the state table; best(0, 2) compares skipping for 16 with using a pass for 15.](../../../Assets/Algorithms/Animated/sequential-dp-table.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/sequential-dp-table.svg)
 
 ---
 
@@ -209,6 +219,8 @@ Use passes on days: [2, 3]
 - `best(0, 2)` asks: *What is the highest score from Day 1 onward if we have two passes?*
 - For each day, the function compares **skipping** with **using** a pass.
 - `@lru_cache` remembers the result for each `(day, passes_left)` pair, avoiding repeated calculations.
+
+![Two different decision paths meet at best(2, 1), whose cached future score of 10 can be reused.](../../../Assets/Algorithms/Static/sequential-memoization.svg)
 - After calculating the optimal score, the second loop reconstructs one optimal sequence of decisions.
 
 With `D` days and `P` starting passes, this implementation has at most **O(D × (P + 1))** distinct states, with constant work per state. The time and memoization space costs are therefore **O(DP)**; recursion also uses up to **O(D)** call-stack space. The actual state count may be smaller.
@@ -247,6 +259,8 @@ Imagine a shop deciding whether to order notebooks. The action is **order 5** or
 ```
 
 Instead of planning for one guaranteed future, we can evaluate **possible futures and their probabilities**.
+
+![Orders of 5 or 10 notebooks can each face low or high demand; the order does not determine demand.](../../../Assets/Algorithms/Static/sequential-uncertainty.svg)
 
 If the probabilities are known or estimated, a typical goal is to maximize **expected total reward** (or minimize expected total cost). We calculate the average outcome weighted by the probabilities—not a guaranteed result.
 

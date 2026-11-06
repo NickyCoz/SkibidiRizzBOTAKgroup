@@ -1,4 +1,4 @@
-# Inventory Management: How Much Should We Keep?
+# Inventory and Uncertainty Management
 
 Algorithms are not only used to search and sort information. They can also help us decide **how to use limited resources**.
 
@@ -9,6 +9,8 @@ Imagine you manage a small campus shop selling notebooks:
 - If you order **too few**, some customers cannot buy one (**understocking**).
 - If you order **too many**, you may pay to store unsold notebooks (**overstocking**).
 - You need a sensible balance, not simply the biggest or smallest possible order.
+
+![Four notebooks leave two unsold if demand is 2, match demand 4, and miss two customers if demand is 6.](../../../Assets/Algorithms/Static/inventory-stock-balance.svg)
 
 ## Where Do Algorithms Enter the Picture?
 
@@ -36,6 +38,8 @@ For example, suppose we estimate tomorrow's demand as follows. These probabiliti
 | 4 notebooks | 50% |
 | 6 notebooks | 20% |
 
+![Demand 2 has probability 30%, demand 4 has 50%, and demand 6 has 20%.](../../../Assets/Algorithms/Static/inventory-demand-probabilities.svg)
+
 Let's also assume:
 
 - Each unsold notebook costs us **2 units** in extra costs.
@@ -58,11 +62,17 @@ But we don't know which demand will happen. Instead, we calculate the **expected
 - Demand 4 (50% chance): cost 0.
 - Demand 6 (20% chance): 2 missed sales × 5 = cost 10.
 
+![Four notebooks leave the shelf for four of six customers; two missed sales cost 10 units.](../../../Assets/Algorithms/Animated/inventory-demand-six.svg)
+
+[Static version for print](../../../Assets/Algorithms/Static/inventory-demand-six.svg)
+
 ```text
 Expected cost = 0.30 × 4 + 0.50 × 0 + 0.20 × 10
               = 1.2 + 0 + 2
               = 3.2
 ```
+
+![The weighted costs 1.2, 0, and 2 add to an expected cost of 3.2 for stock 4.](../../../Assets/Algorithms/Static/inventory-expected-cost.svg)
 
 Let's compare the alternatives:
 
@@ -71,6 +81,8 @@ Let's compare the alternatives:
 | 2 | 9.0 |
 | 4 | 3.2 |
 | 6 | 4.4 |
+
+![Expected costs are 9.0, 3.2, and 4.4 for stock 2, 4, and 6; stock 4 is lowest.](../../../Assets/Algorithms/Static/inventory-stock-choice.svg)
 
 With these **specific assumptions**, stocking **4 notebooks** gives the lowest expected cost among the three choices. This does **not** guarantee tomorrow's cost will be 3.2; it is an average cost across the possible outcomes, weighted by their probabilities.
 
@@ -125,6 +137,8 @@ Now imagine the shop needs to plan for **seven days**, and leftover notebooks re
 - Our **uncertain outcome** is `how many notebooks customers buy`.
 - Our **goal** might be to minimize the expected total cost across all seven days.
 
+![An unsold notebook remains in tomorrow's stock, so today's order affects later decisions.](../../../Assets/Algorithms/Static/inventory-carryover.svg)
+
 DP can calculate the best future expected cost for each state, so it does not have to solve the same situation repeatedly. When future demand is random, this is an example of **stochastic dynamic programming** (DP with uncertainty).
 
 Here is the distinction:
@@ -157,4 +171,3 @@ Here is the distinction:
 5. Why might planning inventory for seven days require a different approach from choosing tomorrow's quantity?
 
 **Summary:** Inventory management is the practical problem of balancing available stock against demand and costs. A simple rule may be enough in some situations; comparing expected costs helps when demand is uncertain; and dynamic programming can help when inventory decisions affect many future days.
-
