@@ -25,7 +25,7 @@ Our project will cover three interconnected areas: **algorithms, data structures
 * [Linked lists](Data-Structures/04%20linked%20lists.md)
 * [Graphs](Data-Structures/09%20graphs.md)
 * [Binary Search Trees](Data-Structures/08%20trees.md)
-* Data versioning
+* [Data Versioning](Data-Structures/10%20data%20versioning.md)
 
 ### c. Connectionist Artificial Intelligence
 
