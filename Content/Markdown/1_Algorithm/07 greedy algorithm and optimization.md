@@ -1,4 +1,4 @@
-# Greedy Algorithm and Optimization
+# Chapter 7: Greedy Algorithm and Optimization
 We defined pathfinding as getting from a starting point A to a target B. What changes when routes have different costs?
 Suppose A to B costs 10, while A to C to B costs 4. BFS finds the one-edge route first because it minimizes the number of edges, not the total weight.
 
@@ -13,8 +13,15 @@ Recall:
 ![Choosing the cheapest immediate edge from A leads to cost 11, while going through C costs 4.](../../../Assets/Algorithms/Animated/greedy-choice.svg)
 
 The second diagram is a separate example: A–B costs 2, B–D costs 9, A–C costs 3, and C–D costs 1. Greedily taking the cheapest outgoing edge gives 11; the alternative gives 4. The Dijkstra and A* code below instead uses goal G and an A–B cost of 1.
+## Contents
 
-## What Is a Greedy Algorithm?
+- [1. What Is a Greedy Algorithm?](#1-what-is-a-greedy-algorithm)
+- [2. Dijkstra's Algorithm](#2-dijkstras-algorithm)
+- [3. A* Algorithm](#3-a-algorithm)
+- [4. Efficiency and Choosing a Method](#4-efficiency-and-choosing-a-method)
+- [5. Check Your Understanding](#5-check-your-understanding)
+- [References](#references)
+## 1. What Is a Greedy Algorithm?
 
 What is a greedy algorithm?
 A greedy algorithm is an algorithm design strategy that repeatedly makes a choice that looks best at the current moment.
@@ -27,7 +34,7 @@ Greedy algorithms can be efficient, but a choice that looks best right now does 
 
 
 
-## Dijkstra's Algorithm
+## 2. Dijkstra's Algorithm
 Dijkstra's algorithm finds shortest paths from a starting node in a weighted graph, provided all edge weights are non-negative.
 
 Here, shortest means smallest total weight, which could mean the fastest route, cheapest route, or shortest physical distance.
@@ -52,7 +59,7 @@ Three things Dijkstra keeps track of
 
 Dijkstra initially discovers a route to G costing 11, but does not immediately assume it is optimal. When it explores C, it updates the best known cost to 4.
 
-### Implementation (Python)
+### 2.1 Implementation (Python)
 The graph maps each string vertex label to a list of `(neighbor, cost)` pairs. Costs must be finite, non-negative numbers. Each listed edge is directed; add its reverse if the connection is undirected. `None` is reserved for the end of a parent chain.
 
 ```python
@@ -114,7 +121,7 @@ Total cost: 4
 
 The goal is final only when it is removed from the priority queue with its best cost, not when it is first discovered. If no route exists, the function returns `([], infinity)`. If start equals goal, it returns `([start], 0)` for a valid graph.
 
-## A* Algorithm
+## 3. A* Algorithm
 
 A* (A-Star): Using an Estimate to Guide the Search
 Dijkstra is useful, but imagine a very large map with thousands of intersections. Dijkstra searches outward according to the cheapest cost from the start, even when some directions do not look promising for reaching the destination.
@@ -140,7 +147,7 @@ To guarantee an optimal route in this finite-graph implementation, edge costs mu
 
 A **consistent** heuristic additionally satisfies `h(u) <= cost(u, v) + h(v)` on every edge. This implementation allows a vertex to be expanded again if a cheaper route to it is found, so admissible but inconsistent heuristics are supported. Setting every heuristic to zero gives Dijkstra's search priority.
 
-### Implementation (Python)
+### 3.1 Implementation (Python)
 ```python
 import heapq
 from math import isfinite
@@ -210,7 +217,7 @@ print("Total cost:", cost)
 
 Expected output is again `Path: ['A', 'C', 'G']` and `Total cost: 4`. Here B's initial priority is `1 + 8 = 9`, while C's is `3 + 1 = 4`, so C is expanded first.
 
-## Efficiency and Choosing a Method
+## 4. Efficiency and Choosing a Method
 
 For a finite simple graph, the heap-based Dijkstra implementation takes `O((V + E) log V)` time in the worst case, with the usual adjustment for very small graphs. This version leaves stale entries in the heap, so auxiliary space can be `O(V + E)`, rather than just `O(V)`. The upfront weight check takes `O(E)` time. A* can expand fewer vertices with a useful heuristic, but is not always faster; computing heuristics and re-expanding vertices can add work.
 
@@ -219,11 +226,12 @@ For a finite simple graph, the heap-based Dijkstra implementation takes `O((V + 
 - Use A* when a suitable admissible heuristic is available.
 - Neither implementation here supports negative weights. A different method, such as Bellman–Ford, is needed to handle them and detect reachable negative cycles.
 
-## Check Your Understanding
+## 5. Check Your Understanding
 
 Why is choosing the cheapest outgoing edge different from Dijkstra? What happens to A* when `h(n) = 0` for every vertex?
 
 **Answer:** Dijkstra chooses the frontier vertex with the lowest *accumulated* cost, rather than simply the cheapest next edge. With all-zero heuristics, A* prioritizes accumulated cost just as Dijkstra does.
+
 
 ## References
 

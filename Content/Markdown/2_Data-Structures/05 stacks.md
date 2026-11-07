@@ -1,12 +1,17 @@
-# Stack
+# Chapter 5: Stack
 
 A stack is a linear data structure that follows the Last-In, First-Out (LIFO) principle. The most recently added element is the first one removed. A stack of plates is a familiar example: the top plate is usually the first one picked up.
 
 ![A pile of plates with the last plate added on top.](../../../Assets/Data%20Structures/Animated/plate-stack.svg)
 
 ![A is below B. Both push and pop operate at the top of the stack.](../../../Assets/Data%20Structures/Static/stack.svg)
+## Contents
 
-## Operations
+- [1. Operations](#1-operations)
+- [2. Application](#2-application)
+- [3. Python example](#3-python-example)
+- [References](#references)
+## 1. Operations
 
 - **Push:** Add an item to the top.
 
@@ -35,13 +40,13 @@ A stack can be implemented with an array or a linked list. An array-based stack 
 
 **Expected answer.** Undo pops the edit that added B. The edit that added A is now on top.
 
-## Application
+## 2. Application
 
 Neil types `A` and then `B`. The editor adds both edits to an undo stack. When Neil presses Undo, the editor takes the top edit off the stack and reverses it. `B` disappears, and the edit that added `A` is now on top.
 
 ![Undo the latest edit.](../../../Assets/Data%20Structures/Animated/application-undo.svg)
 
-## Python example
+## 3. Python example
 
 Use the end of a Python list as the top of the stack. Call `append()` to push an item. Call `pop()` to remove and return the last item, so we can print it directly.
 
@@ -63,6 +68,7 @@ Expected output
 B
 A
 ```
+
 
 ## References
 

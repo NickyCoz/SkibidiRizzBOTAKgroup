@@ -1,6 +1,18 @@
-# Graph Searching: BFS, DFS & Routing and Coverage
+# Chapter 6: Graph Searching: BFS, DFS & Routing and Coverage
+## Contents
 
-## Graphs
+- [1. Graphs](#1-graphs)
+- [2. Graph Traversal](#2-graph-traversal)
+- [3. Graph Searching](#3-graph-searching)
+- [4. Connection to Pathfinding](#4-connection-to-pathfinding)
+- [5. Breadth-First Search (BFS)](#5-breadth-first-search-bfs)
+- [6. Depth-First Search (DFS)](#6-depth-first-search-dfs)
+- [7. DFS vs BFS](#7-dfs-vs-bfs)
+- [8. Recovering a Shortest Path with BFS](#8-recovering-a-shortest-path-with-bfs)
+- [9. Coverage and Complexity](#9-coverage-and-complexity)
+- [10. Check Your Understanding](#10-check-your-understanding)
+- [References](#references)
+## 1. Graphs
 Graphs are a foundation for pathfinding. First, recall how they represent connections.
 
 Graphs, as explained in our **Data structure** modules is a data structure used to represent relationships.
@@ -27,8 +39,8 @@ The graph's properties determine which searches and routes are valid:
 
 Direction and weighting are separate properties: a graph can be both directed and weighted. In the undirected example, vertices A–D could represent rooms and edges could represent connecting doors.
 
-## Graph Traversal
-### definition:
+## 2. Graph Traversal
+### 2.1 definition:
 process of systematically visiting nodes in a graph.
 
 Traversal visits nodes systematically; it need not modify their stored data. Starting from one node visits only nodes reachable from that start. A disconnected graph may need several starting points to cover every vertex.
@@ -70,7 +82,7 @@ A > B > E > D > C > F > G
 **LIFO** = Last in, First out. This is how DFS Maintains this specific traversal order.
 ![DFS explores B and its children before the branch at C.](../../../Assets/Algorithms/Animated/dfs-traversal.svg)
 
-## Graph Searching
+## 3. Graph Searching
 [Graph Traversal](#graph-traversal) described visit orders without a target. A search adds a goal, such as finding vertex E.
 
 Traversal can be used for searching by adding a target test. A target search can stop at a match; if no reachable vertex matches, it must report failure after exhausting the reachable vertices.
@@ -81,7 +93,7 @@ Recall the possible ways to traverse through a graph and what pathfinding algori
 
 ![BFS searching for E stops once E is reached.](../../../Assets/Algorithms/Animated/graph-search.svg)
 
-## Connection to Pathfinding
+## 4. Connection to Pathfinding
 
 The best way to sum up pathfinding is by asking yourself how can you get from a starting point (node) A,  to an end point (target),B through all possible valid **routes**.
 
@@ -89,10 +101,10 @@ you can find a path, but which route is takes the fewest steps, whats the shorte
 
 ![The path A to B to E contains two edges.](../../../Assets/Algorithms/Animated/bfs-path.svg)
 
-## Breadth-First Search (BFS)
+## 5. Breadth-First Search (BFS)
 BFS - Breadth-First Search is our first graph traversal algorithm.
 
-### How BFS Works
+### 5.1 How BFS Works
 * starts off from its starting node
 * explores level by level
 * gradually moves farther away
@@ -108,7 +120,7 @@ uses queue (FIFO) to remember which nodes to explore next.
 
 ![BFS explores all vertices at the current distance before going farther.](../../../Assets/Algorithms/Animated/bfs-traversal.svg)
 
-### Implementation (Python)
+### 5.2 Implementation (Python)
 ```python
 from collections import deque
 
@@ -156,7 +168,7 @@ This code uses a **different directed graph** from the earlier seven-node tree. 
 
 ![The Python example uses this directed graph and visits A, B, C, D, E, F.](../../../Assets/Algorithms/Animated/bfs-code-graph.svg)
 
-## Depth-First Search (DFS)
+## 6. Depth-First Search (DFS)
 
 * Start from the chosen starting vertex
 * explore one branch as deeply as possible
@@ -199,7 +211,7 @@ Neighbor-list order determines tie-breaking, so another order can still be corre
 
 ![DFS uses a branch-first visit order on the tree-shaped example.](../../../Assets/Algorithms/Animated/dfs-traversal.svg)
 
-## DFS vs BFS
+## 7. DFS vs BFS
 **DFS:**
 * Most commonly implemented with recursion
 * uses a stack (LIFO): **Last In, First Out**
@@ -220,7 +232,7 @@ Graph traversal: systematically visiting nodes in a graph.
 
 For weighted-route optimization with Dijkstra and A*, see [Greedy Algorithm and Optimization](07%20greedy%20algorithm%20and%20optimization.md).
 
-## Recovering a Shortest Path with BFS
+## 8. Recovering a Shortest Path with BFS
 
 The traversal function returns a visit order, which is **not** a route: consecutive visited vertices need not share an edge. To recover a shortest unweighted route, record the parent that first discovers each vertex.
 
@@ -253,17 +265,18 @@ print(bfs_path(tree, 'A', 'E'))
 
 Expected output: `['A', 'B', 'E']`. If start equals goal, the returned path contains that single vertex. `[]` means the goal is unreachable. These examples use string vertex labels; `None` marks the end of a parent chain.
 
-## Coverage and Complexity
+## 9. Coverage and Complexity
 
 To cover a disconnected graph, start another traversal at each vertex not visited by earlier traversals. In a directed graph, the reachable sets depend on edge direction; this process does not by itself identify strongly connected components.
 
 With adjacency lists and average constant-time set/dictionary operations, BFS and DFS take `O(V + E)` time for the vertices and edges they examine. A full-graph traversal visits all `V` vertices and examines all `E` listed edges. Their visited records, queues, or stacks require `O(V)` auxiliary space. The path-recovery step takes at most `O(V)` additional time and space.
 
-## Check Your Understanding
+## 10. Check Your Understanding
 
 If an isolated vertex H is added to the seven-node tree, does BFS starting at A visit H? Can DFS's visit order be used directly as a shortest route?
 
 **Answer:** No: H is unreachable from A, so a separate traversal is needed. A DFS visit order is not necessarily a route and does not guarantee a shortest path.
+
 
 ## References
 
