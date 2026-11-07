@@ -1,4 +1,4 @@
-# Chapter 8: Recommendation Systems (Brief)
+# Chapter 8: Recommendation Systems
 
 **Level:** Beginner | **Reading time:** ~25 minutes
 

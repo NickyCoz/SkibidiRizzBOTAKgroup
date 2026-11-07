@@ -1,4 +1,4 @@
-# Chapter 1: Introduction to Connectionist AI (Brief)
+# Chapter 1: Introduction to Connectionist AI
 ## Contents
 
 - [1. What Is Connectionist AI?](#1-what-is-connectionist-ai)

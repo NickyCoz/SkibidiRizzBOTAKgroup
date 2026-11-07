@@ -94,10 +94,10 @@ After completing these study guidelines, the learner is expected to understand h
 | 🗺️ `Module outline` | Finished |
 | ⚙️ `Introduction to Algorithm Module` | Finished |
 | 🗃️ `Introduction to Data Structure Module` | Finished |
-| 📘 `Study Guide` | Not Started |
-| 📝 `Test Bank` | Not Started |
-| 📊 `PPT Slides` | Not Started |
-| 🎬 `Video Tutorials` | Not Started |
+| 📘 `Study Guide` | Finished |
+| 📝 `Test Bank` | Finished |
+| 📊 `PPT Slides` | Finished |
+| 🎬 `Video Tutorials` | Finished |
 | 🎙️ `Live Mini Lecture` | Not Started |
 
 ## Workflow and Quality Control

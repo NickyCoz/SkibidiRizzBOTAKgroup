@@ -1,4 +1,4 @@
-# Chapter 3: Applications of Neural Networks (Brief)
+# Chapter 3: Applications of Neural Networks
 ## Contents
 
 - [1. Why So Many Applications?](#1-why-so-many-applications)
