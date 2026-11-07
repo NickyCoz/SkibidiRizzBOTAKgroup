@@ -1,6 +1,15 @@
-# Basic Sorting Algorithms
+# Chapter 2: Basic Sorting Algorithms
+## Contents
 
-## Improving Bubble Sort
+- [1. Improving Bubble Sort](#1-improving-bubble-sort)
+- [2. Efficiency](#2-efficiency)
+- [3. Same Problem, Different Algorithms](#3-same-problem-different-algorithms)
+- [4. Selection Sort](#4-selection-sort)
+- [5. Insertion Sort](#5-insertion-sort)
+- [6. Comparing the Algorithms](#6-comparing-the-algorithms)
+- [7. Check Your Understanding](#7-check-your-understanding)
+- [References](#references)
+## 1. Improving Bubble Sort
 Suppose our grades were already sorted:
 ```
 [29, 40, 72, 85, 91, 100]
@@ -31,7 +40,7 @@ Early stopping reduces comparisons when a pass makes no swaps. It improves the b
 
 ![One pass on sorted input finds no swaps, so the optimized algorithm stops.](../../../Assets/Algorithms/Animated/bubble-early-stop.svg)
 
-## Efficiency
+## 2. Efficiency
 when comparing efficiency, ask yourself:
 
 * how many items are checked?
@@ -58,13 +67,13 @@ Our **average case** depends on assumptions about which inputs are likely.
 
 ![The five-item examples require 4, 9, and 10 comparisons.](../../../Assets/Algorithms/Static/efficiency-comparisons.svg)
 
-## Same Problem, Different Algorithms
+## 3. Same Problem, Different Algorithms
 Recall the same problem: sort this list of grades in ascending order:
 ```
 [72,85,91,68] 
 ```
 in [Introduction to Algorithms](01%20introduction%20to%20algorithms.md) we primarily used Bubble sorting which compares adjacent numbers, and swaps them if they are in the wrong order, now we can introduce another sorting algorithm.
-## Selection Sort
+## 4. Selection Sort
 1. Treat the first unsorted index as the position of the minimum.
 2. Scan **all remaining unsorted items**. Whenever a smaller value is found, remember its index.
 3. Swap that minimum with the first unsorted item, unless it is already there.
@@ -88,7 +97,7 @@ print(selection_sort([72, 85, 91, 68]))
 
 Expected output: `[68, 72, 85, 91]`.
 
-## Insertion Sort
+## 5. Insertion Sort
 Return to the list `[72, 85, 91, 68]`.
 
 1. Skip the first index [0], a single  element is always sorted.
@@ -119,17 +128,18 @@ print(insertion_sort([7, 4, 9, 2, 5]))
 
 Expected output: `[2, 4, 5, 7, 9]`.
 
-## Comparing the Algorithms
+## 6. Comparing the Algorithms
 
 All three implementations modify the input list in place and use `O(1)` auxiliary space. Optimized bubble sort and insertion sort take `O(n)` time on sorted input and `O(n²)` in the worst case. Selection sort always performs `n(n - 1) / 2` value comparisons, so its best and worst cases are `O(n²)`.
 
 Bubble sort and insertion sort preserve the original order of equal-valued items when they swap or shift only on `>`. This property is called **stability**. The selection sort shown here is not stable in general because its swaps can move equal-valued items past one another.
 
-## Check Your Understanding
+## 7. Check Your Understanding
 
 After the first selection sort pass on `[3, 1, 2]`, what is the list? What does insertion sort produce after inserting its second item?
 
 **Answer:** Both produce `[1, 3, 2]`, but they reach it differently: selection sort finds the minimum of the entire unsorted portion, while insertion sort inserts `1` into the sorted portion containing `3`.
+
 
 ## References
 

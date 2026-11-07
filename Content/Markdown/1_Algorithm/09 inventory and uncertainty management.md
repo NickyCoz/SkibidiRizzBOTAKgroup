@@ -1,4 +1,4 @@
-# Inventory and Uncertainty Management
+# Chapter 9: Inventory and Uncertainty Management
 
 Algorithms are not only used to search and sort information. They can also help us decide **how to use limited resources**.
 
@@ -11,8 +11,27 @@ Imagine you manage a small campus shop selling notebooks:
 - You need a sensible balance, not simply the biggest or smallest possible order.
 
 ![Four notebooks leave two unsold if demand is 2, match demand 4, and miss two customers if demand is 6.](../../../Assets/Algorithms/Static/inventory-stock-balance.svg)
+## Contents
 
-## Where Do Algorithms Enter the Picture?
+- [1. Where Do Algorithms Enter the Picture?](#1-where-do-algorithms-enter-the-picture)
+- [2. Managing Uncertainty in Inventory: What If We Don't Know What Happens Next?](#2-managing-uncertainty-in-inventory-what-if-we-dont-know-what-happens-next)
+- [3. Python Implementation: Compare Stock Quantities](#3-python-implementation-compare-stock-quantities)
+- [4. Connecting Inventory Management to Dynamic Programming](#4-connecting-inventory-management-to-dynamic-programming)
+- [Further Reading](#further-reading)
+- [5. Quick Knowledge Check](#5-quick-knowledge-check)
+
+## Further Reading
+
+[Cornell Optimization Wiki — Newsvendor Problem](https://optimization.cbe.cornell.edu/index.php?title=Newsvendor_problem) — an introduction to single-period inventory under uncertain demand.
+
+[Data-driven newsvendor problem](https://doi.org/10.1016/j.ijpe.2022.108509) — further reading about expected overstock and shortage costs.
+
+---
+
+---
+
+
+## 1. Where Do Algorithms Enter the Picture?
 
 The decision depends on the type of problem:
 
@@ -24,7 +43,7 @@ The decision depends on the type of problem:
 
 ---
 
-## Managing Uncertainty in Inventory: What If We Don't Know What Happens Next?
+## 2. Managing Uncertainty in Inventory: What If We Don't Know What Happens Next?
 
 There is an extra complication in our notebook shop: **we do not know exactly how many people will buy a notebook tomorrow**.
 
@@ -88,7 +107,7 @@ Let's compare the alternatives:
 
 With these **specific assumptions**, stocking **4 notebooks** gives the lowest expected cost among the three choices. This does **not** guarantee tomorrow's cost will be 3.2; it is an average cost across the possible outcomes, weighted by their probabilities.
 
-## Python Implementation: Compare Stock Quantities
+## 3. Python Implementation: Compare Stock Quantities
 
 ```python
 # Illustrative probabilities, not real demand forecasts.
@@ -130,7 +149,7 @@ Best stock quantity: 4
 
 This code simply **evaluates possible decisions**; it is **not a dynamic programming implementation**. It introduces the idea of making decisions using expected outcomes.
 
-## Connecting Inventory Management to Dynamic Programming
+## 4. Connecting Inventory Management to Dynamic Programming
 
 Now imagine the shop needs to plan for **seven days**, and leftover notebooks remain available the next morning.
 
@@ -156,17 +175,7 @@ Here is the distinction:
 
 **Key takeaway:** Inventory management and uncertainty management are **real-world problems/considerations**, while greedy algorithms and dynamic programming are **algorithm design methods** that can help address them. They often overlap, but they are not four algorithms of the same type.
 
-## Further Reading
-
-[Cornell Optimization Wiki — Newsvendor Problem](https://optimization.cbe.cornell.edu/index.php?title=Newsvendor_problem) — an introduction to single-period inventory under uncertain demand.
-
-[Data-driven newsvendor problem](https://doi.org/10.1016/j.ijpe.2022.108509) — further reading about expected overstock and shortage costs.
-
----
-
----
-
-## Quick Knowledge Check
+## 5. Quick Knowledge Check
 
 1. What is the difference between **overstocking** and **understocking**?
 2. Why might ordering exactly what sold yesterday be unreliable?
@@ -174,7 +183,7 @@ Here is the distinction:
 4. In the Python example, which stock quantity has the smallest expected cost?
 5. Why might planning inventory for seven days require a different approach from choosing tomorrow's quantity?
 
-### Answers
+### 5.1 Answers
 
 1. Overstocking leaves excess items; understocking leaves some demand unmet.
 2. Demand can change, yesterday's sales can be limited by stock-outs, and existing stock also matters.

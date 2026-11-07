@@ -1,11 +1,17 @@
-# Binary Search, Linear Search, and Big O Notation
+# Chapter 3: Binary Search, Linear Search, and Big O Notation
+## Contents
 
-## Linear Search
+- [1. Linear Search](#1-linear-search)
+- [2. Binary Search](#2-binary-search)
+- [3. Big O Notation](#3-big-o-notation)
+- [4. Check Your Understanding](#4-check-your-understanding)
+- [References](#references)
+## 1. Linear Search
 if sorting arranges items, searching finds a particular item.
 
 Linear search, at its core is essentially a way to find a target by examining elements one by one.
 
-#### given an array of integers: [72,85,91,68] you're assigned to find 68.
+### 1.1 given an array of integers: [72,85,91,68] you're assigned to find 68.
 finding 68 itself requires **4** checks, finding 91 requires **3**, finding 85 requires **2** , finding 72 requires **1**.
 
 
@@ -19,7 +25,7 @@ finding 68 itself requires **4** checks, finding 91 requires **3**, finding 85 r
 
 ![Linear search checks the four values in order to find 68.](../../../Assets/Algorithms/Animated/linear-search.svg)
 
-#### Implementation (python):
+#### 1.1.1 Implementation (python):
 ```python
 def linear_search(values, target):
     for index in range(len(values)):
@@ -34,12 +40,12 @@ if index == -1:
 else:
     print(f"found 68 at index {index}")
 ```
-#### output: found 68 at index 3
+#### 1.1.2 output: found 68 at index 3
 **Important distinction:** searching finds a target's location; sorting rearranges items into an order.
 
 Something else to note is the fact that linear search works whether the array is sorted or unsorted.
 
-## Binary Search
+## 2. Binary Search
 Now ask yourself:
 
 1. what happens as the dataset grows? what if our array has a million or more elements?
@@ -50,7 +56,7 @@ A linear search may need to inspect all those items. If the data is already sort
 
 If Linear search checks one by one, binary search repeatedly eliminates half of remaining possibilities with one requirement:
 **The values must be sorted using the same comparison order.** The example below assumes ascending order. Its `O(log n)` time bound also assumes constant-time index access, as with an array or Python list.
-#### given an array of integers: [1,3,5,7,9, 11, 13] we want to find the target: 11
+### 2.1 given an array of integers: [1,3,5,7,9, 11, 13] we want to find the target: 11
 
 1. Find, and examine the middle of the array.
 2. Compare the value of the element with our target
@@ -60,7 +66,7 @@ If Linear search checks one by one, binary search repeatedly eliminates half of 
 
 ![Binary search compares the target 11 with 7, then finds it at index 5.](../../../Assets/Algorithms/Animated/binary-search.svg)
 
-#### To find, and examine the middle element, think of the midpoint formula:
+#### 2.1.1 To find, and examine the middle element, think of the midpoint formula:
 ```
 Minimum + Maximum
 __________________
@@ -79,7 +85,7 @@ mid = (left + right) // 2
 
 ![The midpoint of index bounds 0 and 6 is index 3.](../../../Assets/Algorithms/Static/midpoint.svg)
 
-### Implementation (Python)
+### 2.2 Implementation (Python)
 ```python
 def binary_search(arr, target):
     low = 0
@@ -107,7 +113,7 @@ Output: Target 68 found at index: 5
 
 An empty list or an absent target returns `-1`. If values repeat, this binary search returns a matching index, which may not be the first match. Do not use a returned `-1` to index the list: in Python, index `-1` refers to its last item.
 
-## Big O Notation
+## 3. Big O Notation
 
 Here, `n` is the number of input items. For operation counts and growth examples, see [Time Complexity Analysis](05%20time%20complexity%20analysis.md).
 
@@ -126,11 +132,12 @@ Here, `n` is the number of input items. For operation counts and growth examples
 
 ![Compare constant, logarithmic, linear, and quadratic growth on the same axes.](../../../Assets/Algorithms/Static/complexity-growth.svg)
 
-## Check Your Understanding
+## 4. Check Your Understanding
 
 What do both functions return for an empty list? How many middle items does binary search inspect when finding `11` in `[1, 3, 5, 7, 9, 11, 13]`?
 
 **Answer:** Both return `-1` for an empty list. The binary search inspects `7`, then `11`: two middle items.
+
 
 ## References
 

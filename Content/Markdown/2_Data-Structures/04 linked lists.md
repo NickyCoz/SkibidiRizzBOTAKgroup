@@ -1,14 +1,21 @@
-# Linked List
+# Chapter 4: Linked List
 
 A linked list is a sequence of nodes. A node is an item that stores a value and one or more links to other nodes. Nodes do not have to be stored next to each other in memory.
+## Contents
 
-## Features
+- [1. Features](#1-features)
+- [2. Types](#2-types)
+- [3. Operations](#3-operations)
+- [4. Application](#4-application)
+- [5. Python example](#5-python-example)
+- [References](#references)
+## 1. Features
 
 - **Node:** Holds data and link information.
 - **Head:** The first node and the starting point for traversing the list.
 - **Tail:** The last node. Its next link is empty in a non-circular list and points back to the head in a circular list.
 
-## Types
+## 2. Types
 
 - **Singly linked list:** Each node links to the next node, so traversal moves forward.
 
@@ -20,7 +27,7 @@ A linked list is a sequence of nodes. A node is an item that stores a value and 
 
   ![The last node points back to the first.](../../../Assets/Data%20Structures/Static/list-circular.svg)
 
-## Operations
+## 3. Operations
 
 - **Accessing an element:** Start at the head and follow links until reaching the required position. This takes `O(n)` time in the general case.
 
@@ -45,13 +52,13 @@ After inserting `85`, follow the links from the head until you reach `None`.
 
 ![Head points to 72, then 85, then 91, then None.](../../../Assets/Data%20Structures/Static/list-traversal.svg)
 
-## Application
+## 4. Application
 
 Imagine a music app where each song stores a link to the next one. If Darren adds a song between Track 1 and Track 2, the app first links the new song to Track 2. Then it updates Track 1 to play the new song next. The rest of the playlist can stay as it is.
 
 ![Insert a song into a playlist.](../../../Assets/Data%20Structures/Animated/application-playlist.svg)
 
-## Python example
+## 5. Python example
 
 Each node stores a value and a link to the next node. Insert `85` after the head, then follow the links until they end.
 
@@ -79,6 +86,7 @@ Expected output
 85
 91
 ```
+
 
 ## References
 

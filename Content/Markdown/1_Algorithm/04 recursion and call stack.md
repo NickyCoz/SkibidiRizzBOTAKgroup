@@ -1,5 +1,12 @@
-# Recursion and Call Stack
-## What Is Recursion?
+# Chapter 4: Recursion and Call Stack
+## Contents
+
+- [1. What Is Recursion?](#1-what-is-recursion)
+- [2. Call Stack](#2-call-stack)
+- [3. Cost and Limitations](#3-cost-and-limitations)
+- [4. Check Your Understanding](#4-check-your-understanding)
+- [References](#references)
+## 1. What Is Recursion?
 **Recursion** is a technique where a function calls itself directly or indirectly. The examples here solve a smaller version of the same problem until they reach a stopping condition.
 
 The call that started the work waits while a smaller recursive call supplies an answer.
@@ -8,7 +15,7 @@ We will calculate **factorial**: for a non-negative integer `n`, `n!` is the pro
 
 The C version below is optional; the Python version is sufficient for this module. The C program accepts integer input from `0` through `20` so the result fits in a `long long`.
 
-### Iterative implementation (C)
+### 1.1 Iterative implementation (C)
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,7 +63,7 @@ int main(void)
 
 
 ```
-### Recursive implementation (Python)
+### 1.2 Recursive implementation (Python)
 
 ```python
 def factorial_recursive(n):
@@ -85,7 +92,7 @@ Each recursive factorial call moves toward the base case by reducing `n` by one:
 what happens after we reach the base case?
 ![Returned values allow the waiting calls to finish, ending at 120.](../../../Assets/Algorithms/Animated/factorial-returns.svg)
 
-## Call Stack
+## 2. Call Stack
 Recall the [recursion example](#what-is-recursion), and ask yourself again:
 
 1. how does the program know where it left off?
@@ -114,17 +121,18 @@ Then factorial(2) can finish, followed by factorial(3), and so on.
 
 ----
 
-## Cost and Limitations
+## 3. Cost and Limitations
 
 For non-negative integer `n`, the recursive version uses `O(n)` calls and `O(n)` call-stack space; the loop uses `O(n)` multiplications and `O(1)` auxiliary space in the usual fixed-size-number model. Python's large-integer multiplications cost more as the result grows, so these operation counts are not exact bit-operation bounds. A loop avoids the recursion-depth limit.
 
 A base case alone is insufficient: each recursive call must move toward it. Calling a function with the same argument repeatedly can still cause unbounded recursion.
 
-## Check Your Understanding
+## 4. Check Your Understanding
 
 What does `factorial_recursive(0)` return? Why would replacing `n - 1` with `n` break the recursive case?
 
 **Answer:** It returns `1`. Using `n` again would never reach the base case for `n > 1`, eventually causing `RecursionError`.
+
 
 ## References
 

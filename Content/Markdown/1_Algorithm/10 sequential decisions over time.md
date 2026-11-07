@@ -1,4 +1,4 @@
-# Sequential Decisions Over Time
+# Chapter 10: Sequential Decisions Over Time
 
 > **Big idea:** Some decisions cannot be judged independently. What we choose **now** changes the options available **later**.
 
@@ -9,7 +9,24 @@ Imagine you have a limited number of resources and several days to use them. Sho
 This is a **sequential decision problem**: we must make a choice at one step, update our situation, and then make another choice based on what remains.
 
 ---
+## Contents
 
+- [1. What Makes a Decision *Sequential*?](#1-what-makes-a-decision-sequential)
+- [2. The Building Blocks](#2-the-building-blocks)
+- [3. Why Isn't a Greedy Choice Always Enough?](#3-why-isnt-a-greedy-choice-always-enough)
+- [4. Connection to Dynamic Programming (DP)](#4-connection-to-dynamic-programming-dp)
+- [5. Python Implementation: Planning Several Decisions](#5-python-implementation-planning-several-decisions)
+- [6. What If the Future Is Uncertain?](#6-what-if-the-future-is-uncertain)
+- [7. Connecting This to Earlier Topics](#7-connecting-this-to-earlier-topics)
+- [8. Knowledge Check](#8-knowledge-check)
+- [Summary](#summary)
+- [References](#references)
+
+## Summary
+
+**Sequential decision-making** is about making a series of connected choices where each action can affect later opportunities. Greedy rules consider a local choice; dynamic programming can compare complete future outcomes when the problem has the right structure. When future outcomes are uncertain, probability-based models such as MDPs help us compare the **expected consequences** of different actions.
+
+**Main takeaway:** Do not ask only, *"What looks best now?"* Also ask, *"How will this choice change what I can do next?"*
 ## 1. What Makes a Decision *Sequential*?
 
 A **one-time decision** is made once. A **sequential decision** happens over several steps, and earlier choices can affect later ones.
@@ -138,7 +155,7 @@ For each state, we consider two possible actions:
 
 Choose whichever action gives the larger **total future score**, not merely the larger immediate score.
 
-### The DP Recurrence
+### 4.1 The DP Recurrence
 
 Let `best(day, passes_left)` be the maximum score obtainable from this day onward.
 
@@ -219,7 +236,7 @@ Maximum points: 16
 Use passes on days: [2, 3]
 ```
 
-### How Does the Code Work?
+### 5.1 How Does the Code Work?
 
 - `best(0, 2)` asks: *What is the highest score from Day 1 onward if we have two passes?*
 - For each day, the function compares **skipping** with **using** a pass.
@@ -248,7 +265,7 @@ Now the next state may depend on **chance**, not just our chosen action.
 
 This leads to **decision-making under uncertainty**.
 
-### A Simple Example
+### 6.1 A Simple Example
 
 Imagine a shop deciding whether to order notebooks. The action is **order 5** or **order 10**, but tomorrow's demand could be low or high.
 
@@ -332,7 +349,7 @@ At the terminal time `T`, specify `V_T(s)`: it is zero if nothing more is gained
 6. How does **uncertainty** change the way we plan future decisions?
 7. Is an MDP itself the same thing as Dijkstra's algorithm? Why or why not?
 
-### Answers
+### 8.1 Answers
 
 1. Earlier choices change the state and available choices at later steps.
 2. The state is `(day, passes_left)`. The actions are skip, or use one pass if available.
@@ -344,11 +361,6 @@ At the terminal time `T`, specify `V_T(s)`: it is zero if nothing more is gained
 
 ---
 
-## Summary
-
-**Sequential decision-making** is about making a series of connected choices where each action can affect later opportunities. Greedy rules consider a local choice; dynamic programming can compare complete future outcomes when the problem has the right structure. When future outcomes are uncertain, probability-based models such as MDPs help us compare the **expected consequences** of different actions.
-
-**Main takeaway:** Do not ask only, *"What looks best now?"* Also ask, *"How will this choice change what I can do next?"*
 
 ## References
 

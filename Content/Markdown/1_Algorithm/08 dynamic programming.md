@@ -1,7 +1,14 @@
-# Dynamic Programming (DP)
+# Chapter 8: Dynamic Programming (DP)
 Dynamic programming is an algorithm design technique.
+## Contents
 
-## What Is Dynamic Programming?
+- [1. What Is Dynamic Programming?](#1-what-is-dynamic-programming)
+- [2. Example: Fibonacci Numbers](#2-example-fibonacci-numbers)
+- [3. Memoization (Top-Down)](#3-memoization-top-down)
+- [4. Tabulation (Bottom-Up)](#4-tabulation-bottom-up)
+- [5. Check Your Understanding](#5-check-your-understanding)
+- [References](#references)
+## 1. What Is Dynamic Programming?
 
 **Dynamic programming** solves a problem by breaking it into **smaller subproblems**, **saving the answers**, and **reusing those answers** instead of solving the same subproblem repeatedly.
 
@@ -11,7 +18,7 @@ This connects directly to [Recursion and Call Stack](04%20recursion%20and%20call
 
 DP is especially useful when **subproblems overlap**, so their answers would otherwise be recomputed. For optimization problems it also needs **optimal substructure**: an optimal overall solution can be assembled from optimal solutions to the relevant smaller states. Merely writing a recursive function does not make it dynamic programming.
 
-## Example: Fibonacci Numbers
+## 2. Example: Fibonacci Numbers
 
 The Fibonacci sequence starts:
 
@@ -43,7 +50,7 @@ Here is the issue: **the same calculations happen again and again**.
 
 Dynamic programming avoids that repetition by **remembering previously computed answers**.
 
-## Memoization (Top-Down)
+## 3. Memoization (Top-Down)
 
 **Memoization** is recursion **plus a memory/cache**. The first time we compute a subproblem, we store the answer. The next time we need it, we look it up.
 
@@ -72,7 +79,7 @@ def fibonacci_memo(n, memo=None):
 print(fibonacci_memo(6))  # 8
 ```
 
-## Tabulation (Bottom-Up)
+## 4. Tabulation (Bottom-Up)
 
 **Tabulation** starts with the smallest answers and builds up to the one we need, usually with a **loop** rather than recursion.
 
@@ -105,11 +112,12 @@ Both versions perform **`O(n)` arithmetic steps**, whereas straightforward recur
 
 They can both work with intermediate costs, but **they do not work in exactly the same way**.
 
-## Check Your Understanding
+## 5. Check Your Understanding
 
 Why does memoization help with `fib(5)`? What do the two implementations return for `n = 0` and `n = 1`?
 
 **Answer:** Calls such as `fib(3)` and `fib(2)` repeat; saving their results avoids computing them again. Both implementations return `0` and `1`, respectively.
+
 
 ## References
 

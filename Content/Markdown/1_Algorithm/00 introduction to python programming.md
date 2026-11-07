@@ -1,8 +1,25 @@
-# Introduction to Python Programming
+# Chapter 0: Introduction to Python Programming
 
 > **Purpose:** Learn enough Python syntax to read and understand the code examples in the algorithms modules. This module assumes no prior Python experience.
 
 ## Learning Objectives
+## Contents
+
+- [Learning Objectives](#learning-objectives)
+- [1. Before You Start: Running the Examples](#1-before-you-start-running-the-examples)
+- [2. Variables and Basic Data Types](#2-variables-and-basic-data-types)
+- [3. Statements and Conditional Statements](#3-statements-and-conditional-statements)
+- [4. Relational (Comparison) Operators](#4-relational-comparison-operators)
+- [5. Logical Operators](#5-logical-operators)
+- [6. Loops](#6-loops)
+- [7. Functions and Return Values](#7-functions-and-return-values)
+- [8. Lists, Dictionaries, and Sets](#8-lists-dictionaries-and-sets)
+- [9. Imports and Standard Libraries](#9-imports-and-standard-libraries)
+- [10. Basic Debugging and Error Handling](#10-basic-debugging-and-error-handling)
+- [11. Bringing It Together: Linear Search](#11-bringing-it-together-linear-search)
+- [12. Quick Self-Check](#12-quick-self-check)
+- [Suggested Further Reading](#suggested-further-reading)
+
 
 By the end of this module, you should be able to:
 - Create and update variables using basic Python data types.
@@ -15,7 +32,7 @@ By the end of this module, you should be able to:
 
 ---
 
-## Before You Start: Running the Examples
+## 1. Before You Start: Running the Examples
 
 Use Python 3. These algorithm lessons use only Python's standard library; no extra packages are required. The optional C example in the recursion lesson needs a separate C compiler.
 
@@ -28,7 +45,7 @@ Blocks labelled `text` contain output, diagrams, or pseudocode; they are not Pyt
 
 ---
 
-## 1. Variables and Basic Data Types
+## 2. Variables and Basic Data Types
 
 A **variable** is a name that refers to a value. You can think of it as a label attached to information your program uses.
 
@@ -64,7 +81,7 @@ print(score)  # 15
 
 ![The name score refers to 10 before reassignment and 15 after adding 5.](../../../Assets/Algorithms/Static/python-assignment.svg)
 
-### Basic arithmetic
+### 2.1 Basic arithmetic
 
 | Operator | Meaning | Example | Result |
 |---|---|---|---|
@@ -85,7 +102,7 @@ print(number % 2 == 0)  # True
 
 ---
 
-## 2. Statements and Conditional Statements
+## 3. Statements and Conditional Statements
 
 A **statement** tells Python to perform an action. Assignment, printing, and making decisions are all examples.
 
@@ -115,7 +132,7 @@ Python tests the branches from top to bottom, executes the first matching branch
 
 ---
 
-## 3. Relational (Comparison) Operators
+## 4. Relational (Comparison) Operators
 
 **Relational operators** compare values and produce `True` or `False`.
 
@@ -134,7 +151,7 @@ Remember:
 
 ---
 
-## 4. Logical Operators
+## 5. Logical Operators
 
 Logical operators allow you to combine or reverse conditions.
 
@@ -160,11 +177,11 @@ In this example, the program permits entry only if **both** conditions are true.
 
 ---
 
-## 5. Loops
+## 6. Loops
 
 **Loops** repeat instructions so you do not need to write the same code multiple times.
 
-### 5.1 `for` loops
+### 6.1 `for` loops
 
 A `for` loop visits values in an iterable (such as a range or list), one at a time.
 
@@ -200,7 +217,7 @@ for number in numbers:
 
 This is a common pattern in **linear search** and **sorting**.
 
-### 5.2 `while` loops
+### 6.2 `while` loops
 
 A `while` loop keeps repeating **as long as its condition remains true**.
 
@@ -216,7 +233,7 @@ while count < 5:
 
 ![The loop prints counts 0 through 4; when count reaches 5, count < 5 is false and it stops.](../../../Assets/Algorithms/Static/python-while-trace.svg)
 
-### 5.3 `break` and `continue`
+### 6.3 `break` and `continue`
 
 - `break` exits the nearest loop immediately.
 - `continue` skips the rest of the current iteration and moves to the next one.
@@ -233,7 +250,7 @@ for number in [2, 4, 7, 8]:
 
 ---
 
-## 6. Functions and Return Values
+## 7. Functions and Return Values
 
 A **function** is a reusable block of code. You define it using `def`, pass information in through **parameters**, and optionally send a result back using `return`.
 
@@ -268,11 +285,11 @@ Here, `n` is an integer. Each recursive call reduces it toward the stopping cond
 
 ---
 
-## 7. Lists, Dictionaries, and Sets
+## 8. Lists, Dictionaries, and Sets
 
 These collections are useful throughout algorithms.
 
-### 7.1 Lists
+### 8.1 Lists
 
 A **list** stores an ordered sequence of values. Its elements are indexed starting at `0`.
 
@@ -292,7 +309,7 @@ Lists are commonly used for **sorting**, **searching**, and storing dynamic prog
 
 [Static version for print](../../../Assets/Algorithms/Static/python-list-update.svg)
 
-### 7.2 Dictionaries
+### 8.2 Dictionaries
 
 A **dictionary** stores **key–value pairs**.
 
@@ -305,7 +322,7 @@ distances["C"] = 5
 
 Dictionaries are often used to store distances or parent nodes in **graph algorithms**.
 
-### 7.3 Sets
+### 8.3 Sets
 
 A **set** stores unique values and supports fast membership checks on average.
 
@@ -323,7 +340,7 @@ A `visited` set is commonly used in **BFS** and **DFS** to avoid repeatedly expl
 
 ---
 
-## 8. Imports and Standard Libraries
+## 9. Imports and Standard Libraries
 
 An **import** makes code from another module available for you to use. Python's standard library offers many helpful tools.
 
@@ -349,7 +366,7 @@ print(heapq.heappop(costs))  # 2
 
 ---
 
-## 9. Basic Debugging and Error Handling
+## 10. Basic Debugging and Error Handling
 
 **Debugging** means identifying and fixing problems in a program.
 
@@ -359,7 +376,7 @@ print(heapq.heappop(costs))  # 2
 | Runtime error | An error occurs during execution | `10 / 0` |
 | Logical error | The program runs but produces the wrong result | Using `<` instead of `>` |
 
-### Example: Find the logical error
+### 10.1 Example: Find the logical error
 
 ```python
 numbers = [3, 7, 2, 9]
@@ -388,7 +405,7 @@ Greater than 5: 9
 
 ![The wrong condition selects 3 and 2; the corrected condition selects 7 and 9 as intended.](../../../Assets/Algorithms/Static/python-debug-comparison.svg)
 
-### Practical debugging habits
+### 10.2 Practical debugging habits
 
 1. **Read the error message:** It often identifies the line and the type of error.
 2. **Print intermediate values:** Check what variables hold at important stages.
@@ -398,7 +415,7 @@ Greater than 5: 9
 
 ---
 
-## 10. Bringing It Together: Linear Search
+## 11. Bringing It Together: Linear Search
 
 The following program combines variables, lists, loops, comparisons, conditionals, functions, and return values.
 
@@ -427,7 +444,7 @@ This is the foundation for understanding more advanced searching algorithms.
 
 [Static version for print](../../../Assets/Algorithms/Static/python-linear-search.svg)
 
-## Quick Self-Check
+## 12. Quick Self-Check
 
 1. What is the difference between `=` and `==`?
 2. Why does `range(5)` end at `4`, not `5`?
@@ -436,7 +453,7 @@ This is the foundation for understanding more advanced searching algorithms.
 5. Why might a graph-search algorithm use a `visited` set?
 6. If a program runs but prints the wrong numbers, what category of error is that?
 
-### Answers
+### 12.1 Answers
 
 1. `=` assigns a value; `==` compares two values.
 2. The stop value in `range` is excluded, so `range(5)` gives `0, 1, 2, 3, 4`.

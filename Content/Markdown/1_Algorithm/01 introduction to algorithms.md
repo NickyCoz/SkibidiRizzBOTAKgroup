@@ -1,6 +1,18 @@
-# Introduction to Algorithms
-## What Are Algorithms?
-### Definition of an Algorithm
+# Chapter 1: Introduction to Algorithms
+## Contents
+
+- [1. What Are Algorithms?](#1-what-are-algorithms)
+- [2. Examples](#2-examples)
+- [3. Implementation](#3-implementation)
+- [4. Importance of Algorithms in Programming](#4-importance-of-algorithms-in-programming)
+- [5. Characteristics of an Algorithm](#5-characteristics-of-an-algorithm)
+- [6. Describing an Algorithm](#6-describing-an-algorithm)
+- [7. Visualization](#7-visualization)
+- [8. Representing Algorithms](#8-representing-algorithms)
+- [9. Check Your Understanding](#9-check-your-understanding)
+- [References](#references)
+## 1. What Are Algorithms?
+### 1.1 Definition of an Algorithm
 An **algorithm** is a finite sequence of precise, well-defined instructions designed to solve a problem or complete a task.
 
 An algorithm takes zero or more inputs, processes them through its instructions, and produces a result.
@@ -9,13 +21,13 @@ An **algorithm** describes a method. A **program** implements methods in a progr
 
 ---
 
-## Examples
+## 2. Examples
 Consider sorting students' grades in ascending order, from smallest to largest.
 
 Given the scores **[72, 85, 40, 29, 100, 91]**, **bubble sort** repeatedly compares the *values* at neighboring positions `j` and `j + 1`. If the left value is larger, it swaps them. Each complete pass places the largest remaining value at the end of the unsorted portion. Several passes may be needed to sort the whole list.
 
-## Implementation
-### Python example
+## 3. Implementation
+### 3.1 Python example
 ```python
 grades = [72,85,40,29,100,91]
 length = len(grades)
@@ -37,7 +49,7 @@ This is an example of an algorithm, it uses a sequence of precise commands to co
 
 
 
-## Importance of Algorithms in Programming
+## 4. Importance of Algorithms in Programming
 Algorithms provide a structured approach to solving problems.
 
 They help:
@@ -50,7 +62,7 @@ Different algorithms can solve the same problem using different approaches.
 
 For example, a navigation program can evaluate routes between two locations. **BFS** explores by number of edges, **Dijkstra's algorithm** prioritizes the lowest accumulated cost, and **A*** also uses an estimate of the remaining cost. They have different requirements and guarantees, explained in the later graph lessons.
 
-## Characteristics of an Algorithm
+## 5. Characteristics of an Algorithm
 **Input:** Accepts >= 0 values or pieces of information
 
 **Output:** Produces a definite result.
@@ -63,7 +75,7 @@ For example, a navigation program can evaluate routes between two locations. **B
 
 Simply telling a computer to "sort these numbers" or "find the best route" is not a complete algorithm, because it does not explain how the numbers should be sorted, or how routes should be evaluated.
 
-## Describing an Algorithm
+## 6. Describing an Algorithm
 Consider the Python bubble sort example above.
 
 We can sort them in ascending order by describing them in detailed steps:
@@ -78,11 +90,11 @@ We can sort them in ascending order by describing them in detailed steps:
 
 5. Repeat passes until fewer than two unsorted items remain, then return the sorted list. A single pass is not enough in general.
 
-## Visualization
+## 7. Visualization
 Consider the following list:
 **[72,85,91,68]**
 
-### The bubble sort algorithm processes the values as follows:
+### 7.1 The bubble sort algorithm processes the values as follows:
 
 
 
@@ -126,12 +138,12 @@ Final output:
 
 
 
-### At its core, this is how an algorithm gradually processes input data until it produces the expected result.
+### 7.2 At its core, this is how an algorithm gradually processes input data until it produces the expected result.
 
-## Representing Algorithms
+## 8. Representing Algorithms
 Algorithms can be represented in several ways, including natural language,pseudocode, and flowcharts.
 
-### Pseudocode
+### 8.1 Pseudocode
 Informal,programming-like way of describing an algorithm without following the exact syntax of a particular programming language.
 
 pseudocode does not have a universal syntax. Recall the [sorting example](#implementation), we can represent sorting numbers in a nonempty list in pseudocode:
@@ -150,10 +162,10 @@ END FOR
 print "Sorted array: " and grades
 ```
 
-### Flowcharts
+### 8.2 Flowcharts
 A flowchart represents an algorithm using connected shapes and arrows.
 
-### Flowchart symbols:
+### 8.3 Flowchart symbols:
 * oval: start/end
 
   ![Flowchart start](../../../Assets/Algorithms/Static/flowchart-start.svg)
@@ -174,11 +186,12 @@ A flowchart represents an algorithm using connected shapes and arrows.
 
 This diagram shows one comparison, not the complete sorting loop.
 
-## Check Your Understanding
+## 9. Check Your Understanding
 
 After one left-to-right bubble sort pass on `[3, 2, 1]`, is the list sorted?
 
 **Answer:** No. It becomes `[2, 1, 3]`. Another pass is needed to order `2` and `1`.
+
 
 ## References
 
