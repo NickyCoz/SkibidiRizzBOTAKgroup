@@ -1,8 +1,5 @@
 # Chapter 10: Model Training and Optimisation
 
-**Level:** Beginner to Intermediate | **Reading time:** ~60 minutes
-
-## Learning Objectives
 ## Contents
 
 - [Learning Objectives](#learning-objectives)
@@ -24,15 +21,6 @@
 - [Practice Questions](#practice-questions)
 - [Answer Key](#answer-key)
 - [15. 🎓 Course Wrap-Up](#15--course-wrap-up)
-
-- What training is trying to achieve, and how to split data
-- Loss functions and gradient descent, with worked numbers
-- Optimisers: SGD, Momentum, RMSprop, Adam, AdamW
-- Learning rate, schedules and batch size
-- Overfitting and the full regularisation toolbox
-- Normalisation, initialisation and training stability
-- Hyperparameter tuning, experiment tracking and a debugging checklist
-- Efficiency tricks: mixed precision, transfer learning, and more
 
 ---
 
@@ -437,3 +425,131 @@ You have now covered the connectionist AI journey: what it is (Ch 1), how networ
 4. Build a matrix-factorisation recommender on a small ratings dataset.
 
 Practising on real data is the fastest way to make these ideas stick.
+
+# Reference
+00, C., & Snyder, R. M. (n.d.).  
+1996 ASCUE Proceedings Neural Networks for the Beginner.
+
+98352720375fb469dd015e007e1aef55. (n.d.).
+
+Adhikari, R., & Agrawal, R. K. (n.d.). An Introductory Study on Time Series Modeling and Forecasting.
+
+Adorf, H.-M. (n.d.). 3 Connectionism and Neural Networks.
+
+Benidis, K., Rangapuram, S. S., Flunkert, V., Wang, Y., Maddix, D., Turkmen, C., Gasthaus, J., Bohlke-Schneider, M., Salinas, D., Stella, L., Aubet, F. X., Callot, L., & Januschowski, T. (2023). Deep Learning for Time Series Forecasting: Tutorial and Literature Survey. ACM Computing Surveys, 55(6).  
+https://doi.org/10.1145/3533382
+
+Bhattacherjee, S., Chavan, A., Huang, S., Deshpande, A., & Parameswaran, A. (2015). Principles of dataset versioning: Exploring the recreation/storage tradeoff. In Proceedings of the VLDB Endowment (Vol. 8, Number 12 12, pp. 1346–1357). Association for Computing Machinery.  
+https://doi.org/10.14778/2824032.2824035
+
+Bird, R. (1969). Kennedy, K. Variable subsumption with constant folding. SETL York, Feb. 1974. 10. Kennedy, K. Use-definition chains with applications. In Int. J. Comptr. Math., Sect. A (Vol. 5, Number 2). ACM.
+
+Brodie, M., Ma, S., Rachevsky, L., & Champlin, J. (2005). Automated problem determination using call-stack matching. Journal of Network and Systems Management, 13(2), 219–237.  
+https://doi.org/10.1007/s10922-005-4443-8
+
+Chen, Y., Kang, Y., Chen, Y., & Wang, Z. (2020). Probabilistic Forecasting with Temporal Convolutional Neural Network.  
+http://arxiv.org/abs/1906.04397
+
+Chivers, I., & Sleightholme, J. (2018). An Introduction to Algorithms and the Big O Notation. In Introduction to Programming with Fortran (pp. 391–396). Springer International Publishing.  
+https://doi.org/10.1007/978-3-319-75502-1_23
+
+COSY : computer conferencing system : user’s guide, version 3.1. (1985). Institute of Computer Science, University of Guelph.
+
+Curtis, S. A. (2003). The classification of greedy algorithms. Science of Computer Programming, 49(1–3), 125–157.  
+https://doi.org/10.1016/j.scico.2003.09.001
+
+Design of an AI-Based Multi-Sensor Self-Diagnostic Chip for Industrial Sensor Health Monitoring. (n.d.).
+
+Eddy, S. R. (n.d.). PRIMER What is (dynamic programming?
+
+Elsayed, S. M., Sarker, R. A., & Essam, D. L. (2014). A new genetic algorithm for solving optimization problems. Engineering Applications of Artificial Intelligence, 27, 57–69.  
+https://doi.org/10.1016/j.engappai.2013.09.013
+
+Everitt, T., & Hutter, M. (2015). Analytical Results on the BFS vs. DFS Algorithm Selection Problem. Part II: Graph Search *.  
+http://link.springer.com
+
+Felzenszwalb, P. F., & Zabih, R. (2011). Dynamic programming and graph algorithms in computer vision. IEEE Transactions on Pattern Analysis and Machine Intelligence, 33(4), 721–740.  
+https://doi.org/10.1109/TPAMI.2010.135
+
+François-Lavet, V., Henderson, P., Islam, R., Bellemare, M. G., & Pineau, J. (2018). An introduction to deep reinforcement learning. Foundations and Trends in Machine Learning, 11(3–4), 219–354.  
+https://doi.org/10.1561/2200000071
+
+Friedman, H. (1971). Algorithmic procedures, generalized turing algorithms, and elementary recursion theory. Studies in Logic and the Foundations of Mathematics, 61(C), 361–389.  
+https://doi.org/10.1016/S0049-237X(08)71238-2
+
+Gallego, G., Katircioglu, K., & Ramachandran, B. (2007). Inventory management under highly uncertain demand. Operations Research Letters, 35(3), 281–289.  
+https://doi.org/10.1016/j.orl.2006.03.012
+
+García, A. (2025). Greedy algorithms: a review and open problems. In Journal of Inequalities and Applications (Vol. 2025, Number 1). Springer Nature.  
+https://doi.org/10.1186/s13660-025-03254-1
+
+Gneiting, T., & Katzfuss, M. (2014). Probabilistic forecasting. Annual Review of Statistics and Its Application, 1, 125–151.  
+https://doi.org/10.1146/annurev-statistics-062713-085831
+
+Guest, O., & Martin, A. E. (2026). A metatheory of classical and modern connectionism. Psychological Review, 133(3), 719–736.  
+https://doi.org/10.1037/rev0000591
+
+Haupt, S. E., Garcia Casado, M., Davidson, M., Dobschinski, J., Du, P., Lange, M., Miller, T., Mohrlen, C., Motley, A., Pestana, R., & Zack, J. (2019). The use of probabilistic forecasts: Applying them in theory and practice. IEEE Power and Energy Magazine, 17(6), 46–57.  
+https://doi.org/10.1109/MPE.2019.2932639
+
+Hill, R. K. (2016). What an Algorithm Is. Philosophy and Technology, 29(1), 35–59.  
+https://doi.org/10.1007/s13347-014-0184-5
+
+Ingle, C., Bakliwal, D., Jain, J., Singh, P., Kale, P., & Chhajed, V. (2021). Demand Forecasting: Literature Review On Various Methodologies. 2021 12th International Conference on Computing Communication and Networking Technologies, ICCCNT 2021.  
+https://doi.org/10.1109/ICCCNT51525.2021.9580139
+
+Introduction to Connectionist AI. (n.d.).
+
+Isinkaye, F. O., Folajimi, Y. O., & Ojokoh, B. A. (2015). Recommendation systems: Principles, methods and evaluation. In Egyptian Informatics Journal (Vol. 16, Number 3, pp. 261–273). Elsevier B.V.  
+https://doi.org/10.1016/j.eij.2015.06.005
+
+Iyanda, J. (n.d.). Title : A Comparative Analysis of Breadth First Search (BFS) and Depth First Search (DFS) Algorithms.
+
+Khuller, S., & Raghavachari, B. (n.d.). 7 Basic Graph Algorithms (Vol. 1).
+
+Klump, J., Wyborn, L., Wu, M., Martin, J., Downs, R. R., & Asmi, A. (2021). Versioning data is about more than revisions: A conceptual framework and proposed principles. Data Science Journal, 20(1).  
+https://doi.org/10.5334/dsj-2021-012
+
+Klump, J., Wyborn, L., Wu, M., Strecker, D., Pampel, H., & Rothfritz, L. (2026). What Do We Mean by ‘Version’? Actionable Guidelines for the Versioning of Data. Data Science Journal, 25(1).  
+https://doi.org/10.5334/dsj-2026-037
+
+Kosasih, E. E., & Brintrup, A. (2025). Towards trustworthy AI for link prediction in supply chain knowledge graph: a neurosymbolic reasoning approach. International Journal of Production Research, 63(6), 2268–2290.  
+https://doi.org/10.1080/00207543.2024.2399713
+
+Mala, F. A., & Ali, R. (2022). The Big-O of Mathematics and Computer Science. Journal of Applied Mathematics and Computation, 6(1), 1–3.  
+https://doi.org/10.26855/jamc.2022.03.001
+
+Malik, A., Sharma, A., & Saroha, V. (2013). Greedy Algorithm. International Journal of Scientific and Research Publications, 3(8).  
+www.ijsrp.org
+
+Masini, R. P., Medeiros, M. C., & Mendes, E. F. (2021). Machine Learning Advances for Time Series Forecasting.  
+http://arxiv.org/abs/2012.12802
+
+Mcmaster, S., & Memon, A. M. (n.d.). Call Stack Coverage for Test Suite Reduction.
+
+Morozov, A. V., Levkivskyi, V. L., & Plechystyy, D. D. (2024). ACTIVATION FUNCTIONS IN NEURAL NETWORKS: OVERVIEW AND COMPARISON. Scientific Notes of Taurida National V.I. Vernadsky University. Series: Technical Sciences, 1(3), 144–151.  
+https://doi.org/10.32782/2663-5941/2024.3.1/22
+
+Moschovakis, Y. N. (n.d.). Abstract Recursion as a Foundation for the Theory of Algorithms.
+
+Pérez-Sánchez, B., Fontenla-Romero, O., & Guijarro-Berdiñas, B. (2018). A review of adaptive online learning for artificial neural networks. Artificial Intelligence Review, 49(2), 281–299.  
+https://doi.org/10.1007/s10462-016-9526-2
+
+Shaffer, C. A. (2010). A Practical Introduction to Data Structures and Algorithm Analysis Third Edition (Java Version).  
+http://people.cs.vt.edu/
+
+Sharma, S., Sharma, S., & Athaiya, A. (2020). ACTIVATION FUNCTIONS IN NEURAL NETWORKS. In International Journal of Engineering Applied Sciences and Technology (Vol. 4).  
+http://www.ijeast.com
+
+Surti, C., & Celani, A. (2019). Newsvendor Game: A Behavioral Exercise in Decision Making under Risk. Decision Sciences Journal of Innovative Education, 17(4), 324–343.  
+https://doi.org/10.1111/dsji.12194
+
+Thuy, T., & Nguyen, H. (2023). Applications of Artificial Intelligence for Demand Forecasting. OPERATIONS AND SUPPLY CHAIN MANAGEMENT, 16(4), 424–434.
+
+Yue, D., & You, F. (2013). Planning and scheduling of flexible process networks under uncertainty with stochastic inventory: MINLP models and algorithm. AIChE Journal, 59(5), 1511–1532.  
+https://doi.org/10.1002/aic.13924
+
+Zhang, Jingqiao., & Sanderson, A. C. . (2009). Adaptive differential evolution : a robust approach to multimodal problem optimization. Springer.
+
+Ziukov, S. (2015). A literature review on models of inventory management under uncertainty. Business Systems & Economics, 5(1), 26.  
+https://doi.org/10.13165/vse-15-5-1-03
